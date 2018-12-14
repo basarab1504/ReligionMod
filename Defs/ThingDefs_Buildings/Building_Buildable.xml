@@ -3,7 +3,7 @@
 
   <ThingDef Name="BaseAltar" Abstract="True">
     <category>Building</category>
-    <thingClass>Building</thingClass>
+    <thingClass>Building_Altar</thingClass>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
     <selectable>true</selectable>
     <drawerType>MapMeshAndRealTime</drawerType>
@@ -77,7 +77,42 @@
         <min>2</min>
         <max>4</max>
       </watchBuildingStandDistanceRange>
-      <watchBuildingStandRectWidth>13</watchBuildingStandRectWidth>
+      <watchBuildingStandRectWidth>6</watchBuildingStandRectWidth>
+    </building>  
+    <uiIconScale>0.9</uiIconScale>  
+  </ThingDef>
+
+    <ThingDef ParentName="BaseAltar">
+    <defName>AltarOfAngryFaith</defName>
+    <label>Angry's Altar</label>
+    <description>Holy Altar of all Angry's faith commonwealth.</description>
+    <graphicData>
+      <texPath>Things/Religion/Altar</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,3)</drawSize>
+      <damageData>
+        <rectN>(0.25,0.234375,0.5,0.28125)</rectN>
+        <rectS>(0.25,0.234375,0.5,0.28125)</rectS>
+        <rectE>(0.28125,0.25,0.453125,0.25)</rectE>
+        <rectW>(0.28125,0.25,0.453125,0.25)</rectW>
+      </damageData>
+      <shadowData>
+        <volume>(0.23, 0.26, 0.23)</volume>
+      </shadowData>
+    </graphicData> 
+    <statBases>
+      <WorkToBuild>10000</WorkToBuild>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Mass>14</Mass>
+      <Flammability>1.0</Flammability>
+      <JoyGainFactor>1.2</JoyGainFactor>
+    </statBases>    
+    <building>
+      <watchBuildingStandDistanceRange>
+        <min>2</min>
+        <max>4</max>
+      </watchBuildingStandDistanceRange>
+      <watchBuildingStandRectWidth>5</watchBuildingStandRectWidth>
     </building>  
     <uiIconScale>0.9</uiIconScale>  
   </ThingDef>
