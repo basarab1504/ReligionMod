@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef Name="BaseAltar" Abstract="True">
+    <category>Building</category>
+    <thingClass>Building</thingClass>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <repairEffect>Repair</repairEffect>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <filthLeaving>Filth_RubbleBuilding</filthLeaving>
+    <statBases>
+      <SellPriceFactor>0.70</SellPriceFactor>
+    </statBases>
+  </ThingDef>
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>AltarOfTynanFaith</defName>
+    <label>Tynan's Altar</label>
+    <description>Holy Altar of all Tynan's faith commonwealth.</description>
+  </ThingDef>
+
+<ThingDef ParentName="BuildingBase">
+    <defName>LinkableBench</defName>
+    <label>linkable bench</label>
+  <thingClass>Building</thingClass>
+    <uiIconPath>Things/Religion/Bench_menuicon</uiIconPath>
+  <graphicData>
+    <texPath>Things/Religion/LinkableBench</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+    <linkType>Basic</linkType>
+      <linkFlags>
+        <li>Custom2</li>
+    </linkFlags>
+      <shadowData>
+        <volume>(0.3, 0.3, 0.6)</volume>
+      </shadowData>
+  </graphicData>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <altitudeLayer>Building</altitudeLayer>
+    <statBases>
+      <MaxHitPoints>75</MaxHitPoints>
+      <WorkToBuild>1200</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>4</Beauty>
+    <Comfort>0.7</Comfort>
+    </statBases>
+    <description>A linkable bench designed for worshippers to sit and observe rituals.</description>
+    <size>(1,1)</size>
+  <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>25</costStuffCount>
+    <pathCost>30</pathCost>
+    <fillPercent>0.40</fillPercent>
+    <designationCategory>ReligionBuildings</designationCategory>
+    <placingDraggableDimensions>1</placingDraggableDimensions>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <building>
+      <isSittable>true</isSittable>
+    </building>
+  </ThingDef>
+</Defs>
