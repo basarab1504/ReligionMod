@@ -14,12 +14,73 @@
     <statBases>
       <SellPriceFactor>0.70</SellPriceFactor>
     </statBases>
+  <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <comps>
+      <li Class="CompProperties_RoomIdentifier">
+        <roomStat>Impressiveness</roomStat>
+      </li>
+    </comps>      
+    <designationCategory>ReligionBuildings</designationCategory>     
+    <altitudeLayer>Building</altitudeLayer>
+    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+    <rotatable>true</rotatable>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <fillPercent>1</fillPercent>
+    <thingCategories>
+      <li>BuildingsJoy</li>
+    </thingCategories>
+    <pathCost>70</pathCost>
+    <passability>PassThroughOnly</passability>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <building>
+      <joyKind>PrayingKind</joyKind>
+    </building>    
+    <placeWorkers>
+      <li>PlaceWorker_WatchArea</li>
+    </placeWorkers>
+    <designationCategory>ReligionBuildings</designationCategory>
+    <designationHotKey>Misc4</designationHotKey>
+    <constructionSkillPrerequisite>4</constructionSkillPrerequisite>    
   </ThingDef>
 
-  <ThingDef ParentName="BuildingBase">
+  <ThingDef ParentName="BaseAltar">
     <defName>AltarOfTynanFaith</defName>
     <label>Tynan's Altar</label>
     <description>Holy Altar of all Tynan's faith commonwealth.</description>
+    <graphicData>
+      <texPath>Things/Religion/Altar</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,3)</drawSize>
+      <damageData>
+        <rectN>(0.25,0.234375,0.5,0.28125)</rectN>
+        <rectS>(0.25,0.234375,0.5,0.28125)</rectS>
+        <rectE>(0.28125,0.25,0.453125,0.25)</rectE>
+        <rectW>(0.28125,0.25,0.453125,0.25)</rectW>
+      </damageData>
+      <shadowData>
+        <volume>(0.23, 0.26, 0.23)</volume>
+      </shadowData>
+    </graphicData> 
+    <statBases>
+      <WorkToBuild>10000</WorkToBuild>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Mass>14</Mass>
+      <Flammability>1.0</Flammability>
+      <JoyGainFactor>1.2</JoyGainFactor>
+    </statBases>    
+    <building>
+      <watchBuildingStandDistanceRange>
+        <min>2</min>
+        <max>4</max>
+      </watchBuildingStandDistanceRange>
+      <watchBuildingStandRectWidth>13</watchBuildingStandRectWidth>
+    </building>  
+    <uiIconScale>0.9</uiIconScale>  
   </ThingDef>
 
 <ThingDef ParentName="BuildingBase">
