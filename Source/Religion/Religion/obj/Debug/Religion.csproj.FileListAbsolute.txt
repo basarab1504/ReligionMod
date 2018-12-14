@@ -1,0 +1,15 @@
+C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\bin\Debug\Religion.dll
+C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\bin\Debug\Religion.pdb
+C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\bin\Debug\Assembly-CSharp.dll
+C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\bin\Debug\UnityEngine.dll
+C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\bin\Debug\TextMeshPro-1.0.55.56.0b11.dll
+C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\bin\Debug\NAudio.dll
+C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\bin\Debug\NVorbis.dll
+C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\bin\Debug\UnityEngine.UI.dll
+C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\obj\Debug\Religion.csprojResolveAssemblyReference.cache
+C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\obj\Debug\Religion.csproj.CoreCompileInputs.cache
+C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\obj\Debug\Religion.dll
+C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\obj\Debug\Religion.pdb
+C:\Users\VLAD-02\Desktop\Modding\Religion\Assemblies\Religion.dll
+C:\Users\VLAD-02\Desktop\Modding\Religion\Assemblies\Religion.pdb
