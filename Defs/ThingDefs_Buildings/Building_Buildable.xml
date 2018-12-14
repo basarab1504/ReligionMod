@@ -43,7 +43,6 @@
     <placeWorkers>
       <li>PlaceWorker_WatchArea</li>
     </placeWorkers>
-    <designationCategory>ReligionBuildings</designationCategory>
     <designationHotKey>Misc4</designationHotKey>
     <constructionSkillPrerequisite>4</constructionSkillPrerequisite>    
   </ThingDef>
