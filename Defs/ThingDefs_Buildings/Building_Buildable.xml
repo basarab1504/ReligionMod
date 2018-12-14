@@ -20,8 +20,8 @@
       <li>Stony</li>
     </stuffCategories>
     <comps>
-      <li>
-        <compClass>CompQuality</compClass>
+      <li Class="CompProperties_RoomIdentifier">
+        <roomStat>Impressiveness</roomStat>
       </li>
     </comps>      
     <designationCategory>ReligionBuildings</designationCategory>     
@@ -74,10 +74,10 @@
     </statBases>    
     <building>
       <watchBuildingStandDistanceRange>
-        <min>1</min>
-        <max>6</max>
+        <min>2</min>
+        <max>4</max>
       </watchBuildingStandDistanceRange>
-      <watchBuildingStandRectWidth>6</watchBuildingStandRectWidth>
+      <watchBuildingStandRectWidth>13</watchBuildingStandRectWidth>
     </building>  
     <uiIconScale>0.9</uiIconScale>  
   </ThingDef>
