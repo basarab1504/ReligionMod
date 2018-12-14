@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Building_Altar.cs" />
+    <Compile Include="JoyGiverDef_ReligionJoyGiverDef.cs" />
+    <Compile Include="JoyGiver_Praying.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReligionDefOf.cs" />
     <Compile Include="RoomRoleWorker_Church.cs" />

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<TraitDef>
+    	<defName>TynanReligion</defName>
+		<commonality>0.7</commonality>
+    	<degreeDatas>
+      	<li>
+        	<label>Tynan Faith</label>
+        	<description>{PAWN_nameDef} has faith in Tynan.</description>
+      	</li>
+    	</degreeDatas>
+    	<conflictingTraits>
+      	 <li>CommonAtheist</li>
+      	 <li>Cannibal</li>
+    	</conflictingTraits>
+    </TraitDef>
+
+	<TraitDef>
+    	<defName>Angry</defName>
+		<commonality>0.7</commonality>
+    	<degreeDatas>
+      	<li>
+        	<label>Angry Faith</label>
+        	<description>{PAWN_nameDef} has faith in Angry.</description>
+      	</li>
+    	</degreeDatas>
+    	<conflictingTraits>
+      	 <li>CommonAtheist</li>
+      	 <li>Cannibal</li>
+    	</conflictingTraits>
+    </TraitDef>
+
+    <TraitDef>
+    	<defName>CommonAtheist</defName>
+		<commonality>0.7</commonality>
+    	<degreeDatas>
+      	<li>
+        	<label>Atheist</label>
+        	<description>{PAWN_nameDef} is denying any Gods.</description>
+      	</li>
+    	</degreeDatas>
+    	<conflictingTraits>
+      	 <li>CommonRelgion</li>
+    	</conflictingTraits>
+    </TraitDef>
+</Defs>
