@@ -12,3 +12,9 @@ C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\obj\Debug\Rel
 C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\obj\Debug\Religion.csproj.CopyComplete
 C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\obj\Debug\Religion.dll
 C:\Users\VLAD-02\Desktop\Modding\Religion\Source\Religion\Religion\obj\Debug\Religion.pdb
+C:\Users\VLAD-02\Desktop\RimWorld2059Win64\Mods\Religion\Source\Religion\Religion\obj\Debug\Religion.csprojResolveAssemblyReference.cache
+C:\Users\VLAD-02\Desktop\RimWorld2059Win64\Mods\Religion\Source\Religion\Religion\obj\Debug\Religion.csproj.CoreCompileInputs.cache
+C:\Users\VLAD-02\Desktop\RimWorld2059Win64\Mods\Religion\Source\Religion\Religion\obj\Debug\Religion.dll
+C:\Users\VLAD-02\Desktop\RimWorld2059Win64\Mods\Religion\Source\Religion\Religion\obj\Debug\Religion.pdb
+C:\Users\VLAD-02\Desktop\RimWorld2059Win64\Mods\Religion\Assemblies\Religion.dll
+C:\Users\VLAD-02\Desktop\RimWorld2059Win64\Mods\Religion\Assemblies\Religion.pdb

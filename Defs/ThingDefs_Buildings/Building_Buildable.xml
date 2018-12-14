@@ -3,7 +3,6 @@
 
   <ThingDef Name="BaseAltar" Abstract="True">
     <category>Building</category>
-    <thingClass>Building_Altar</thingClass>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
     <selectable>true</selectable>
     <drawerType>MapMeshAndRealTime</drawerType>
@@ -51,6 +50,7 @@
     <defName>AltarOfTynanFaith</defName>
     <label>Tynan's Altar</label>
     <description>Holy Altar of all Tynan's faith commonwealth.</description>
+    <thingClass>Religion.Building_Altar</thingClass>    
     <graphicData>
       <texPath>Things/Religion/Altar</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -86,6 +86,7 @@
     <defName>AltarOfAngryFaith</defName>
     <label>Angry's Altar</label>
     <description>Holy Altar of all Angry's faith commonwealth.</description>
+    <thingClass>Religion.Building_Altar</thingClass>    
     <graphicData>
       <texPath>Things/Religion/Altar</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
