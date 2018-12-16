@@ -21,10 +21,9 @@ namespace Religion
                 return true;
             if (!base.CanInteractWith(pawn, t, inBed))
                 return false;
-            if (!inBed)
-                return true;
-            Building_Bed bed = pawn.CurrentBed();
-            return WatchBuildingUtility.CanWatchFromBed(pawn, bed, t);
+            if (inBed == false)
+                return false;
+            return false;
         }
 
         protected override Job TryGivePlayJob(Pawn pawn, Thing t)
