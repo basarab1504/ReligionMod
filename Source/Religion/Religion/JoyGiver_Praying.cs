@@ -22,7 +22,7 @@ namespace Religion
             if (!base.CanInteractWith(pawn, t, inBed))
                 return false;
             if (!inBed)
-                return false;
+                return true;
             Building_Bed bed = pawn.CurrentBed();
             return WatchBuildingUtility.CanWatchFromBed(pawn, bed, t);
         }

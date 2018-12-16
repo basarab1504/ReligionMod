@@ -17,22 +17,4 @@
       <li>Sight</li>
     </requiredCapacities>
   </Religion.JoyGiverDef_ReligionJoyGiverDef>
-
-    <Religion.JoyGiverDef_ReligionJoyGiverDef>
-    <defName>PrayToTynan</defName>
-    <giverClass>Religion.JoyGiver_Praying</giverClass>
-    <baseChance>3.5</baseChance>
-    <canDoWhileInBed>false</canDoWhileInBed>
-    <thingDefs>
-      <li>AltarOfAngryFaith</li>
-    </thingDefs>
-    <traitDefs>
-      <li>AngryReligion</li>
-    </traitDefs>
-    <jobDef>PrayToGod</jobDef>
-    <joyKind>PrayingKind</joyKind>
-    <requiredCapacities>
-      <li>Sight</li>
-    </requiredCapacities>
-  </Religion.JoyGiverDef_ReligionJoyGiverDef>
 </Defs>
