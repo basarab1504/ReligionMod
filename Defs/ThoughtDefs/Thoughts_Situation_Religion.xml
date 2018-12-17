@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <Religion.ThoughtDef_AltarThought>
+    <defName>NoTynanChurch</defName>
+    <workerClass>Religion.ThoughtWorker_NoChurch</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <requiredTraits>
+      <li>TynanReligion</li>
+    </requiredTraits>
+    <altar>
+    	<li>AltarOfTynanFaith</li>
+    </altar>
+    <stages>
+      <li>
+        <label>no church</label>
+        <description>There's no place i could pray to Tynan!</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </Religion.ThoughtDef_AltarThought>
+</Defs>
