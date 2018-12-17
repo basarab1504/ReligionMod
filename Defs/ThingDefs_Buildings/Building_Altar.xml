@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
+	
   <ThingDef Name="BaseAltar" Abstract="True">
     <category>Building</category>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
