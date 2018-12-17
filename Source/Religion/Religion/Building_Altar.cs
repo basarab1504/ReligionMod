@@ -9,6 +9,8 @@ using Verse;
 namespace Religion
 {
     class Building_Altar : Building
-    {
+    { 
+
     }
 }
+
