@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<WorkGiverDef>
+		<defName>LectureWork</defName>
+	    <label>catch fish</label>
+		<giverClass>Religion.WorkGiver_Lecture</giverClass>
+		<workType>Preacher</workType>
+		<fixedBillGiverDefs>
+			<li>LecternOfTynan</li>
+		</fixedBillGiverDefs>
+		<verb>preach</verb>
+		<gerund>preaching</gerund>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+	</WorkGiverDef>
+
+</Defs>
