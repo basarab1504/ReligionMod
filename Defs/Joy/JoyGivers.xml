@@ -17,4 +17,58 @@
       <li>Sight</li>
     </requiredCapacities>
   </Religion.JoyGiverDef_ReligionJoyGiverDef>
+
+  <Religion.JoyGiverDef_ReligionJoyGiverDef>
+    <defName>PrayToMonothos</defName>
+    <giverClass>Religion.JoyGiver_Praying</giverClass>
+    <baseChance>3.5</baseChance>
+    <canDoWhileInBed>false</canDoWhileInBed>
+    <thingDefs>
+      <li>AltarOfMonothosFaith</li>
+    </thingDefs>
+    <traitDefs>
+      <li>MonothosReligion</li>
+    </traitDefs>
+    <jobDef>PrayToGod</jobDef>
+    <joyKind>PrayingKind</joyKind>
+    <requiredCapacities>
+      <li>Sight</li>
+    </requiredCapacities>
+  </Religion.JoyGiverDef_ReligionJoyGiverDef>
+
+  <Religion.JoyGiverDef_ReligionJoyGiverDef>
+    <defName>LectureOfTynan</defName>
+    <giverClass>Religion.JoyGiver_Praying</giverClass>
+    <baseChance>3.5</baseChance>
+    <canDoWhileInBed>false</canDoWhileInBed>
+    <thingDefs>
+      <li>LecternOfTynan</li>
+    </thingDefs>
+    <traitDefs>
+      <li>TynanReligion</li>
+    </traitDefs>
+    <jobDef>HoldLecture</jobDef>
+    <joyKind>PrayingKind</joyKind>
+    <requiredCapacities>
+      <li>Sight</li>
+    </requiredCapacities>
+  </Religion.JoyGiverDef_ReligionJoyGiverDef>
+
+  <Religion.JoyGiverDef_ReligionJoyGiverDef>
+    <defName>AttendToTynanLecture</defName>
+    <giverClass>Religion.JoyGiver_AttendToLecture</giverClass>
+    <baseChance>3.5</baseChance>
+    <canDoWhileInBed>false</canDoWhileInBed>
+    <thingDefs>
+      <li>LecternOfTynan</li>
+    </thingDefs>
+    <traitDefs>
+      <li>TynanReligion</li>
+    </traitDefs>
+    <jobDef>AttendLecture</jobDef>
+    <joyKind>PrayingKind</joyKind>
+    <requiredCapacities>
+      <li>Sight</li>
+    </requiredCapacities>
+  </Religion.JoyGiverDef_ReligionJoyGiverDef>
 </Defs>

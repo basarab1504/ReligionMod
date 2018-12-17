@@ -11,17 +11,17 @@
     	</degreeDatas>
     	<conflictingTraits>
       	 <li>Cannibal</li>
-         <li>Angry</li>
+         <li>MonothosReligion</li>
     	</conflictingTraits>
     </TraitDef>
 
 	<TraitDef>
-    	<defName>Angry</defName>
+    	<defName>MonothosReligion</defName>
 		<commonality>0.7</commonality>
     	<degreeDatas>
       	<li>
-        	<label>Angry Faith</label>
-        	<description>{PAWN_nameDef} has faith in Angry.</description>
+        	<label>Monthos Faith</label>
+        	<description>{PAWN_nameDef} has faith in Monthos.</description>
       	</li>
     	</degreeDatas>
     	<conflictingTraits>

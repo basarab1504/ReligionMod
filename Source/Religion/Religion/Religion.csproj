@@ -44,7 +44,10 @@
   <ItemGroup>
     <Compile Include="Building_Altar.cs" />
     <Compile Include="Building_Lectern.cs" />
+    <Compile Include="JobDriver_AttendLecture.cs" />
+    <Compile Include="JobDriver_HoldLecture.cs" />
     <Compile Include="JoyGiverDef_ReligionJoyGiverDef.cs" />
+    <Compile Include="JoyGiver_AttendToLecture.cs" />
     <Compile Include="JoyGiver_Praying.cs" />
     <Compile Include="WorkGiver_Lecture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

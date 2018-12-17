@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	
+
   <ThingDef Name="BaseAltar" Abstract="True">
     <category>Building</category>
+    <thingClass>Building</thingClass>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
     <selectable>true</selectable>
     <drawerType>MapMeshAndRealTime</drawerType>
@@ -10,41 +11,28 @@
     <repairEffect>Repair</repairEffect>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
     <filthLeaving>Filth_RubbleBuilding</filthLeaving>
+    <designationCategory>ReligionBuildings</designationCategory> 
+    <passability>PassThroughOnly</passability>
+    <altitudeLayer>Building</altitudeLayer>
+    <tickerType>Normal</tickerType>
     <statBases>
       <SellPriceFactor>0.70</SellPriceFactor>
     </statBases>
-  <stuffCategories>
-      <li>Metallic</li>
-      <li>Woody</li>
-      <li>Stony</li>
-    </stuffCategories>
-    <comps>
-      <li Class="CompProperties_RoomIdentifier">
-        <roomStat>Impressiveness</roomStat>
-      </li>
-    </comps>      
-    <designationCategory>ReligionBuildings</designationCategory>     
-    <altitudeLayer>Building</altitudeLayer>
     <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
     <rotatable>true</rotatable>
-    <minifiedDef>MinifiedThing</minifiedDef>
-    <socialPropernessMatters>true</socialPropernessMatters>
-    <fillPercent>1</fillPercent>
-    <thingCategories>
-      <li>BuildingsJoy</li>
-    </thingCategories>
-    <pathCost>70</pathCost>
-    <passability>PassThroughOnly</passability>
-    <defaultPlacingRot>South</defaultPlacingRot>
-    <building>
-      <joyKind>PrayingKind</joyKind>
-    </building>    
+    <socialPropernessMatters>true</socialPropernessMatters>    
+    <comps>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+    </comps>
     <placeWorkers>
       <li>PlaceWorker_WatchArea</li>
     </placeWorkers>
-    <designationHotKey>Misc4</designationHotKey>
-    <constructionSkillPrerequisite>4</constructionSkillPrerequisite>    
-  </ThingDef>
+    <building>
+      <joyKind>PrayingKind</joyKind>
+    </building>    
+  </ThingDef>  
 
   <ThingDef ParentName="BaseAltar">
     <defName>AltarOfTynanFaith</defName>
@@ -72,20 +60,26 @@
       <Flammability>1.0</Flammability>
       <JoyGainFactor>1.2</JoyGainFactor>
     </statBases>    
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>65</costStuffCount>    
     <building>
       <watchBuildingStandDistanceRange>
-        <min>2</min>
-        <max>4</max>
+        <min>1</min>
+        <max>8</max>
       </watchBuildingStandDistanceRange>
       <watchBuildingStandRectWidth>6</watchBuildingStandRectWidth>
     </building>  
-    <uiIconScale>0.9</uiIconScale>  
+    <uiIconScale>0.7</uiIconScale>  
   </ThingDef>
 
     <ThingDef ParentName="BaseAltar">
-    <defName>AltarOfAngryFaith</defName>
-    <label>Angry's Altar</label>
-    <description>Holy Altar of all Angry's faith commonwealth.</description>
+    <defName>AltarOfMonothosFaith</defName>
+    <label>Monothos's Altar</label>
+    <description>Holy Altar of all Monothos's faith commonwealth.</description>
     <thingClass>Religion.Building_Altar</thingClass>    
     <graphicData>
       <texPath>Things/Religion/Altar</texPath>
@@ -108,14 +102,20 @@
       <Flammability>1.0</Flammability>
       <JoyGainFactor>1.2</JoyGainFactor>
     </statBases>    
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>65</costStuffCount>    
     <building>
       <watchBuildingStandDistanceRange>
-        <min>2</min>
-        <max>4</max>
+        <min>1</min>
+        <max>8</max>
       </watchBuildingStandDistanceRange>
-      <watchBuildingStandRectWidth>5</watchBuildingStandRectWidth>
+      <watchBuildingStandRectWidth>6</watchBuildingStandRectWidth>
     </building>  
-    <uiIconScale>0.9</uiIconScale>  
+    <uiIconScale>0.7</uiIconScale>  
   </ThingDef>
 
 <ThingDef ParentName="BuildingBase">

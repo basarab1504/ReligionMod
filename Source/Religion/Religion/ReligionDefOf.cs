@@ -11,6 +11,6 @@ namespace Religion
     [DefOf]
     class ReligionDefOf
     {
-        //public static ThingDef Altar;
+        public static JobDef HoldLecture;
     }
 }
