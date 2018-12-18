@@ -7,9 +7,6 @@ namespace Religion
 {
     class ReligionUtility
     {
-        public void TryLecture()
-        {
 
-        }
     }
 }

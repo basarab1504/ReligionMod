@@ -15,6 +15,9 @@ namespace Religion
 {
     class Building_Lectern : Building, IAssignableBuilding
     {
+        public List<Pawn> owners = new List<Pawn>();
+        public List<Pawn> listeners = new List<Pawn>();
+        
         public void TryLecture()
         {
             if (owners.Count == 0)
@@ -23,8 +26,6 @@ namespace Religion
             job.playerForced = true;
             owners[0].jobs.TryTakeOrderedJob(job);
         }
-
-        public List<Pawn> owners = new List<Pawn>();
 
         public IEnumerable<Pawn> AssigningCandidates
         {
