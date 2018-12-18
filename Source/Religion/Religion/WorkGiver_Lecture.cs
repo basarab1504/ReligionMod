@@ -28,7 +28,16 @@ namespace Religion
 
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            return true;
+            Building_Lectern lectern = t as Building_Lectern;
+            if (lectern == null)
+                return false;
+            if (lectern.owners.Count == 0)
+                return false;
+            if (lectern.owners[0] == pawn && pawn.CanReserve((LocalTargetInfo)t, 1, -1, (ReservationLayerDef)null, forced))
+            {
+                return base.HasJobOnThing(lectern.owners[0], t, forced);
+            }
+            return false;
         }
 
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)

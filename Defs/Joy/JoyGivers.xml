@@ -38,7 +38,7 @@
 
   <Religion.JoyGiverDef_ReligionJoyGiverDef>
     <defName>LectureOfTynan</defName>
-    <giverClass>Religion.JoyGiver_Praying</giverClass>
+    <giverClass>Religion.JoyGiver_HoldLecture</giverClass>
     <baseChance>3.5</baseChance>
     <canDoWhileInBed>false</canDoWhileInBed>
     <thingDefs>
