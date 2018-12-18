@@ -29,4 +29,34 @@
          <li>TynanReligion</li>
     	</conflictingTraits>
     </TraitDef>
+
+  <Religion.TraitDef_ReligionTrait>
+      <defName>FoaghuusaReligion</defName>
+    <commonality>0.7</commonality>
+      <degreeDatas>
+        <li>
+          <label>Foaghuusa Faith</label>
+          <description>{PAWN_nameDef} has faith in Foaghuusa.</description>
+        </li>
+      </degreeDatas>
+      <conflictingTraits>
+         <li>Cannibal</li>
+         <li>ReeoroReligion</li>
+      </conflictingTraits>
+    </Religion.TraitDef_ReligionTrait>
+
+  <Religion.TraitDef_ReligionTrait>
+      <defName>ReeoroReligion</defName>
+    <commonality>0.7</commonality>
+      <degreeDatas>
+        <li>
+          <label>Reeoro Faith</label>
+          <description>{PAWN_nameDef} has faith in Reeoro.</description>
+        </li>
+      </degreeDatas>
+      <conflictingTraits>
+         <li>FoaghuusaReligion</li>        
+         <li>Cannibal</li>
+      </conflictingTraits>
+    </Religion.TraitDef_ReligionTrait>
 </Defs>

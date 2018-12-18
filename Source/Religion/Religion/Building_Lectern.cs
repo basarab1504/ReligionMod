@@ -13,11 +13,19 @@ using RimWorld;
 
 namespace Religion
 {
-    class Building_Lectern : Building, IAssignableBuilding
+    class Building_Lectern : Building, IAssignableTrait, IAssignableBuilding
     {
         public List<Pawn> owners = new List<Pawn>();
-        public List<Pawn> listeners = new List<Pawn>();
-        
+        //public List<Pawn> listeners = new List<Pawn>();
+        public List<TraitDef> religion = new List<TraitDef>();
+
+        //public void FillList()
+        //{
+        //    if (listeners == null || listeners.Count == 0)
+        //        foreach (Pawn p in Map.mapPawns.FreeColonists)
+        //            if (p.story.traits.HasTrait())
+        //}
+
         public void TryLecture()
         {
             if (owners.Count == 0)
@@ -27,6 +35,7 @@ namespace Religion
             owners[0].jobs.TryTakeOrderedJob(job);
         }
 
+        #region IBuilding
         public IEnumerable<Pawn> AssigningCandidates
         {
             get
@@ -61,16 +70,73 @@ namespace Religion
         public void TryAssignPawn(Pawn owner)
         {
             if (!owners.Contains(owner))
+            {
                 owners.Add(owner);
+                //religion = owner.story.traits.GetTrait(ReligionDefOf.)
+            }
             else return;
         }
 
         public void TryUnassignPawn(Pawn pawn)
         {
             if (owners.Contains(pawn))
+            {
                 owners.Remove(pawn);
+            }
             else return;
         }
+        #endregion
+
+        #region ITrait
+        public IEnumerable<TraitDef> AssigningTrait
+        {
+            get
+            {
+                if (!this.Spawned)
+                    return Enumerable.Empty<TraitDef>();
+                return DefDatabase<TraitDef>.AllDefsListForReading.FindAll(x => x is TraitDef_ReligionTrait); //наверное тут
+            }
+        }
+
+        public IEnumerable<TraitDef> AssignedTraits
+        {
+            get
+            {
+                return this.religion;
+            }
+        }
+
+        public int MaxAssignedTraitsCount
+        {
+            get
+            {
+                return 1;
+            }
+        }
+
+        public bool AssignedAnything(TraitDef trait)
+        {
+            return false;
+        }
+
+        public void TryAssignTrait(TraitDef trait)
+        {
+            if (!religion.Contains(trait))
+            {
+                religion.Add(trait);
+            }
+            else return;
+        }
+
+        public void TryUnassignTrait(TraitDef trait)
+        {
+            if (religion.Contains(trait))
+            {
+                religion.Remove(trait);
+            }
+            else return;
+        }
+        #endregion
 
         [DebuggerHidden]
         public override IEnumerable<Gizmo> GetGizmos()
@@ -105,6 +171,18 @@ namespace Religion
                         Find.WindowStack.Add(new Dialog_AssignBuildingOwner(this));
                     },
                     hotKey = KeyBindingDefOf.Misc3
+                };
+
+                yield return new Command_Action
+                {
+                    defaultLabel = "AssignReligion".Translate(),
+                    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
+                    defaultDesc = "AssignReligionDesc".Translate(),
+                    action = delegate
+                    {
+                        Find.WindowStack.Add(new Dialog_AssignTrait(this));
+                    },
+                    hotKey = KeyBindingDefOf.Misc4
                 };
             }
         }
