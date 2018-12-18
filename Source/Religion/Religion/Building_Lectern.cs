@@ -15,6 +15,15 @@ namespace Religion
 {
     class Building_Lectern : Building, IAssignableBuilding
     {
+        public void TryLecture()
+        {
+            if (owners.Count == 0)
+                return;
+            Job job = new Job(ReligionDefOf.HoldLecture, this);
+            job.playerForced = true;
+            owners[0].jobs.TryTakeOrderedJob(job);
+        }
+
         public List<Pawn> owners = new List<Pawn>();
 
         public IEnumerable<Pawn> AssigningCandidates
@@ -71,6 +80,20 @@ namespace Religion
             }
             if (base.Faction == Faction.OfPlayer)
             {
+                var command_Action = new Command_Action
+                {
+                    action = delegate
+                    {
+                        Messages.Message("Ok, we're trying".Translate(), MessageTypeDefOf.PositiveEvent);
+                        TryLecture();
+                    },
+                    defaultLabel = "Worship".Translate(),
+                    defaultDesc = "WorshipDesc".Translate(),
+                    hotKey = KeyBindingDefOf.Misc2,
+                    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
+                };
+                yield return command_Action;
+
                 yield return new Command_Action
                 {
                     defaultLabel = "CommandBedSetOwnerLabel".Translate(),

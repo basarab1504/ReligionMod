@@ -54,6 +54,7 @@
     <Compile Include="JoyGiver_AttendToLecture.cs" />
     <Compile Include="JoyGiver_HoldLecture.cs" />
     <Compile Include="JoyGiver_Praying.cs" />
+    <Compile Include="ReligionUtility.cs" />
     <Compile Include="WorkGiver_Lecture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReligionDefOf.cs" />
