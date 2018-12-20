@@ -13,6 +13,5 @@ namespace Religion
     {
         public static JobDef HoldLecture;
         public static JobDef AttendLecture;
-        public static WorkTypeDef Preacher;
     }
 }

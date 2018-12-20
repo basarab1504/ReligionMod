@@ -48,8 +48,8 @@ namespace Religion
         public void TryLecture()
         {
             ReligionUtility.GiveLectureJob(this, owners[0]);
-            //foreach (Pawn p in listeners)
-            //    ReligionUtility.GiveAttendJob(this, p);
+            foreach (Pawn p in listeners)
+                ReligionUtility.GiveAttendJob(this, p);
         }
 
         #region IBuilding
@@ -59,7 +59,7 @@ namespace Religion
             {
                 if (!this.Spawned || this.religion.Count == 0)
                     return Enumerable.Empty<Pawn>();
-                return Map.mapPawns.FreeColonists.Where(x => x.story.traits.HasTrait(religion[0])/* && x.workSettings.WorkIsActive(ReligionDefOf.Preacher)*/);
+                return Map.mapPawns.FreeColonists.Where(x => x.story.traits.HasTrait(religion[0]));
             }
         }
 
@@ -201,6 +201,7 @@ namespace Religion
                             Messages.Message("Select a religion and preacher first".Translate(), MessageTypeDefOf.NegativeEvent);
                         else
                         {
+                            Listeners();
                             TryLecture();
                         }
                     },
@@ -213,34 +214,32 @@ namespace Religion
             }
         }
 
-        //public override void Tick()
-        //{
-        //    base.Tick();
-        //    if(GenLocalDate.HourInteger(Map) == 18)
-        //        Messages.Message("COOKAREKOO", MessageTypeDefOf.PositiveEvent);
-        //}
-
-        public override void TickRare()
+        public void AutoLecture()
         {
-            if (!Spawned) return;
+            if (ReligionUtility.IsMorning(Map))
+            {
+                Listeners();
+                TryLecture();
+                Messages.Message("COOKAREKOO", MessageTypeDefOf.PositiveEvent);
+            }
+            return;
+        }
 
-            // Don't forget the base work
-            base.TickRare();
-            ReligionUtility.AutoLecture(this);
-
+        public override void Tick()
+        {
+            base.Tick();
+            if(GenLocalDate.HourInteger(Map) == 18)
+                Messages.Message("COOKAREKOO", MessageTypeDefOf.PositiveEvent);
         }
 
         //public override void TickRare()
         //{
         //    if (!Spawned) return;
 
-        //    int i = 0;
-        //    int count = this.comps.Count;
-        //    while (i < count)
-        //    {
-        //        this.comps[i].CompTickRare();
-        //        i++;
-        //    }
+        //    // Don't forget the base work
+        //    base.TickRare();
+        //    AutoLecture();
+
         //}
 
         public override void ExposeData()

@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Building_Altar.cs" />
     <Compile Include="Building_Lectern.cs" />
-    <Compile Include="CompProperties_RelProp.cs" />
     <Compile Include="Dialog_AssignTrait.cs" />
     <Compile Include="IAssignableReligion.cs" />
     <Compile Include="JobDriver_AttendLecture.cs" />
@@ -57,7 +56,6 @@
     <Compile Include="JoyGiver_HoldLecture.cs" />
     <Compile Include="JoyGiver_Praying.cs" />
     <Compile Include="ReligionUtility.cs" />
-    <Compile Include="ThingComp_ReligionComp.cs" />
     <Compile Include="TraitDef_ReligionTrait.cs" />
     <Compile Include="WorkGiver_Lecture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
