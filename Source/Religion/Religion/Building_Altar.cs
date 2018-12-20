@@ -90,5 +90,11 @@ namespace Religion
                 };
             }
         }
-    }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Collections.Look<TraitDef>(ref this.religion, "religions", LookMode.Def);
+        }
+        }
 }

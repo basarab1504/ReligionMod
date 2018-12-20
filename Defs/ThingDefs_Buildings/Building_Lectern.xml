@@ -72,13 +72,6 @@
       </watchBuildingStandDistanceRange>
       <watchBuildingStandRectWidth>6</watchBuildingStandRectWidth>
     </building> 
-    <comps>
-      <li Class="CompProperties_AffectedByFacilities">
-        <linkableFacilities>
-          <li>Altar</li>
-        </linkableFacilities>
-      </li>
-    </comps>
     <designationHotKey>Misc4</designationHotKey>
   </ThingDef>
 </Defs>

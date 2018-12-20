@@ -12,7 +12,7 @@ namespace Religion
         {
             get
             {
-                foreach (Pawn pawn in this.pawn.Map.mapPawns.FreeColonistsSpawned)
+                foreach (Pawn pawn in this.pawn.Map.mapPawns.FreeColonistsSpawned) //Ужасно
                 {
                     if (pawn.CurJob.def == ReligionDefOf.HoldLecture)
                         return pawn;
@@ -23,54 +23,59 @@ namespace Religion
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            Pawn pawn = this.pawn;
-            LocalTargetInfo target = this.job.targetA;
-            Job job = this.job;
-            int num = this.job.def.joyMaxParticipants;
-            int num2 = 0;
-            if (!pawn.Reserve(target, job, num, num2, null, errorOnFailed))
-            {
-                return false;
-            }
-            pawn = this.pawn;
-            target = this.job.targetB;
-            job = this.job;
-            if (!pawn.Reserve(target, job, 1, -1, null, errorOnFailed))
-            {
-                return false;
-            }
-            if (base.TargetC.HasThing)
-            {
-                if (base.TargetC.Thing is Building_Bed)
-                {
-                    pawn = this.pawn;
-                    LocalTargetInfo targetC = this.job.targetC;
-                    job = this.job;
-                    num2 = ((Building_Bed)base.TargetC.Thing).SleepingSlotsCount;
-                    num = 0;
-                    if (!pawn.Reserve(targetC, job, num2, num, null, errorOnFailed))
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    pawn = this.pawn;
-                    LocalTargetInfo targetC = this.job.targetC;
-                    job = this.job;
-                    if (!pawn.Reserve(targetC, job, 1, -1, null, errorOnFailed))
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
+            return this.pawn.Reserve(this.job.targetA, this.job, this.job.def.joyMaxParticipants, 0, (ReservationLayerDef)null, true);
         }
 
-        public override bool CanBeginNowWhileLyingDown()
-        {
-            return base.TargetC.HasThing && base.TargetC.Thing is Building_Bed && JobInBedUtility.InBedOrRestSpotNow(this.pawn, base.TargetC);
-        }
+        //public override bool TryMakePreToilReservations(bool errorOnFailed)
+        //{
+        //    Pawn pawn = this.pawn;
+        //    LocalTargetInfo target = this.job.targetA;
+        //    Job job = this.job;
+        //    int num = this.job.def.joyMaxParticipants;
+        //    int num2 = 0;
+        //    if (!pawn.Reserve(target, job, num, num2, null, errorOnFailed))
+        //    {
+        //        return false;
+        //    }
+        //    pawn = this.pawn;
+        //    target = this.job.targetB;
+        //    job = this.job;
+        //    if (!pawn.Reserve(target, job, 1, -1, null, errorOnFailed))
+        //    {
+        //        return false;
+        //    }
+        //    if (base.TargetC.HasThing)
+        //    {
+        //        if (base.TargetC.Thing is Building_Bed)
+        //        {
+        //            pawn = this.pawn;
+        //            LocalTargetInfo targetC = this.job.targetC;
+        //            job = this.job;
+        //            num2 = ((Building_Bed)base.TargetC.Thing).SleepingSlotsCount;
+        //            num = 0;
+        //            if (!pawn.Reserve(targetC, job, num2, num, null, errorOnFailed))
+        //            {
+        //                return false;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            pawn = this.pawn;
+        //            LocalTargetInfo targetC = this.job.targetC;
+        //            job = this.job;
+        //            if (!pawn.Reserve(targetC, job, 1, -1, null, errorOnFailed))
+        //            {
+        //                return false;
+        //            }
+        //        }
+        //    }
+        //    return true;
+        //}
+
+        //public override bool CanBeginNowWhileLyingDown()
+        //{
+        //    return base.TargetC.HasThing && base.TargetC.Thing is Building_Bed && JobInBedUtility.InBedOrRestSpotNow(this.pawn, base.TargetC);
+        //}
 
         [DebuggerHidden]
         protected override IEnumerable<Toil> MakeNewToils()

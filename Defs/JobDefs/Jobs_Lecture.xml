@@ -15,7 +15,7 @@
         <driverClass>JobDriver_WatchBuilding</driverClass>
         <reportString>attending a lecture.</reportString>
         <joyDuration>1600</joyDuration>
-        <joyGainRate>1</joyGainRate>
+        <joyGainRate>2</joyGainRate>
         <joyMaxParticipants>20</joyMaxParticipants>
         <joyKind>PrayingKind</joyKind>
     </JobDef>

@@ -22,10 +22,27 @@ namespace Religion
         {
             if (listeners.Count != 0)
                 listeners.Clear();
-            if(listeners.Count == 0)
-            foreach (Pawn p in Map.mapPawns.FreeColonists)
-                if (p.story.traits.HasTrait(religion[0]) && p != owners[0])
-                    listeners.Add(p);
+            if (listeners.Count == 0)
+                foreach (Pawn x in Map.mapPawns.FreeColonists)
+                    if (x.story.traits.HasTrait(religion[0]) && x != owners[0]
+                            &&
+                               x.RaceProps.Humanlike &&
+                               !x.IsPrisoner &&
+                               x.Faction == Faction &&
+                               x.RaceProps.intelligence == Intelligence.Humanlike &&
+                               !x.Downed && !x.Dead &&
+                               !x.InMentalState && !x.InAggroMentalState &&
+                               x.CurJob.def != ReligionDefOf.AttendLecture &&
+                               x.CurJob.def != JobDefOf.Capture &&
+                               x.CurJob.def != JobDefOf.ExtinguishSelf && //Oh god help
+                               x.CurJob.def != JobDefOf.Rescue && //Saving lives is more important
+                               x.CurJob.def != JobDefOf.TendPatient && //Saving lives is more important
+                               x.CurJob.def != JobDefOf.BeatFire && //Fire?! This is more important
+                               x.CurJob.def != JobDefOf.Lovin && //Not ready~~
+                               x.CurJob.def != JobDefOf.LayDown && //They're resting
+                               x.CurJob.def != JobDefOf.FleeAndCower //They're not cowering
+                            )
+                        listeners.Add(x);
         }
 
         public void TryLecture()
@@ -34,7 +51,7 @@ namespace Religion
             foreach (Pawn p in listeners)
                 ReligionUtility.GiveAttendJob(this, p);
         }
-   
+
         #region IBuilding
         public IEnumerable<Pawn> AssigningCandidates
         {
@@ -171,7 +188,7 @@ namespace Religion
                         if (religion.Count == 0)
                             Messages.Message("Select a religion first".Translate(), MessageTypeDefOf.NegativeEvent);
                         else
-                        Find.WindowStack.Add(new Dialog_AssignBuildingOwner(this));
+                            Find.WindowStack.Add(new Dialog_AssignBuildingOwner(this));
                     },
                     hotKey = KeyBindingDefOf.Misc3
                 };
@@ -180,7 +197,7 @@ namespace Religion
                 {
                     action = delegate
                     {
-                        if(religion.Count == 0 || owners.Count == 0)
+                        if (religion.Count == 0 || owners.Count == 0)
                             Messages.Message("Select a religion and preacher first".Translate(), MessageTypeDefOf.NegativeEvent);
                         else
                         {
@@ -195,6 +212,13 @@ namespace Religion
                 };
                 yield return command_Action;
             }
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Collections.Look<TraitDef>(ref this.religion, "religions", LookMode.Def);
+            Scribe_Collections.Look<Pawn>(ref this.owners, "owners", LookMode.Reference, new object[0]);
         }
     }
 }
