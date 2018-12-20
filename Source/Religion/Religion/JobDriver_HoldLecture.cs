@@ -41,19 +41,35 @@ namespace Religion
             waitingTime.defaultDuration = 740;
             waitingTime.initAction = delegate
             {
-                report = "waiting".Translate();
+                report = "Waiting for congregation".Translate();
             };
             yield return waitingTime;
 
             Toil preachingTime = new Toil();
+            preachingTime.initAction = delegate
+            {
+                report = "Read a prayer".Translate();
+            };
             preachingTime.defaultCompleteMode = ToilCompleteMode.Delay;
-            preachingTime.defaultDuration = 1000;
+            preachingTime.defaultDuration = 600;
             preachingTime.tickAction = delegate
             {
                 Pawn actor = this.pawn;
                 actor.skills.Learn(SkillDefOf.Social, 0.25f);
             };
             yield return preachingTime;
+
+            //this.AddFinishAction(() =>
+            //{
+            //    //When the ritual is finished -- then let's give the thoughts
+            //    if (Altar.currentWorshipState == Building_SacrificialAltar.WorshipState.finishing ||
+            //        Altar.currentWorshipState == Building_SacrificialAltar.WorshipState.finished)
+            //    {
+            //        CultUtility.AttendWorshipTickCheckEnd(PreacherPawn, this.pawn);
+            //        Cthulhu.Utility.DebugReport("Called end tick check");
+            //    }
+            //    pawn.ClearAllReservations();
+            //});
             yield break;
         }
     }

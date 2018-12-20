@@ -25,6 +25,12 @@ namespace Religion
             preacher.jobs.TryTakeOrderedJob(J);
         }
 
+        public static bool IsMorning(Map map) => GenLocalDate.HourInteger(map) > 6 && GenLocalDate.HourInteger(map) < 10;
+
+        //public static bool IsEvening(Map map) => GenLocalDate.HourInteger(map) > 18 && GenLocalDate.HourInteger(map) < 22;
+
+        //public static bool IsNight(Map map) => GenLocalDate.HourInteger(map) > 22;
+
         public static void GiveAttendJob(Building_Lectern lectern, Pawn attendee)
         {
             //Log.Message("1");

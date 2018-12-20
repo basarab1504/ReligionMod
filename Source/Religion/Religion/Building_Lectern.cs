@@ -214,6 +214,34 @@ namespace Religion
             }
         }
 
+        public void AutoLecture()
+        {
+            if (ReligionUtility.IsMorning(Map))
+            {
+                Listeners();
+                TryLecture();
+                Messages.Message("COOKAREKOO", MessageTypeDefOf.PositiveEvent);
+            }
+            return;
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+            if(GenLocalDate.HourInteger(Map) == 18)
+                Messages.Message("COOKAREKOO", MessageTypeDefOf.PositiveEvent);
+        }
+
+        //public override void TickRare()
+        //{
+        //    if (!Spawned) return;
+
+        //    // Don't forget the base work
+        //    base.TickRare();
+        //    AutoLecture();
+
+        //}
+
         public override void ExposeData()
         {
             base.ExposeData();

@@ -8,6 +8,16 @@ namespace Religion
 {
     class JobDriver_AttendLecture : JobDriver
     {
+        private string report = "";
+        public override string GetReport()
+        {
+            if (report != "")
+            {
+                return base.ReportStringProcessed(report);
+            }
+            return base.GetReport();
+        }
+
         protected Building_Lectern lectern => (Building_Lectern)base.job.GetTarget(TargetIndex.A).Thing;
         Pawn preacher
         {
@@ -89,6 +99,7 @@ namespace Religion
             }
             watch.AddPreTickAction(() =>
             {
+                this.pawn.rotationTracker.FaceCell(TargetA.Thing.OccupiedRect().ClosestCellTo(this.pawn.Position));
                 this.pawn.GainComfortFromCellIfPossible();
                 this.pawn.rotationTracker.FaceCell(TargetB.Cell);
                 if (preacher.CurJob.def != ReligionDefOf.HoldLecture)
@@ -105,15 +116,20 @@ namespace Religion
             {
                 JoyUtility.TryGainRecRoomThought(this.pawn);
             });
-        }
 
-        public override object[] TaleParameters()
-        {
-            return new object[]
-            {
-                this.pawn,
-                base.TargetA.Thing.def
-            };
+            //this.AddFinishAction(() =>
+            //{
+            //    //When the ritual is finished -- then let's give the thoughts
+            //    if (DropAltar.currentWorshipState == Building_SacrificialAltar.WorshipState.finishing ||
+            //        DropAltar.currentWorshipState == Building_SacrificialAltar.WorshipState.finished)
+            //    {
+            //        Cthulhu.Utility.DebugReport("Called end tick check");
+            //        CultUtility.HoldWorshipTickCheckEnd(this.pawn);
+            //    }
+
+            //});
+
+            yield break;
         }
     }
 }
