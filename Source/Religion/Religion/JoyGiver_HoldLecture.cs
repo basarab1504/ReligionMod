@@ -15,11 +15,8 @@ namespace Religion
     {
         protected override bool CanInteractWith(Pawn pawn, Thing t, bool inBed)
         {
-            JoyGiverDef_ReligionJoyGiverDef relDef = this.def as JoyGiverDef_ReligionJoyGiverDef;
             Building_Lectern lectern = t as Building_Lectern;
-            if (relDef.traitDefs == null)
-                return false;
-            if (lectern == null)
+            if (!(t is Building_Lectern))
                 return false;
             if (lectern.owners.Count == 0)
                 return false;
@@ -34,11 +31,7 @@ namespace Religion
 
         protected override Job TryGivePlayJob(Pawn pawn, Thing t)
         {
-            IntVec3 result;
-            Building chair;
-            if (!WatchBuildingUtility.TryFindBestWatchCell(t, pawn, this.def.desireSit, out result, out chair))
-                return (Job)null;
-            return new Job(this.def.jobDef);
+            return new Job(this.def.jobDef, (LocalTargetInfo)t);
         }
     }
 }

@@ -12,5 +12,6 @@ namespace Religion
     class ReligionDefOf
     {
         public static JobDef HoldLecture;
+        public static JobDef AttendLecture;
     }
 }

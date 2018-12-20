@@ -14,10 +14,12 @@ namespace Religion
 
         protected override bool CanInteractWith(Pawn pawn, Thing t, bool inBed)
         {
-            JoyGiverDef_ReligionJoyGiverDef relDef = this.def as JoyGiverDef_ReligionJoyGiverDef;
-            if (relDef.traitDefs == null)
+            Building_Altar altar = t as Building_Altar;
+            if (!(t is Building_Altar))
                 return false;
-            if (pawn.story.traits.HasTrait(relDef.traitDefs[0]))
+            if (altar.religion == null || altar.religion.Count == 0)
+                return false;
+            if (pawn.story.traits.HasTrait(altar.religion[0]))
                 return true;
             if (!base.CanInteractWith(pawn, t, inBed))
                 return false;

@@ -13,13 +13,15 @@ namespace Religion
     {
         protected override bool CanInteractWith(Pawn pawn, Thing t, bool inBed)
         {
-            Pawn preacher = FindPreacher(pawn);
-            JoyGiverDef_ReligionJoyGiverDef relDef = this.def as JoyGiverDef_ReligionJoyGiverDef;
-            if (preacher == null)
+            Building_Lectern lectern = t as Building_Lectern;
+            if (!(t is Building_Lectern))
                 return false;
-            if (relDef.traitDefs == null)
+            if (lectern.owners[0] == null)
                 return false;
-            if (pawn.story.traits.HasTrait(relDef.traitDefs[0]))
+            if (lectern.religion[0] == null)
+                return false;
+            Pawn preacher = lectern.owners[0];
+            if (pawn.story.traits.HasTrait(lectern.religion[0]) && preacher.CurJobDef == ReligionDefOf.HoldLecture)
                 return true;
             if (!base.CanInteractWith(pawn, t, inBed))
                 return false;
@@ -35,16 +37,6 @@ namespace Religion
             if (!WatchBuildingUtility.TryFindBestWatchCell(t, pawn, this.def.desireSit, out result, out chair))
                 return (Job)null;
             return new Job(this.def.jobDef, (LocalTargetInfo)t, (LocalTargetInfo)result, (LocalTargetInfo)((Thing)chair));
-        }
-
-        Pawn FindPreacher(Pawn p)
-        {
-            foreach (Pawn pawn in p.Map.mapPawns.FreeColonistsSpawned)
-            {
-                if (pawn.CurJob.def == ReligionDefOf.HoldLecture)
-                    return pawn;
-            }
-            return null;
         }
     }
 }

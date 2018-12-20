@@ -1,74 +1,47 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <Religion.JoyGiverDef_ReligionJoyGiverDef>
-    <defName>PrayToTynan</defName>
+  <JoyGiverDef>
+    <defName>Pray</defName>
     <giverClass>Religion.JoyGiver_Praying</giverClass>
     <baseChance>3.5</baseChance>
     <canDoWhileInBed>false</canDoWhileInBed>
     <thingDefs>
-      <li>AltarOfTynanFaith</li>
+      <li>Altar</li>
     </thingDefs>
-    <traitDefs>
-      <li>TynanReligion</li>
-    </traitDefs>
     <jobDef>PrayToGod</jobDef>
     <joyKind>PrayingKind</joyKind>
     <requiredCapacities>
       <li>Sight</li>
     </requiredCapacities>
-  </Religion.JoyGiverDef_ReligionJoyGiverDef>
+  </JoyGiverDef>
 
-  <Religion.JoyGiverDef_ReligionJoyGiverDef>
-    <defName>PrayToMonothos</defName>
-    <giverClass>Religion.JoyGiver_Praying</giverClass>
-    <baseChance>3.5</baseChance>
-    <canDoWhileInBed>false</canDoWhileInBed>
-    <thingDefs>
-      <li>AltarOfMonothosFaith</li>
-    </thingDefs>
-    <traitDefs>
-      <li>MonothosReligion</li>
-    </traitDefs>
-    <jobDef>PrayToGod</jobDef>
-    <joyKind>PrayingKind</joyKind>
-    <requiredCapacities>
-      <li>Sight</li>
-    </requiredCapacities>
-  </Religion.JoyGiverDef_ReligionJoyGiverDef>
-
-  <Religion.JoyGiverDef_ReligionJoyGiverDef>
-    <defName>LectureOfTynan</defName>
-    <giverClass>Religion.JoyGiver_HoldLecture</giverClass>
-    <baseChance>3.5</baseChance>
-    <canDoWhileInBed>false</canDoWhileInBed>
-    <thingDefs>
-      <li>LecternOfTynan</li>
-    </thingDefs>
-    <traitDefs>
-      <li>TynanReligion</li>
-    </traitDefs>
-    <jobDef>HoldLecture</jobDef>
-    <joyKind>PrayingKind</joyKind>
-    <requiredCapacities>
-      <li>Sight</li>
-    </requiredCapacities>
-  </Religion.JoyGiverDef_ReligionJoyGiverDef>
-
-  <Religion.JoyGiverDef_ReligionJoyGiverDef>
-    <defName>AttendToTynanLecture</defName>
+  <JoyGiverDef>
+    <defName>AttendToLecture</defName>
     <giverClass>Religion.JoyGiver_AttendToLecture</giverClass>
     <baseChance>3.5</baseChance>
     <canDoWhileInBed>false</canDoWhileInBed>
     <thingDefs>
-      <li>LecternOfTynan</li>
+      <li>Lectern</li>
     </thingDefs>
-    <traitDefs>
-      <li>TynanReligion</li>
-    </traitDefs>
     <jobDef>AttendLecture</jobDef>
     <joyKind>PrayingKind</joyKind>
     <requiredCapacities>
       <li>Sight</li>
     </requiredCapacities>
-  </Religion.JoyGiverDef_ReligionJoyGiverDef>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Lecture</defName>
+    <giverClass>Religion.JoyGiver_HoldLecture</giverClass>
+    <baseChance>3.5</baseChance>
+    <canDoWhileInBed>false</canDoWhileInBed>
+    <thingDefs>
+      <li>Lectern</li>
+    </thingDefs>
+    <jobDef>HoldLecture</jobDef>
+    <joyKind>PrayingKind</joyKind>
+    <requiredCapacities>
+      <li>Sight</li>
+    </requiredCapacities>
+  </JoyGiverDef>
 </Defs>

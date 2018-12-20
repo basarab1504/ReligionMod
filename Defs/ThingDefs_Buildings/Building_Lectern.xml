@@ -25,8 +25,8 @@
   </ThingDef>
 
   <ThingDef ParentName="LecternBase">
-    <defName>LecternOfTynan</defName>
-    <label>LecternOfTynan</label>
+    <defName>Lectern</defName>
+    <label>Lectern</label>
     <description>Lectern to read from liturgical books during the divine services.</description>
     <thingClass>Religion.Building_Lectern</thingClass>
     <graphicData>

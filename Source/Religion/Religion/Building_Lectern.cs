@@ -9,30 +9,33 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
-using RimWorld;
 
 namespace Religion
 {
-    class Building_Lectern : Building, IAssignableTrait, IAssignableBuilding
+    public class Building_Lectern : Building, IAssignableTrait, IAssignableBuilding
     {
         public List<Pawn> owners = new List<Pawn>();
-        //public List<Pawn> listeners = new List<Pawn>();
+        public List<Pawn> listeners = new List<Pawn>();
         public List<TraitDef> religion = new List<TraitDef>();
 
-        //public void FillList()
-        //{
-        //    if (listeners == null || listeners.Count == 0)
-        //        foreach (Pawn p in Map.mapPawns.FreeColonists)
-        //            if (p.story.traits.HasTrait())
-        //}
+        public void Listeners()
+        {
+            if(religion[0] != null)
+            foreach (Pawn p in Map.mapPawns.FreeColonists)
+                if (p.story.traits.HasTrait(religion[0]) && p != owners[0])
+                    listeners.Add(p);
+        }
 
         public void TryLecture()
         {
             if (owners.Count == 0)
                 return;
             Job job = new Job(ReligionDefOf.HoldLecture, this);
+            Job attend = new Job(ReligionDefOf.AttendLecture, this);
             job.playerForced = true;
             owners[0].jobs.TryTakeOrderedJob(job);
+            foreach (Pawn p in listeners)
+                ReligionUtility.GiveAttendJob(this, p);
         }
 
         #region IBuilding
@@ -152,6 +155,7 @@ namespace Religion
                     action = delegate
                     {
                         Messages.Message("Ok, we're trying".Translate(), MessageTypeDefOf.PositiveEvent);
+                        Listeners();
                         TryLecture();
                     },
                     defaultLabel = "Worship".Translate(),

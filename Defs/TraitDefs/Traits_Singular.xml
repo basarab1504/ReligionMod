@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<TraitDef>
+  <Religion.TraitDef_ReligionTrait>
     	<defName>TynanReligion</defName>
 		<commonality>0.7</commonality>
     	<degreeDatas>
@@ -13,14 +13,14 @@
       	 <li>Cannibal</li>
          <li>MonothosReligion</li>
     	</conflictingTraits>
-    </TraitDef>
+    </Religion.TraitDef_ReligionTrait>
 
-	<TraitDef>
+  <Religion.TraitDef_ReligionTrait>
     	<defName>MonothosReligion</defName>
 		<commonality>0.7</commonality>
     	<degreeDatas>
       	<li>
-        	<label>Monthos Faith</label>
+        	<label>Monothos Faith</label>
         	<description>{PAWN_nameDef} has faith in Monthos.</description>
       	</li>
     	</degreeDatas>
@@ -28,35 +28,5 @@
       	 <li>Cannibal</li>
          <li>TynanReligion</li>
     	</conflictingTraits>
-    </TraitDef>
-
-  <Religion.TraitDef_ReligionTrait>
-      <defName>FoaghuusaReligion</defName>
-    <commonality>0.7</commonality>
-      <degreeDatas>
-        <li>
-          <label>Foaghuusa Faith</label>
-          <description>{PAWN_nameDef} has faith in Foaghuusa.</description>
-        </li>
-      </degreeDatas>
-      <conflictingTraits>
-         <li>Cannibal</li>
-         <li>ReeoroReligion</li>
-      </conflictingTraits>
-    </Religion.TraitDef_ReligionTrait>
-
-  <Religion.TraitDef_ReligionTrait>
-      <defName>ReeoroReligion</defName>
-    <commonality>0.7</commonality>
-      <degreeDatas>
-        <li>
-          <label>Reeoro Faith</label>
-          <description>{PAWN_nameDef} has faith in Reeoro.</description>
-        </li>
-      </degreeDatas>
-      <conflictingTraits>
-         <li>FoaghuusaReligion</li>        
-         <li>Cannibal</li>
-      </conflictingTraits>
-    </Religion.TraitDef_ReligionTrait>
+  </Religion.TraitDef_ReligionTrait>
 </Defs>

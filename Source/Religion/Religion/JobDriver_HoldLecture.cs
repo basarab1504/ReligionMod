@@ -8,7 +8,7 @@ namespace Religion
 {
     class JobDriver_HoldLecture : JobDriver
     {
-        public Building_Lectern lecture
+        public Building_Lectern lectern
         {
             get
             {
@@ -21,11 +21,17 @@ namespace Religion
             return this.pawn.Reserve(this.job.targetA, this.job, this.job.def.joyMaxParticipants, 0, (ReservationLayerDef)null, true);
         }
 
+        //public override bool TryMakePreToilReservations(bool errorOnFailed)
+        //{
+        //    return true;
+        //}
+
         [DebuggerHidden]
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            Toil goToAltar = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
+            //this.FailOnDestroyedOrNull(TargetIndex.A);
 
+            Toil goToAltar = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
             yield return goToAltar;
 
             Toil waitingTime = new Toil();
