@@ -65,6 +65,9 @@
     <hasInteractionCell>True</hasInteractionCell>
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <surfaceType>Item</surfaceType>
+    <comps>
+      <li Class="Religion.CompProperties_RelProp"></li>
+    </comps>
     <building>
       <watchBuildingStandDistanceRange>
         <min>1</min>
