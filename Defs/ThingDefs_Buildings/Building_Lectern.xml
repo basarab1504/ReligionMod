@@ -13,11 +13,6 @@
     </building>
     <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
     <interactionCellIcon>DiningChair</interactionCellIcon>     
-    <comps>
-      <li>
-        <compClass>CompReportWorkSpeed</compClass>
-      </li>
-    </comps>
     <placeWorkers>
       <li>PlaceWorker_WatchArea</li>
     </placeWorkers>
@@ -73,5 +68,9 @@
       <watchBuildingStandRectWidth>6</watchBuildingStandRectWidth>
     </building> 
     <designationHotKey>Misc4</designationHotKey>
+    <tickerType>Rare</tickerType>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+    </comps>
   </ThingDef>
 </Defs>

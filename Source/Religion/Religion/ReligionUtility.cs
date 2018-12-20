@@ -11,25 +11,12 @@ namespace Religion
 {
     public static class ReligionUtility
     {
-        public static void GiveLectureJob(Building_Lectern lectern, Pawn preacher)
-        {
-            //if (preacher != lectern.owners[0])
-            //    return;
-            if (preacher.Drafted) return;
-            if (preacher.IsPrisoner) return;
-            if (preacher.jobs.curJob.def == ReligionDefOf.HoldLecture) return;
-
-            Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern);
-            J.playerForced = true;
-            preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
-            preacher.jobs.TryTakeOrderedJob(J);
-        }
 
         public static bool IsMorning(Map map) => GenLocalDate.HourInteger(map) > 6 && GenLocalDate.HourInteger(map) < 10;
 
-        //public static bool IsEvening(Map map) => GenLocalDate.HourInteger(map) > 18 && GenLocalDate.HourInteger(map) < 22;
+        public static bool IsEvening(Map map) => GenLocalDate.HourInteger(map) > 18 && GenLocalDate.HourInteger(map) < 22;
 
-        //public static bool IsNight(Map map) => GenLocalDate.HourInteger(map) > 22;
+        public static bool IsNight(Map map) => GenLocalDate.HourInteger(map) > 22;
 
         public static void GiveAttendJob(Building_Lectern lectern, Pawn attendee)
         {
@@ -51,6 +38,20 @@ namespace Religion
             //J.expiryInterval = 9999;
             attendee.jobs.EndCurrentJob(JobCondition.Incompletable);
             attendee.jobs.TryTakeOrderedJob(J);
+        }
+
+        public static void GiveLectureJob(Building_Lectern lectern, Pawn preacher)
+        {
+            if (preacher != lectern.owners[0])
+                return;
+            if (preacher.Drafted) return;
+            if (preacher.IsPrisoner) return;
+            if (preacher.jobs.curJob.def == ReligionDefOf.HoldLecture) return;
+
+            Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern);
+            J.playerForced = true;
+            preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
+            preacher.jobs.TryTakeOrderedJob(J);
         }
     }
 }

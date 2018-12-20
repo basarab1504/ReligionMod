@@ -14,9 +14,16 @@ namespace Religion
 {
     public class Building_Lectern : Building, IAssignableTrait, IAssignableBuilding
     {
+        public Building_Lectern()
+        {
+            didMorningLecture = false;
+        }
+
         public List<Pawn> owners = new List<Pawn>();
         public List<Pawn> listeners = new List<Pawn>();
         public List<TraitDef> religion = new List<TraitDef>();
+
+        public bool didMorningLecture;
 
         public void Listeners()
         {
@@ -47,9 +54,11 @@ namespace Religion
 
         public void TryLecture()
         {
+            Listeners();
             ReligionUtility.GiveLectureJob(this, owners[0]);
             foreach (Pawn p in listeners)
                 ReligionUtility.GiveAttendJob(this, p);
+            didMorningLecture = true;
         }
 
         #region IBuilding
@@ -201,7 +210,6 @@ namespace Religion
                             Messages.Message("Select a religion and preacher first".Translate(), MessageTypeDefOf.NegativeEvent);
                         else
                         {
-                            Listeners();
                             TryLecture();
                         }
                     },
@@ -214,33 +222,18 @@ namespace Religion
             }
         }
 
-        public void AutoLecture()
+        public override void TickRare()
         {
-            if (ReligionUtility.IsMorning(Map))
+            if (!Spawned) return;
+            // Don't forget the base work
+            base.TickRare();
+            if (ReligionUtility.IsMorning(Map) && didMorningLecture == false)
             {
-                Listeners();
                 TryLecture();
-                Messages.Message("COOKAREKOO", MessageTypeDefOf.PositiveEvent);
             }
-            return;
+            if (ReligionUtility.IsEvening(Map))
+                didMorningLecture = false;
         }
-
-        public override void Tick()
-        {
-            base.Tick();
-            if(GenLocalDate.HourInteger(Map) == 18)
-                Messages.Message("COOKAREKOO", MessageTypeDefOf.PositiveEvent);
-        }
-
-        //public override void TickRare()
-        //{
-        //    if (!Spawned) return;
-
-        //    // Don't forget the base work
-        //    base.TickRare();
-        //    AutoLecture();
-
-        //}
 
         public override void ExposeData()
         {
