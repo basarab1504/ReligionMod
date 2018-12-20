@@ -12,7 +12,7 @@
 
     <JobDef>
         <defName>AttendLecture</defName>
-        <driverClass>JobDriver_WatchBuilding</driverClass>
+        <driverClass>Religion.JobDriver_AttendLecture</driverClass>
         <reportString>attending a lecture.</reportString>
         <joyDuration>1600</joyDuration>
         <joyGainRate>2</joyGainRate>

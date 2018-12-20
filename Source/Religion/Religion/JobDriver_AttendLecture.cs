@@ -8,74 +8,65 @@ namespace Religion
 {
     class JobDriver_AttendLecture : JobDriver
     {
-        Pawn Preacher
+        protected Building_Lectern lectern => (Building_Lectern)base.job.GetTarget(TargetIndex.A).Thing;
+        Pawn preacher
         {
             get
             {
-                foreach (Pawn pawn in this.pawn.Map.mapPawns.FreeColonistsSpawned) //Ужасно
-                {
-                    if (pawn.CurJob.def == ReligionDefOf.HoldLecture)
-                        return pawn;
-                }
-                return null;
+                return lectern.owners[0];
             }
         }
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            return this.pawn.Reserve(this.job.targetA, this.job, this.job.def.joyMaxParticipants, 0, (ReservationLayerDef)null, true);
+            Pawn pawn = this.pawn;
+            LocalTargetInfo target = this.job.targetA;
+            Job job = this.job;
+            int num = this.job.def.joyMaxParticipants;
+            int num2 = 0;
+            if (!pawn.Reserve(target, job, num, num2, null, errorOnFailed))
+            {
+                return false;
+            }
+            pawn = this.pawn;
+            target = this.job.targetB;
+            job = this.job;
+            if (!pawn.Reserve(target, job, 1, -1, null, errorOnFailed))
+            {
+                return false;
+            }
+            if (base.TargetC.HasThing)
+            {
+                if (base.TargetC.Thing is Building_Bed)
+                {
+                    pawn = this.pawn;
+                    LocalTargetInfo targetC = this.job.targetC;
+                    job = this.job;
+                    num2 = ((Building_Bed)base.TargetC.Thing).SleepingSlotsCount;
+                    num = 0;
+                    if (!pawn.Reserve(targetC, job, num2, num, null, errorOnFailed))
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    pawn = this.pawn;
+                    LocalTargetInfo targetC = this.job.targetC;
+                    job = this.job;
+                    if (!pawn.Reserve(targetC, job, 1, -1, null, errorOnFailed))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
-        //public override bool TryMakePreToilReservations(bool errorOnFailed)
-        //{
-        //    Pawn pawn = this.pawn;
-        //    LocalTargetInfo target = this.job.targetA;
-        //    Job job = this.job;
-        //    int num = this.job.def.joyMaxParticipants;
-        //    int num2 = 0;
-        //    if (!pawn.Reserve(target, job, num, num2, null, errorOnFailed))
-        //    {
-        //        return false;
-        //    }
-        //    pawn = this.pawn;
-        //    target = this.job.targetB;
-        //    job = this.job;
-        //    if (!pawn.Reserve(target, job, 1, -1, null, errorOnFailed))
-        //    {
-        //        return false;
-        //    }
-        //    if (base.TargetC.HasThing)
-        //    {
-        //        if (base.TargetC.Thing is Building_Bed)
-        //        {
-        //            pawn = this.pawn;
-        //            LocalTargetInfo targetC = this.job.targetC;
-        //            job = this.job;
-        //            num2 = ((Building_Bed)base.TargetC.Thing).SleepingSlotsCount;
-        //            num = 0;
-        //            if (!pawn.Reserve(targetC, job, num2, num, null, errorOnFailed))
-        //            {
-        //                return false;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            pawn = this.pawn;
-        //            LocalTargetInfo targetC = this.job.targetC;
-        //            job = this.job;
-        //            if (!pawn.Reserve(targetC, job, 1, -1, null, errorOnFailed))
-        //            {
-        //                return false;
-        //            }
-        //        }
-        //    }
-        //    return true;
-        //}
-
-        //public override bool CanBeginNowWhileLyingDown()
-        //{
-        //    return base.TargetC.HasThing && base.TargetC.Thing is Building_Bed && JobInBedUtility.InBedOrRestSpotNow(this.pawn, base.TargetC);
-        //}
+        public override bool CanBeginNowWhileLyingDown()
+        {
+            return base.TargetC.HasThing && base.TargetC.Thing is Building_Bed && JobInBedUtility.InBedOrRestSpotNow(this.pawn, base.TargetC);
+        }
 
         [DebuggerHidden]
         protected override IEnumerable<Toil> MakeNewToils()
@@ -83,7 +74,6 @@ namespace Religion
             this.EndOnDespawnedOrNull(TargetIndex.A, JobCondition.Incompletable);
             bool hasBed = base.TargetC.HasThing && base.TargetC.Thing is Building_Bed;
             Toil watch;
-            //watch.handlingFacing = true;
             if (hasBed)
             {
                 this.KeepLyingDown(TargetIndex.C);
@@ -96,30 +86,25 @@ namespace Religion
             {
                 yield return Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell);
                 watch = new Toil();
-                watch.defaultCompleteMode = ToilCompleteMode.Delay;
-                watch.defaultDuration = 600;
             }
-            watch.AddPreTickAction(delegate
+            watch.AddPreTickAction(() =>
             {
-                this.WatchTickAction();
+                this.pawn.GainComfortFromCellIfPossible();
+                this.pawn.rotationTracker.FaceCell(TargetB.Cell);
+                if (preacher.CurJob.def != ReligionDefOf.HoldLecture)
+                {
+                    this.ReadyForNextToil();
+                }
             });
-            //watch.AddFinishAction(delegate
-            //{
-            //    JoyUtility.TryGainRecRoomThought(this.pawn);
-            //});
+            watch.defaultCompleteMode = ToilCompleteMode.Delay;
+            watch.defaultDuration = this.job.def.joyDuration;
+            watch.handlingFacing = true;
             yield return watch;
-            yield return Toils_Jump.JumpIf(watch, () => Preacher.CurJob.def == ReligionDefOf.HoldLecture);
-            pawn.ClearAllReservations();
-        }
-
-        protected virtual void WatchTickAction()
-        {
-            this.pawn.rotationTracker.FaceCell(base.TargetA.Cell);
-            this.pawn.GainComfortFromCellIfPossible();
-            if (Preacher.CurJob.def != ReligionDefOf.HoldLecture)
+            yield return Toils_Jump.JumpIf(watch, () => preacher.CurJob.def == ReligionDefOf.HoldLecture);
+            this.AddFinishAction(delegate
             {
-                this.ReadyForNextToil();
-            }
+                JoyUtility.TryGainRecRoomThought(this.pawn);
+            });
         }
 
         public override object[] TaleParameters()
