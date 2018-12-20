@@ -30,10 +30,7 @@ namespace Religion
 
         public void TryLecture()
         {
-            Job job = new Job(ReligionDefOf.HoldLecture, this);
-            Job attend = new Job(ReligionDefOf.AttendLecture, this);
-            job.playerForced = true;
-            owners[0].jobs.TryTakeOrderedJob(job);
+            ReligionUtility.GiveLectureJob(this, owners[0]);
             foreach (Pawn p in listeners)
                 ReligionUtility.GiveAttendJob(this, p);
         }

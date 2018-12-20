@@ -78,6 +78,7 @@ namespace Religion
             this.EndOnDespawnedOrNull(TargetIndex.A, JobCondition.Incompletable);
             bool hasBed = base.TargetC.HasThing && base.TargetC.Thing is Building_Bed;
             Toil watch;
+            //watch.handlingFacing = true;
             if (hasBed)
             {
                 this.KeepLyingDown(TargetIndex.C);
@@ -90,26 +91,26 @@ namespace Religion
             {
                 yield return Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell);
                 watch = new Toil();
+                watch.defaultCompleteMode = ToilCompleteMode.Delay;
+                watch.defaultDuration = 600;
             }
             watch.AddPreTickAction(delegate
             {
                 this.WatchTickAction();
             });
-            watch.AddFinishAction(delegate
-            {
-                JoyUtility.TryGainRecRoomThought(this.pawn);
-            });
-            watch.defaultCompleteMode = ToilCompleteMode.Delay;
-            watch.defaultDuration = 600;
-            watch.handlingFacing = true;
+            //watch.AddFinishAction(delegate
+            //{
+            //    JoyUtility.TryGainRecRoomThought(this.pawn);
+            //});
             yield return watch;
+            yield return Toils_Jump.JumpIf(watch, () => Preacher.CurJob.def == ReligionDefOf.HoldLecture);
+            pawn.ClearAllReservations();
         }
 
         protected virtual void WatchTickAction()
         {
             this.pawn.rotationTracker.FaceCell(base.TargetA.Cell);
             this.pawn.GainComfortFromCellIfPossible();
-            Pawn pawn = this.pawn;
             if (Preacher.CurJob.def != ReligionDefOf.HoldLecture)
             {
                 this.ReadyForNextToil();

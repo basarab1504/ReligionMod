@@ -8,14 +8,6 @@ namespace Religion
 {
     class JobDriver_HoldLecture : JobDriver
     {
-        public Building_Lectern lectern
-        {
-            get
-            {
-                return this.job.GetTarget(TargetIndex.A).Thing as Building_Lectern;
-            }
-        }
-
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return this.pawn.Reserve(this.job.targetA, this.job, this.job.def.joyMaxParticipants, 0, (ReservationLayerDef)null, true);
