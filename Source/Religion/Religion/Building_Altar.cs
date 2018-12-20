@@ -50,6 +50,7 @@ namespace Religion
 
         public void TryAssignTrait(TraitDef trait)
         {
+            religion.Clear();
             if (!religion.Contains(trait))
             {
                 religion.Add(trait);

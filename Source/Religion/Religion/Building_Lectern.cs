@@ -20,7 +20,9 @@ namespace Religion
 
         public void Listeners()
         {
-            if(religion[0] != null)
+            if (listeners.Count != 0)
+                listeners.Clear();
+            if(listeners.Count == 0)
             foreach (Pawn p in Map.mapPawns.FreeColonists)
                 if (p.story.traits.HasTrait(religion[0]) && p != owners[0])
                     listeners.Add(p);
@@ -28,8 +30,6 @@ namespace Religion
 
         public void TryLecture()
         {
-            if (owners.Count == 0)
-                return;
             Job job = new Job(ReligionDefOf.HoldLecture, this);
             Job attend = new Job(ReligionDefOf.AttendLecture, this);
             job.playerForced = true;
@@ -37,15 +37,15 @@ namespace Religion
             foreach (Pawn p in listeners)
                 ReligionUtility.GiveAttendJob(this, p);
         }
-
+   
         #region IBuilding
         public IEnumerable<Pawn> AssigningCandidates
         {
             get
             {
-                if (!this.Spawned)
+                if (!this.Spawned || this.religion.Count == 0)
                     return Enumerable.Empty<Pawn>();
-                return this.Map.mapPawns.FreeColonists;
+                return Map.mapPawns.FreeColonists.Where(x => x.story.traits.HasTrait(religion[0]));
             }
         }
 
@@ -72,10 +72,10 @@ namespace Religion
 
         public void TryAssignPawn(Pawn owner)
         {
+            owners.Clear();
             if (!owners.Contains(owner))
             {
                 owners.Add(owner);
-                //religion = owner.story.traits.GetTrait(ReligionDefOf.)
             }
             else return;
         }
@@ -97,7 +97,7 @@ namespace Religion
             {
                 if (!this.Spawned)
                     return Enumerable.Empty<TraitDef>();
-                return DefDatabase<TraitDef>.AllDefsListForReading.FindAll(x => x is TraitDef_ReligionTrait); //наверное тут
+                return DefDatabase<TraitDef>.AllDefsListForReading.FindAll(x => x is TraitDef_ReligionTrait);
             }
         }
 
@@ -124,6 +124,7 @@ namespace Religion
 
         public void TryAssignTrait(TraitDef trait)
         {
+            religion.Clear();
             if (!religion.Contains(trait))
             {
                 religion.Add(trait);
@@ -150,32 +151,6 @@ namespace Religion
             }
             if (base.Faction == Faction.OfPlayer)
             {
-                var command_Action = new Command_Action
-                {
-                    action = delegate
-                    {
-                        Messages.Message("Ok, we're trying".Translate(), MessageTypeDefOf.PositiveEvent);
-                        Listeners();
-                        TryLecture();
-                    },
-                    defaultLabel = "Worship".Translate(),
-                    defaultDesc = "WorshipDesc".Translate(),
-                    hotKey = KeyBindingDefOf.Misc2,
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
-                };
-                yield return command_Action;
-
-                yield return new Command_Action
-                {
-                    defaultLabel = "CommandBedSetOwnerLabel".Translate(),
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
-                    defaultDesc = "CommandBedSetOwnerDesc".Translate(),
-                    action = delegate
-                    {
-                        Find.WindowStack.Add(new Dialog_AssignBuildingOwner(this));
-                    },
-                    hotKey = KeyBindingDefOf.Misc3
-                };
 
                 yield return new Command_Action
                 {
@@ -188,6 +163,40 @@ namespace Religion
                     },
                     hotKey = KeyBindingDefOf.Misc4
                 };
+
+                yield return new Command_Action
+                {
+                    defaultLabel = "CommandBedSetOwnerLabel".Translate(),
+                    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
+                    defaultDesc = "CommandBedSetOwnerDesc".Translate(),
+                    action = delegate
+                    {
+                        if (religion.Count == 0)
+                            Messages.Message("Select a religion first".Translate(), MessageTypeDefOf.NegativeEvent);
+                        else
+                        Find.WindowStack.Add(new Dialog_AssignBuildingOwner(this));
+                    },
+                    hotKey = KeyBindingDefOf.Misc3
+                };
+
+                var command_Action = new Command_Action
+                {
+                    action = delegate
+                    {
+                        if(religion.Count == 0 || owners.Count == 0)
+                            Messages.Message("Select a religion and preacher first".Translate(), MessageTypeDefOf.NegativeEvent);
+                        else
+                        {
+                            Listeners();
+                            TryLecture();
+                        }
+                    },
+                    defaultLabel = "Worship".Translate(),
+                    defaultDesc = "WorshipDesc".Translate(),
+                    hotKey = KeyBindingDefOf.Misc2,
+                    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
+                };
+                yield return command_Action;
             }
         }
     }
