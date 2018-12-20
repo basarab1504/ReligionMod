@@ -50,6 +50,7 @@ namespace Religion
 
             Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern);
             J.playerForced = true;
+            J.expiryInterval = 500;
             preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
             preacher.jobs.TryTakeOrderedJob(J);
         }
