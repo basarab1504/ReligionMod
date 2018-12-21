@@ -18,6 +18,8 @@ namespace Religion
             {
                 if (andAdjacentThings[index] is Building_Altar)
                     ++num;
+                if (andAdjacentThings[index] is Building_Lectern)
+                    ++num;
             }
             return (float)num * 7.6f;
         }

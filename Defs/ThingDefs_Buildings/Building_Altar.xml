@@ -72,8 +72,9 @@
         <max>8</max>
       </watchBuildingStandDistanceRange>
       <watchBuildingStandRectWidth>6</watchBuildingStandRectWidth>
+      <wantsHopperAdjacent>true</wantsHopperAdjacent>  
     </building>  
-    <uiIconScale>0.7</uiIconScale>  
+    <uiIconScale>0.7</uiIconScale>
   </ThingDef>
 
 <ThingDef ParentName="BuildingBase">

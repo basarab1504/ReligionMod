@@ -15,6 +15,7 @@
     <interactionCellIcon>DiningChair</interactionCellIcon>     
     <placeWorkers>
       <li>PlaceWorker_WatchArea</li>
+      <li>Religion.PlaceWorker_NextToAltar</li>
     </placeWorkers>
     <designationCategory>ReligionBuildings</designationCategory>
   </ThingDef>
