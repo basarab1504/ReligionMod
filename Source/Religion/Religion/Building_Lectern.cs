@@ -18,7 +18,7 @@ namespace Religion
         public List<Pawn> listeners = new List<Pawn>();
         public List<TraitDef> religion = new List<TraitDef>();
 
-        public bool didMorningLecture = false;
+        public bool didLecture = false;
 
         public void Listeners()
         {
@@ -53,7 +53,14 @@ namespace Religion
             ReligionUtility.GiveLectureJob(this, owners[0]);
             foreach (Pawn p in listeners)
                 ReligionUtility.GiveAttendJob(this, p);
-            didMorningLecture = true;
+        }
+
+        public void TryForcedLecture()
+        {
+            Listeners();
+            ReligionUtility.GiveLectureJob(this, owners[0]);
+            foreach (Pawn p in listeners)
+                ReligionUtility.GiveAttendJob(this, p);
         }
 
         #region IBuilding
@@ -205,7 +212,7 @@ namespace Religion
                             Messages.Message("Select a religion and preacher first".Translate(), MessageTypeDefOf.NegativeEvent);
                         else
                         {
-                            TryLecture();
+                            TryForcedLecture();
                         }
                     },
                     defaultLabel = "Worship".Translate(),
@@ -222,19 +229,23 @@ namespace Religion
             if (!Spawned) return;
             // Don't forget the base work
             base.TickRare();
-
-            if (ReligionUtility.IsMorning(Map) && didMorningLecture == false)
+            if (ReligionUtility.IsMorning(Map) && didLecture == false)
             {
+                Messages.Message("is true", MessageTypeDefOf.PositiveEvent);
+                didLecture = true;
                 TryLecture();
             }
-            if (ReligionUtility.IsEvening(Map))
-                didMorningLecture = false;
+            if (ReligionUtility.IsEvening(Map) && didLecture == true)
+            {
+                didLecture = false;
+                Messages.Message("is false", MessageTypeDefOf.PositiveEvent);
+            }              
         }
 
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<bool>(ref this.didMorningLecture, "morning", false, false);
+            Scribe_Values.Look<bool>(ref this.didLecture, "morning", false, false);
             Scribe_Collections.Look<TraitDef>(ref this.religion, "religions", LookMode.Def);
             Scribe_Collections.Look<Pawn>(ref this.owners, "owners", LookMode.Reference, new object[0]);
         }

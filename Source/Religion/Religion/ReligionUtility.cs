@@ -34,8 +34,10 @@ namespace Religion
             }
             Job J = new Job(ReligionDefOf.AttendLecture, (LocalTargetInfo)lectern, (LocalTargetInfo)result, (LocalTargetInfo)((Thing)chair));
             J.playerForced = true;
-            //J.ignoreJoyTimeAssignment = true;
-            //J.expiryInterval = 9999;
+            J.ignoreJoyTimeAssignment = true;
+            J.expiryInterval = 9999;
+            J.ignoreDesignations = true;
+            J.ignoreForbidden = true;
             attendee.jobs.EndCurrentJob(JobCondition.Incompletable);
             attendee.jobs.TryTakeOrderedJob(J);
         }
@@ -50,7 +52,6 @@ namespace Religion
 
             Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern);
             J.playerForced = true;
-            J.expiryInterval = 500;
             preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
             preacher.jobs.TryTakeOrderedJob(J);
         }
