@@ -29,19 +29,4 @@
       <li>Sight</li>
     </requiredCapacities>
   </JoyGiverDef>
-
-  <JoyGiverDef>
-    <defName>Lecture</defName>
-    <giverClass>Religion.JoyGiver_HoldLecture</giverClass>
-    <baseChance>3.5</baseChance>
-    <canDoWhileInBed>false</canDoWhileInBed>
-    <thingDefs>
-      <li>Lectern</li>
-    </thingDefs>
-    <jobDef>HoldLecture</jobDef>
-    <joyKind>PrayingKind</joyKind>
-    <requiredCapacities>
-      <li>Sight</li>
-    </requiredCapacities>
-  </JoyGiverDef>
 </Defs>

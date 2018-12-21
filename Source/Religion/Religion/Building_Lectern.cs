@@ -14,16 +14,11 @@ namespace Religion
 {
     public class Building_Lectern : Building, IAssignableTrait, IAssignableBuilding
     {
-        public Building_Lectern()
-        {
-            didMorningLecture = false;
-        }
-
         public List<Pawn> owners = new List<Pawn>();
         public List<Pawn> listeners = new List<Pawn>();
         public List<TraitDef> religion = new List<TraitDef>();
 
-        public bool didMorningLecture;
+        public bool didMorningLecture = false;
 
         public void Listeners()
         {
@@ -227,6 +222,7 @@ namespace Religion
             if (!Spawned) return;
             // Don't forget the base work
             base.TickRare();
+
             if (ReligionUtility.IsMorning(Map) && didMorningLecture == false)
             {
                 TryLecture();
@@ -238,6 +234,7 @@ namespace Religion
         public override void ExposeData()
         {
             base.ExposeData();
+            Scribe_Values.Look<bool>(ref this.didMorningLecture, "morning", false, false);
             Scribe_Collections.Look<TraitDef>(ref this.religion, "religions", LookMode.Def);
             Scribe_Collections.Look<Pawn>(ref this.owners, "owners", LookMode.Reference, new object[0]);
         }
