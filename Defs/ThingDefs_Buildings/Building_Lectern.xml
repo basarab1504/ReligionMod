@@ -18,6 +18,9 @@
       <li>Religion.PlaceWorker_NextToAltar</li>
     </placeWorkers>
     <designationCategory>ReligionBuildings</designationCategory>
+    <inspectorTabs>
+      <li>Religion.ITab_Lecture</li>
+    </inspectorTabs>
   </ThingDef>
 
   <ThingDef ParentName="LecternBase">

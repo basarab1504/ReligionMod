@@ -17,6 +17,7 @@ namespace Religion
         public List<Pawn> owners = new List<Pawn>();
         public List<Pawn> listeners = new List<Pawn>();
         public List<TraitDef> religion = new List<TraitDef>();
+        public BillStack billStack;
 
         public bool didLecture = false;
 
@@ -165,6 +166,10 @@ namespace Religion
             }
             else return;
         }
+        #endregion
+
+        #region BillGiver
+
         #endregion
 
         [DebuggerHidden]

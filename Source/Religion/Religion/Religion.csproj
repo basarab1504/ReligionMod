@@ -50,6 +50,7 @@
     <Compile Include="Building_Lectern.cs" />
     <Compile Include="Dialog_AssignTrait.cs" />
     <Compile Include="IAssignableReligion.cs" />
+    <Compile Include="ITab_Lecture.cs" />
     <Compile Include="JobDriver_AttendLecture.cs" />
     <Compile Include="JobDriver_HoldLecture.cs" />
     <Compile Include="JoyGiver_AttendToLecture.cs" />

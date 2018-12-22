@@ -16,9 +16,9 @@ namespace Religion
                 return (ThoughtState)true;
             IEnumerable<Building> altars = p.Map.listerBuildings.AllBuildingsColonistOfDef(ReligionDefOf.Altar);
             foreach (Building_Altar a in altars)
-                if (a.religion.Count != 0 && a.religion[0] != def.requiredTraits[0])
-                    return (ThoughtState)true;
-            return ThoughtState.Inactive;
+                    if (a.religion[0] == def.requiredTraits[0])
+                        return (ThoughtState)false;
+            return (ThoughtState)true;
         }
     }
 }

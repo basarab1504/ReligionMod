@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using UnityEngine;
 using Verse;
 using RimWorld;
 using Verse.AI;
@@ -11,6 +11,7 @@ namespace Religion
 {
     public static class ReligionUtility
     {
+        public static readonly Texture2D Paste = ContentFinder<Texture2D>.Get("UI/Buttons/Paste", true);
 
         public static bool IsMorning(Map map) => GenLocalDate.HourInteger(map) > 6 && GenLocalDate.HourInteger(map) < 10;
 

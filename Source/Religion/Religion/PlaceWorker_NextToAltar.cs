@@ -9,7 +9,7 @@ namespace Religion
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
         {
             for (int index1 = 0; index1 < 8; ++index1)
-            {  
+            {
                 IntVec3 c = loc + GenAdj.AdjacentCellsAround[index1];
                 if (c.InBounds(map))
                 {
