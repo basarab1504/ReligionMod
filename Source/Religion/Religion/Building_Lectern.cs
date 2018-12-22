@@ -17,10 +17,25 @@ namespace Religion
         public List<Pawn> owners = new List<Pawn>();
         public List<Pawn> listeners = new List<Pawn>();
         public List<TraitDef> religion = new List<TraitDef>();
-        public BillStack billStack;
 
-        public bool didLecture = false;
+        public int duration;
+        public Dictionary<int, bool> DaysOfLectures = new Dictionary<int, bool>(15);
+        public bool one;
+        public bool ForDay(int a)
+        {
+            return DaysOfLectures[a];
+        }
 
+        public bool IsRightDay(int actualDay)
+        {
+            foreach (int k in DaysOfLectures.Keys)
+                if (k == actualDay)
+                    return true;
+            return false;
+        }
+
+        public int timeOfLecture;
+        public bool didLecture;
         public void Listeners()
         {
             if (listeners.Count != 0)
@@ -234,22 +249,23 @@ namespace Religion
             if (!Spawned) return;
             // Don't forget the base work
             base.TickRare();
-            if (ReligionUtility.IsMorning(Map) && didLecture == false)
+            if (ReligionUtility.TimeToLecture(Map, timeOfLecture) && IsRightDay(GenLocalDate.DayOfQuadrum(Map)))
             {
-                Messages.Message("is true", MessageTypeDefOf.PositiveEvent);
+                //Messages.Message("is true", MessageTypeDefOf.PositiveEvent);
                 didLecture = true;
                 TryLecture();
             }
             if (ReligionUtility.IsEvening(Map) && didLecture == true)
             {
                 didLecture = false;
-                Messages.Message("is false", MessageTypeDefOf.PositiveEvent);
-            }              
+                //Messages.Message("is false", MessageTypeDefOf.PositiveEvent);
+            }
         }
 
         public override void ExposeData()
         {
             base.ExposeData();
+            Scribe_Values.Look<int>(ref this.timeOfLecture, "timeoflecture");
             Scribe_Values.Look<bool>(ref this.didLecture, "morning", false, false);
             Scribe_Collections.Look<TraitDef>(ref this.religion, "religions", LookMode.Def);
             Scribe_Collections.Look<Pawn>(ref this.owners, "owners", LookMode.Reference, new object[0]);

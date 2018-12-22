@@ -16,9 +16,9 @@ namespace Religion
             Building_Lectern lectern = t as Building_Lectern;
             if (!(t is Building_Lectern))
                 return false;
-            if (lectern.owners[0] == null)
+            if (lectern.owners == null)
                 return false;
-            if (lectern.religion[0] == null)
+            if (lectern.religion == null)
                 return false;
             Pawn preacher = lectern.owners[0];
             if (pawn.story.traits.HasTrait(lectern.religion[0]) && preacher.CurJobDef == ReligionDefOf.HoldLecture)
