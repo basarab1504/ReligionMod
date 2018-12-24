@@ -19,23 +19,11 @@ namespace Religion
         public List<TraitDef> religion = new List<TraitDef>();
 
         public int duration;
-        public Dictionary<int, bool> DaysOfLectures = new Dictionary<int, bool>(15);
-        public bool one;
-        public bool ForDay(int a)
-        {
-            return DaysOfLectures[a];
-        }
+        public List<bool> daysOfLectures = Enumerable.Repeat(false, 15).ToList();
 
-        public bool IsRightDay(int actualDay)
-        {
-            foreach (int k in DaysOfLectures.Keys)
-                if (k == actualDay)
-                    return true;
-            return false;
-        }
-
-        public int timeOfLecture;
+        public int timeOfLecture = 9;
         public bool didLecture;
+
         public void Listeners()
         {
             if (listeners.Count != 0)
@@ -249,16 +237,16 @@ namespace Religion
             if (!Spawned) return;
             // Don't forget the base work
             base.TickRare();
-            if (ReligionUtility.TimeToLecture(Map, timeOfLecture) && IsRightDay(GenLocalDate.DayOfQuadrum(Map)))
+            if (ReligionUtility.TimeToLecture(Map, timeOfLecture) && daysOfLectures[(GenLocalDate.DayOfQuadrum(Map))] && didLecture == false)
             {
-                //Messages.Message("is true", MessageTypeDefOf.PositiveEvent);
+                Messages.Message("is true", MessageTypeDefOf.PositiveEvent);
                 didLecture = true;
                 TryLecture();
             }
             if (ReligionUtility.IsEvening(Map) && didLecture == true)
             {
                 didLecture = false;
-                //Messages.Message("is false", MessageTypeDefOf.PositiveEvent);
+                Messages.Message("is false", MessageTypeDefOf.PositiveEvent);
             }
         }
 

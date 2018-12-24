@@ -19,6 +19,7 @@ namespace Religion //крыса
         [TweakValue("Interface", 0.0f, 32f)]
         private static float PasteSizeY = 24f;
         private static float PasteSizeX = 200f;
+        private static float SizeY = 42f;
         string buffer;
 
         protected Building_Lectern SelLectern
@@ -42,11 +43,13 @@ namespace Religion //крыса
             Rect rect1 = new Rect(ITab_Lecture.WinSize.x - ITab_Lecture.PasteX, ITab_Lecture.PasteY, WinSize.x, ITab_Lecture.PasteSizeY);
             string label = "TimeOfLecture".Translate();
             Widgets.Label(rect1, label);
-            Rect rect2 = new Rect(ITab_Lecture.WinSize.x - ITab_Lecture.PasteX, ITab_Lecture.PasteY + 30, 34f, 34f);
+            Rect rect2 = new Rect(ITab_Lecture.WinSize.x - 160, ITab_Lecture.PasteY, 24f, 24f);
             Widgets.TextFieldNumeric<int>(rect2, ref SelLectern.timeOfLecture, ref this.buffer);
-
-            Rect rect4 = new Rect(0f, ITab_Lecture.PasteY + 60, WinSize.x, 24f);
-            Widgets.CheckboxLabeled(rect4, "Monday".Translate(), ref SelLectern.one, false, null, null, false);
+            for (int i = 0; i < 15; ++i)
+            {
+                Rect rect4 = new Rect(ITab_Lecture.WinSize.x - ITab_Lecture.PasteX, ITab_Lecture.SizeY + (i * 22), WinSize.x/2, 24f);
+                ReligionUtility.CheckboxLabeled(rect4, SelLectern, i, ("Day " + (i + 1)).Translate(), SelLectern.daysOfLectures[i], false, null, null, false);            
+            }
         }
 
         //public override void TabUpdate()

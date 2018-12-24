@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
 using Verse;
 using RimWorld;
 using Verse.AI;
+using Verse.Sound;
 
 namespace Religion
 {
@@ -54,6 +54,39 @@ namespace Religion
             J.playerForced = true;
             preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
             preacher.jobs.TryTakeOrderedJob(J);
+        }
+
+        private static readonly Color InactiveColor = new Color(0.37f, 0.37f, 0.37f, 0.8f);
+
+        static void CheckboxDraw(float x, float y, bool active, bool disabled, float size = 24f, Texture2D texChecked = null, Texture2D texUnchecked = null)
+        {
+            Color color = GUI.color;
+            if (disabled)
+                GUI.color = InactiveColor;
+            Texture2D texture2D = !active ? (!((Object)texUnchecked != (Object)null) ? Widgets.CheckboxOffTex : texUnchecked) : (!((Object)texChecked != (Object)null) ? Widgets.CheckboxOnTex : texChecked);
+            GUI.DrawTexture(new Rect(x, y, size, size), (Texture)texture2D);
+            if (!disabled)
+                return;
+            GUI.color = color;
+        }
+
+        public static void CheckboxLabeled(Rect rect, Building_Lectern lectern, int i, string label, bool checkOn, bool disabled = false, Texture2D texChecked = null, Texture2D texUnchecked = null, bool placeCheckboxNearText = false)
+        {
+            TextAnchor anchor = Verse.Text.Anchor;
+            Verse.Text.Anchor = TextAnchor.MiddleLeft;
+            if (placeCheckboxNearText)
+                rect.width = Mathf.Min(rect.width, (float)((double)Verse.Text.CalcSize(label).x + 24.0 + 10.0));
+            Widgets.Label(rect, label);
+            if (!disabled && Widgets.ButtonInvisible(rect, false))
+            {
+                lectern.daysOfLectures[i] = !checkOn;
+                if (checkOn)
+                    SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera((Map)null);
+                else
+                    SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera((Map)null);
+            }
+            CheckboxDraw((float)((double)rect.x + (double)rect.width - 24.0), rect.y, checkOn, disabled, 24f, (Texture2D)null, (Texture2D)null);
+            Verse.Text.Anchor = anchor;
         }
     }
 }
