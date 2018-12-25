@@ -45,18 +45,32 @@ namespace Religion
 
         public void TryLecture()
         {
-            Listeners();
-            ReligionUtility.GiveLectureJob(this, owners[0]);
-            foreach (Pawn p in listeners)
-                ReligionUtility.GiveAttendJob(this, p);
+            if (!owners.NullOrEmpty())
+            {
+                didLecture = true;
+                Listeners();
+                ReligionUtility.GiveLectureJob(this, owners[0]);
+                foreach (Pawn p in listeners)
+                    ReligionUtility.GiveAttendJob(this, p);
+            }
+            else
+            {
+                didLecture = true;
+                Messages.Message("No preacher assigned".Translate(), MessageTypeDefOf.NegativeEvent);
+            }
+                
         }
 
         public void TryForcedLecture()
         {
-            Listeners();
-            ReligionUtility.GiveLectureJob(this, owners[0]);
-            foreach (Pawn p in listeners)
-                ReligionUtility.GiveAttendJob(this, p);
+            if (!owners.NullOrEmpty())
+            {
+                Listeners();
+                ReligionUtility.GiveLectureJob(this, owners[0]);
+                foreach (Pawn p in listeners)
+                    ReligionUtility.GiveAttendJob(this, p);
+            }
+            Messages.Message("No preacher assigned".Translate(), MessageTypeDefOf.NegativeEvent);
         }
 
         public override void TickRare()
@@ -66,8 +80,7 @@ namespace Religion
             base.TickRare();
             if (ReligionUtility.TimeToLecture(Map, timeOfLecture) && daysOfLectures[(GenLocalDate.DayOfQuadrum(Map))] && didLecture == false)
             {
-                Messages.Message("is true", MessageTypeDefOf.PositiveEvent);
-                didLecture = true;
+                Messages.Message("is true", MessageTypeDefOf.PositiveEvent);                
                 TryLecture();
             }
             if (ReligionUtility.IsEvening(Map) && didLecture == true)
@@ -191,38 +204,38 @@ namespace Religion
             if (base.Faction == Faction.OfPlayer)
             {
 
-                yield return new Command_Action
-                {
-                    defaultLabel = "AssignReligion".Translate(),
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
-                    defaultDesc = "AssignReligionDesc".Translate(),
-                    action = delegate
-                    {
-                        Find.WindowStack.Add(new Dialog_AssignTrait(this));
-                    },
-                    hotKey = KeyBindingDefOf.Misc4
-                };
+                //yield return new Command_Action
+                //{
+                //    defaultLabel = "AssignReligion".Translate(),
+                //    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
+                //    defaultDesc = "AssignReligionDesc".Translate(),
+                //    action = delegate
+                //    {
+                //        Find.WindowStack.Add(new Dialog_AssignTrait(this));
+                //    },
+                //    hotKey = KeyBindingDefOf.Misc4
+                //};
 
-                yield return new Command_Action
-                {
-                    defaultLabel = "CommandBedSetOwnerLabel".Translate(),
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
-                    defaultDesc = "CommandBedSetOwnerDesc".Translate(),
-                    action = delegate
-                    {
-                        if (religion.Count == 0)
-                            Messages.Message("Select a religion first".Translate(), MessageTypeDefOf.NegativeEvent);
-                        else
-                            Find.WindowStack.Add(new Dialog_AssignBuildingOwner(this));
-                    },
-                    hotKey = KeyBindingDefOf.Misc3
-                };
+                //yield return new Command_Action
+                //{
+                //    defaultLabel = "CommandBedSetOwnerLabel".Translate(),
+                //    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
+                //    defaultDesc = "CommandBedSetOwnerDesc".Translate(),
+                //    action = delegate
+                //    {
+                //        if (religion.Count == 0)
+                //            Messages.Message("Select a religion first".Translate(), MessageTypeDefOf.NegativeEvent);
+                //        else
+                //            Find.WindowStack.Add(new Dialog_AssignBuildingOwner(this));
+                //    },
+                //    hotKey = KeyBindingDefOf.Misc3
+                //};
 
                 var command_Action = new Command_Action
                 {
                     action = delegate
                     {
-                        if (religion.Count == 0 || owners.Count == 0)
+                        if (religion.NullOrEmpty() || owners.NullOrEmpty())
                             Messages.Message("Select a religion and preacher first".Translate(), MessageTypeDefOf.NegativeEvent);
                         else
                         {
