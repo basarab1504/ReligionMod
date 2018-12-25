@@ -1,14 +1,9 @@
-﻿using System;
+﻿using RimWorld;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-
-using RimWorld;
 using UnityEngine;
 using Verse;
-using Verse.AI;
-using Verse.Sound;
 
 namespace Religion
 {
@@ -89,7 +84,7 @@ namespace Religion
             {
                 if (!this.Spawned || this.religion.Count == 0)
                     return Enumerable.Empty<Pawn>();
-                return Map.mapPawns.FreeColonists.Where(x => x.story.traits.HasTrait(religion[0]) && !ReligionUtility.preachers.Contains(x));
+                return Map.mapPawns.FreeColonists.Where(x => x.story.traits.HasTrait(religion[0]) && !Map.listerBuildings.allBuildingsColonist.Any(u => u is Building_Lectern && (u as Building_Lectern).owners.Contains(x)));
             }
         }
 
@@ -120,7 +115,6 @@ namespace Religion
             if (!owners.Contains(pawn))
             {
                 owners.Add(pawn);
-                ReligionUtility.preachers.Add(pawn);
             }
             else return;
         }
@@ -130,7 +124,6 @@ namespace Religion
             if (owners.Contains(pawn))
             {
                 owners.Remove(pawn);
-                ReligionUtility.preachers.Remove(pawn);
             }
             else return;
         }

@@ -18,7 +18,9 @@ namespace Religion
                     {
                         ThingDef thingDef = GenConstruct.BuiltDefOf(thingList[index2].def) as ThingDef;
                         if (thingDef != null && thingDef.building != null && thingDef.building.wantsHopperAdjacent)
-                            return (AcceptanceReport)true;
+                        {
+                                return (AcceptanceReport)true;
+                        }                            
                     }
                 }
             }

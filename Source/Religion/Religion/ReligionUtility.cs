@@ -17,7 +17,6 @@ namespace Religion
         public static bool IsEvening(Map map) => GenLocalDate.HourInteger(map) > 18 && GenLocalDate.HourInteger(map) < 22;
         public static bool TimeToLecture(Map map, int time) => GenLocalDate.HourInteger(map) > time-1 && GenLocalDate.HourInteger(map) < time+1;
         public static bool IsNight(Map map) => GenLocalDate.HourInteger(map) > 22;
-        public static List<Pawn> preachers = new List<Pawn>();
 
         public static void GiveLectureJob(Building_Lectern lectern, Pawn preacher)
         {
