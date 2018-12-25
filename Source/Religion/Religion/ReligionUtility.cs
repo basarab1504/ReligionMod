@@ -17,6 +17,21 @@ namespace Religion
         public static bool IsEvening(Map map) => GenLocalDate.HourInteger(map) > 18 && GenLocalDate.HourInteger(map) < 22;
         public static bool TimeToLecture(Map map, int time) => GenLocalDate.HourInteger(map) > time-1 && GenLocalDate.HourInteger(map) < time+1;
         public static bool IsNight(Map map) => GenLocalDate.HourInteger(map) > 22;
+        public static List<Pawn> preachers = new List<Pawn>();
+
+        public static void GiveLectureJob(Building_Lectern lectern, Pawn preacher)
+        {
+            if (preacher != lectern.owners[0])
+                return;
+            if (preacher.Drafted) return;
+            if (preacher.IsPrisoner) return;
+            if (preacher.jobs.curJob.def == ReligionDefOf.HoldLecture) return;
+
+            Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern);
+            J.playerForced = true;
+            preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
+            preacher.jobs.TryTakeOrderedJob(J);
+        }
 
         public static void GiveAttendJob(Building_Lectern lectern, Pawn attendee)
         {
@@ -40,20 +55,6 @@ namespace Religion
             J.ignoreForbidden = true;
             attendee.jobs.EndCurrentJob(JobCondition.Incompletable);
             attendee.jobs.TryTakeOrderedJob(J);
-        }
-
-        public static void GiveLectureJob(Building_Lectern lectern, Pawn preacher)
-        {
-            if (preacher != lectern.owners[0])
-                return;
-            if (preacher.Drafted) return;
-            if (preacher.IsPrisoner) return;
-            if (preacher.jobs.curJob.def == ReligionDefOf.HoldLecture) return;
-
-            Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern);
-            J.playerForced = true;
-            preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
-            preacher.jobs.TryTakeOrderedJob(J);
         }
 
         private static readonly Color InactiveColor = new Color(0.37f, 0.37f, 0.37f, 0.8f);

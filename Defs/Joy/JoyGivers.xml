@@ -3,7 +3,7 @@
   <JoyGiverDef>
     <defName>Pray</defName>
     <giverClass>Religion.JoyGiver_Praying</giverClass>
-    <baseChance>3.5</baseChance>
+    <baseChance>1.5</baseChance>
     <canDoWhileInBed>false</canDoWhileInBed>
     <thingDefs>
       <li>Altar</li>

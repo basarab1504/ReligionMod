@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
-  <ThingDef Name="BaseAltar" Abstract="True">
-    <category>Building</category>
-    <thingClass>Building</thingClass>
-    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
-    <selectable>true</selectable>
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <repairEffect>Repair</repairEffect>
-    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
-    <filthLeaving>Filth_RubbleBuilding</filthLeaving>
+  <ThingDef Name="BaseAltar" ParentName="BuildingBase" Abstract="True">
     <designationCategory>ReligionBuildings</designationCategory> 
     <passability>PassThroughOnly</passability>
     <altitudeLayer>Building</altitudeLayer>
-    <tickerType>Normal</tickerType>
-    <statBases>
-      <SellPriceFactor>0.70</SellPriceFactor>
-    </statBases>
     <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
     <rotatable>true</rotatable>
     <socialPropernessMatters>true</socialPropernessMatters>    
@@ -53,10 +39,11 @@
         <volume>(0.23, 0.26, 0.23)</volume>
       </shadowData>
     </graphicData> 
+    <castEdgeShadows>true</castEdgeShadows>
     <statBases>
       <WorkToBuild>10000</WorkToBuild>
       <MaxHitPoints>100</MaxHitPoints>
-      <Mass>14</Mass>
+      <Mass>18</Mass>
       <Flammability>1.0</Flammability>
       <JoyGainFactor>1.2</JoyGainFactor>
     </statBases>    
@@ -71,7 +58,7 @@
         <min>1</min>
         <max>8</max>
       </watchBuildingStandDistanceRange>
-      <watchBuildingStandRectWidth>6</watchBuildingStandRectWidth>
+      <watchBuildingStandRectWidth>7</watchBuildingStandRectWidth>
       <wantsHopperAdjacent>true</wantsHopperAdjacent>  
     </building>  
     <uiIconScale>0.7</uiIconScale>

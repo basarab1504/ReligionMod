@@ -41,7 +41,7 @@
     </graphicData>
     <castEdgeShadows>true</castEdgeShadows>
     <staticSunShadowHeight>0.20</staticSunShadowHeight>
-    <costStuffCount>75</costStuffCount>
+    <costStuffCount>45</costStuffCount>
     <costList>
       <WoodLog>20</WoodLog>
     </costList>
@@ -53,10 +53,10 @@
     <fillPercent>0.5</fillPercent>
     <useHitPoints>True</useHitPoints>
     <statBases>
-      <WorkToBuild>2000</WorkToBuild>
-      <MaxHitPoints>180</MaxHitPoints>
+      <WorkToBuild>1000</WorkToBuild>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Mass>12</Mass>
       <Flammability>1.0</Flammability>
-      <JoyGainFactor>1.2</JoyGainFactor>
     </statBases>
     <size>(1,1)</size>
     <passability>PassThroughOnly</passability>
@@ -69,12 +69,14 @@
         <min>1</min>
         <max>8</max>
       </watchBuildingStandDistanceRange>
-      <watchBuildingStandRectWidth>6</watchBuildingStandRectWidth>
+      <watchBuildingStandRectWidth>7</watchBuildingStandRectWidth>
     </building> 
     <designationHotKey>Misc4</designationHotKey>
     <tickerType>Rare</tickerType>
     <comps>
-      <li Class="CompProperties_Forbiddable"/>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
     </comps>
   </ThingDef>
 </Defs>

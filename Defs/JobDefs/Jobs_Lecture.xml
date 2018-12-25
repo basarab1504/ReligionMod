@@ -4,8 +4,6 @@
         <defName>HoldLecture</defName>
         <driverClass>Religion.JobDriver_HoldLecture</driverClass>
         <reportString>holding a lecture.</reportString>
-        <joyDuration>1600</joyDuration>
-        <joyGainRate>2</joyGainRate>
         <joyMaxParticipants>20</joyMaxParticipants>
         <joyKind>PrayingKind</joyKind>
     </JobDef>
@@ -14,8 +12,6 @@
         <defName>AttendLecture</defName>
         <driverClass>Religion.JobDriver_AttendLecture</driverClass>
         <reportString>attending a lecture.</reportString>
-        <joyDuration>1600</joyDuration>
-        <joyGainRate>2</joyGainRate>
         <joyMaxParticipants>20</joyMaxParticipants>
         <joyKind>PrayingKind</joyKind>
     </JobDef>

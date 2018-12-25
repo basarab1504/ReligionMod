@@ -16,17 +16,13 @@ namespace Religion
             Building_Lectern lectern = t as Building_Lectern;
             if (!(t is Building_Lectern))
                 return false;
-            if (lectern.owners == null)
+            if (lectern.owners.NullOrEmpty())
                 return false;
-            if (lectern.religion == null)
+            if (lectern.religion.NullOrEmpty())
                 return false;
             Pawn preacher = lectern.owners[0];
             if (pawn.story.traits.HasTrait(lectern.religion[0]) && preacher.CurJobDef == ReligionDefOf.HoldLecture)
                 return true;
-            if (!base.CanInteractWith(pawn, t, inBed))
-                return false;
-            if (inBed == false)
-                return false;
             return false;
         }
 

@@ -44,7 +44,7 @@ namespace Religion //крыса
             string label = "TimeOfLecture".Translate();
             Widgets.Label(rect1, label);
             Rect rect2 = new Rect(ITab_Lecture.WinSize.x - 160, ITab_Lecture.PasteY, 24f, 24f);
-            Widgets.TextFieldNumeric<int>(rect2, ref SelLectern.timeOfLecture, ref this.buffer);
+            Widgets.TextFieldNumeric<int>(rect2, ref SelLectern.timeOfLecture, ref this.buffer, 1f, 23f);
             for (int i = 0; i < 15; ++i)
             {
                 Rect rect4 = new Rect(ITab_Lecture.WinSize.x - ITab_Lecture.PasteX, ITab_Lecture.SizeY + (i * 22), WinSize.x/2, 24f);

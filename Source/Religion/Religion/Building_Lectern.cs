@@ -17,10 +17,7 @@ namespace Religion
         public List<Pawn> owners = new List<Pawn>();
         public List<Pawn> listeners = new List<Pawn>();
         public List<TraitDef> religion = new List<TraitDef>();
-
-        public int duration;
         public List<bool> daysOfLectures = Enumerable.Repeat(false, 15).ToList();
-
         public int timeOfLecture = 9;
         public bool didLecture;
 
@@ -30,14 +27,14 @@ namespace Religion
                 listeners.Clear();
             if (listeners.Count == 0)
                 foreach (Pawn x in Map.mapPawns.FreeColonists)
-                    if (x.story.traits.HasTrait(religion[0]) && x != owners[0]
-                            &&
+                    if (x.story.traits.HasTrait(religion[0]) && x != owners[0] &&
                                x.RaceProps.Humanlike &&
                                !x.IsPrisoner &&
                                x.Faction == Faction &&
                                x.RaceProps.intelligence == Intelligence.Humanlike &&
                                !x.Downed && !x.Dead &&
                                !x.InMentalState && !x.InAggroMentalState &&
+                               x.CurJob.def != ReligionDefOf.HoldLecture &&
                                x.CurJob.def != ReligionDefOf.AttendLecture &&
                                x.CurJob.def != JobDefOf.Capture &&
                                x.CurJob.def != JobDefOf.ExtinguishSelf && //Oh god help
@@ -67,6 +64,24 @@ namespace Religion
                 ReligionUtility.GiveAttendJob(this, p);
         }
 
+        public override void TickRare()
+        {
+            if (!Spawned) return;
+            // Don't forget the base work
+            base.TickRare();
+            if (ReligionUtility.TimeToLecture(Map, timeOfLecture) && daysOfLectures[(GenLocalDate.DayOfQuadrum(Map))] && didLecture == false)
+            {
+                Messages.Message("is true", MessageTypeDefOf.PositiveEvent);
+                didLecture = true;
+                TryLecture();
+            }
+            if (ReligionUtility.IsEvening(Map) && didLecture == true)
+            {
+                didLecture = false;
+                Messages.Message("is false", MessageTypeDefOf.PositiveEvent);
+            }
+        } //проверка почти каждый тик, ужас
+
         #region IBuilding
         public IEnumerable<Pawn> AssigningCandidates
         {
@@ -74,7 +89,7 @@ namespace Religion
             {
                 if (!this.Spawned || this.religion.Count == 0)
                     return Enumerable.Empty<Pawn>();
-                return Map.mapPawns.FreeColonists.Where(x => x.story.traits.HasTrait(religion[0]));
+                return Map.mapPawns.FreeColonists.Where(x => x.story.traits.HasTrait(religion[0]) && !ReligionUtility.preachers.Contains(x));
             }
         }
 
@@ -99,12 +114,13 @@ namespace Religion
             return false;
         }
 
-        public void TryAssignPawn(Pawn owner)
+        public void TryAssignPawn(Pawn pawn)
         {
             owners.Clear();
-            if (!owners.Contains(owner))
+            if (!owners.Contains(pawn))
             {
-                owners.Add(owner);
+                owners.Add(pawn);
+                ReligionUtility.preachers.Add(pawn);
             }
             else return;
         }
@@ -114,6 +130,7 @@ namespace Religion
             if (owners.Contains(pawn))
             {
                 owners.Remove(pawn);
+                ReligionUtility.preachers.Remove(pawn);
             }
             else return;
         }
@@ -169,10 +186,6 @@ namespace Religion
             }
             else return;
         }
-        #endregion
-
-        #region BillGiver
-
         #endregion
 
         [DebuggerHidden]
@@ -232,31 +245,15 @@ namespace Religion
             }
         }
 
-        public override void TickRare()
-        {
-            if (!Spawned) return;
-            // Don't forget the base work
-            base.TickRare();
-            if (ReligionUtility.TimeToLecture(Map, timeOfLecture) && daysOfLectures[(GenLocalDate.DayOfQuadrum(Map))] && didLecture == false)
-            {
-                Messages.Message("is true", MessageTypeDefOf.PositiveEvent);
-                didLecture = true;
-                TryLecture();
-            }
-            if (ReligionUtility.IsEvening(Map) && didLecture == true)
-            {
-                didLecture = false;
-                Messages.Message("is false", MessageTypeDefOf.PositiveEvent);
-            }
-        }
-
         public override void ExposeData()
         {
             base.ExposeData();
             Scribe_Values.Look<int>(ref this.timeOfLecture, "timeoflecture");
             Scribe_Values.Look<bool>(ref this.didLecture, "morning", false, false);
+            Scribe_Values.Look<int>(ref this.timeOfLecture, "timeOfLecture");
             Scribe_Collections.Look<TraitDef>(ref this.religion, "religions", LookMode.Def);
             Scribe_Collections.Look<Pawn>(ref this.owners, "owners", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<bool>(ref this.daysOfLectures, "daysOfLectures");           
         }
     }
 }
