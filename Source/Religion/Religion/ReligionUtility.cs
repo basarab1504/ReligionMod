@@ -18,14 +18,41 @@ namespace Religion
         public static bool TimeToLecture(Map map, int time) => GenLocalDate.HourInteger(map) > time-1 && GenLocalDate.HourInteger(map) < time+1;
         public static bool IsNight(Map map) => GenLocalDate.HourInteger(map) > 22;
 
+        //public static Building_Lectern FindLecternToAltar(Building_Altar lectern, Map map)
+        //{
+        //    Room room = lectern.GetRoom(RegionType.Set_Passable);
+        //    List<Thing> andAdjacentThings = room.ContainedAndAdjacentThings;
+        //    for (int index = 0; index < andAdjacentThings.Count; ++index)
+        //    {
+        //        if (andAdjacentThings[index] is Building_Lectern)
+        //        {
+        //            return andAdjacentThings[index] as Building_Lectern;
+        //        }
+        //    }
+        //    return null;
+        //}
+
+            public static Building_Altar FindAtlarToLectern(Building_Lectern lectern, Map map)
+        {
+            Room room = lectern.GetRoom(RegionType.Set_Passable);
+            List<Thing> andAdjacentThings = room.ContainedAndAdjacentThings;
+            for (int index = 0; index < andAdjacentThings.Count; ++index)
+            {
+                if (andAdjacentThings[index] is Building_Altar)
+                {
+                    return andAdjacentThings[index] as Building_Altar;
+                }
+            }
+            return null;
+        }
+
         public static void GiveLectureJob(Building_Lectern lectern, Pawn preacher)
         {
-            if (preacher != lectern.owners[0])
+            if (preacher != lectern.owners[0] || preacher == null || preacher.Drafted || preacher.IsPrisoner || preacher.jobs.curJob.def == ReligionDefOf.HoldLecture)
+            {
+                Messages.Message("CantGiveLectureJobToPreacher".Translate(), MessageTypeDefOf.NegativeEvent);
                 return;
-            if (preacher.Drafted) return;
-            if (preacher.IsPrisoner) return;
-            if (preacher.jobs.curJob.def == ReligionDefOf.HoldLecture) return;
-
+            }
             Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern);
             J.playerForced = true;
             preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
@@ -44,7 +71,7 @@ namespace Religion
             Building chair;
             if (!WatchBuildingUtility.TryFindBestWatchCell(lectern, attendee, true, out result, out chair))           
             {
-                    return;
+                WatchBuildingUtility.TryFindBestWatchCell(lectern, attendee, false, out result, out chair);
             }
             Job J = new Job(ReligionDefOf.AttendLecture, (LocalTargetInfo)lectern, (LocalTargetInfo)result, (LocalTargetInfo)((Thing)chair));
             J.playerForced = true;

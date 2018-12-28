@@ -12,9 +12,10 @@ using Verse.Sound;
 
 namespace Religion
 {
-    class Building_Altar : Building, IAssignableTrait
+    public class Building_Altar : Building, IAssignableTrait
     {
         public List<TraitDef> religion = new List<TraitDef>();
+        public Building_Lectern lectern;
 
         #region ITrait
         public IEnumerable<TraitDef> AssigningTrait
@@ -54,6 +55,8 @@ namespace Religion
             if (!religion.Contains(trait))
             {
                 religion.Add(trait);
+                if (lectern != null)
+                    lectern.TryAssignTrait(trait);
             }
             else return;
         }
@@ -63,10 +66,26 @@ namespace Religion
             if (religion.Contains(trait))
             {
                 religion.Remove(trait);
+                if (lectern != null)
+                    lectern.Wipe();
             }
             else return;
         }
         #endregion
+
+        //public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        //{
+        //    base.SpawnSetup(map, respawningAfterLoad);
+        //    Building_Lectern a;
+        //    a = ReligionUtility.FindLecternToAltar(this, map);
+        //    this.lectern = a;
+        //}
+
+        public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+        {
+            lectern.Wipe();
+            base.Destroy(mode);
+        }
 
         [DebuggerHidden]
         public override IEnumerable<Gizmo> GetGizmos()

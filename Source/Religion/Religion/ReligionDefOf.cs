@@ -14,6 +14,7 @@ namespace Religion
         public static JobDef HoldLecture;
         public static JobDef AttendLecture;
         public static ThingDef Altar;
+        public static ThingDef Lectern;
         public static RoomRoleDef Church;
     }
 }

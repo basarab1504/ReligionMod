@@ -23,7 +23,6 @@ namespace Religion
         //private static float PasteSizeY = 24f;
         //private static float PasteSizeX = 200f;
         //private static float SizeY = 42f;
-        private static string buffer;
 
         public static float DrawCard(Building_Lectern SelLectern)
         {
@@ -33,10 +32,10 @@ namespace Religion
             //Verse.Text.Anchor = TextAnchor.MiddleLeft;
             //Widgets.Label(rect0, "Religion".Translate());
             //GenUI.ResetLabelAlign();
-            if (Widgets.ButtonText(rel, "SetReligion".Translate(), true, false, true))
-            {
-                Find.WindowStack.Add((Window)new Dialog_AssignTrait(SelLectern));
-            }
+            //if (Widgets.ButtonText(rel, "SetReligion".Translate(), true, false, true))
+            //{
+            //    Find.WindowStack.Add((Window)new Dialog_AssignTrait(SelLectern));
+            //}
 
             if(!SelLectern.religion.NullOrEmpty())
             {
@@ -52,7 +51,7 @@ namespace Religion
                     Widgets.Label(timeOf, label);
 
                     Rect numer = new Rect(xOffset + width, y + (height * 2), 24f, 24f);
-                    Widgets.TextFieldNumeric<int>(numer, ref SelLectern.timeOfLecture, ref buffer, 1f, 23f);
+                    Widgets.TextFieldNumeric<int>(numer, ref SelLectern.timeOfLecture, ref SelLectern.timeOfbuffer, 1f, 23f);
 
                     float forDaysY = y + height * 3;
                     for (int i = 0; i < 15; ++i)
@@ -62,6 +61,8 @@ namespace Religion
                     }
                 }
             }
+            else
+                Widgets.Label(new Rect(xOffset, y, width*2, height), "Religion must be assigned through altar".Translate());
             return 0f;
         }
     }

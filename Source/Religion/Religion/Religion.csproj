@@ -55,6 +55,7 @@
     <Compile Include="JobDriver_HoldLecture.cs" />
     <Compile Include="JoyGiver_AttendToLecture.cs" />
     <Compile Include="JoyGiver_Praying.cs" />
+    <Compile Include="PlaceWorker_AltarPlace.cs" />
     <Compile Include="PlaceWorker_NextToAltar.cs" />
     <Compile Include="ReligionCardUtility.cs" />
     <Compile Include="ReligionUtility.cs" />

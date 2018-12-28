@@ -8,23 +8,25 @@ namespace Religion
     {
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
         {
-            for (int index1 = 0; index1 < 8; ++index1)
+            bool altarIn = false;
+            Room room = loc.GetRoom(map, RegionType.Set_Passable);
+            if (room != null)
             {
-                IntVec3 c = loc + GenAdj.AdjacentCellsAround[index1];
-                if (c.InBounds(map))
+                List<Thing> andAdjacentThings = room.ContainedAndAdjacentThings;
+                for (int index = 0; index < andAdjacentThings.Count; ++index)
                 {
-                    List<Thing> thingList = c.GetThingList(map);
-                    for (int index2 = 0; index2 < thingList.Count; ++index2)
+                    if (andAdjacentThings[index].def == checkingDef || checkingDef.blueprintDef == andAdjacentThings[index].def)
+                        return (AcceptanceReport)"OneLecternInRoom".Translate();
+
+                    if (andAdjacentThings[index] is Building_Altar)
                     {
-                        ThingDef thingDef = GenConstruct.BuiltDefOf(thingList[index2].def) as ThingDef;
-                        if (thingDef != null && thingDef.building != null && thingDef.building.wantsHopperAdjacent)
-                        {
-                                return (AcceptanceReport)true;
-                        }                            
-                    }
+                        altarIn = true;                       
+                    }                    
                 }
+                if(altarIn)
+                    return (AcceptanceReport)true;
             }
-            return (AcceptanceReport)"MustPlaceNextToAltar".Translate();
+            return (AcceptanceReport)"MustPlaceNextToBuildedAltar".Translate();
         }
     }
 }

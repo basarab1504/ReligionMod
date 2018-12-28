@@ -14,7 +14,37 @@ namespace Religion
         public List<TraitDef> religion = new List<TraitDef>();
         public List<bool> daysOfLectures = Enumerable.Repeat(false, 15).ToList();
         public int timeOfLecture = 9;
+        public string timeOfbuffer;
         public bool didLecture;
+
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            Building_Altar a;
+            a = ReligionUtility.FindAtlarToLectern(this, map);
+            a.lectern = this;
+            if (!a.religion.NullOrEmpty())
+                religion = a.religion;
+        }
+
+        public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+        {
+            if (ReligionUtility.FindAtlarToLectern(this, this.Map) != null)
+            ReligionUtility.FindAtlarToLectern(this, this.Map).lectern = null;
+            base.Destroy(mode);           
+        }
+
+        public void Wipe()
+        {
+            owners.Clear();
+            religion.Clear();
+            listeners.Clear();
+            for (int i = 0; i < daysOfLectures.Count; ++i)
+                daysOfLectures[i] = false;
+            timeOfLecture = 9;
+            timeOfbuffer = string.Empty;
+            didLecture = false;
+        }
 
         public void Listeners()
         {
@@ -70,6 +100,7 @@ namespace Religion
                 foreach (Pawn p in listeners)
                     ReligionUtility.GiveAttendJob(this, p);
             }
+            else
             Messages.Message("No preacher assigned".Translate(), MessageTypeDefOf.NegativeEvent);
         }
 
@@ -95,7 +126,7 @@ namespace Religion
         {
             get
             {
-                if (!this.Spawned || this.religion.Count == 0)
+                if (!this.Spawned || this.religion.NullOrEmpty())
                     return Enumerable.Empty<Pawn>();
                 return Map.mapPawns.FreeColonists.Where(x => x.story.traits.HasTrait(religion[0]) && !Map.listerBuildings.allBuildingsColonist.Any(u => u is Building_Lectern && (u as Building_Lectern).owners.Contains(x)));
             }
@@ -176,7 +207,7 @@ namespace Religion
 
         public void TryAssignTrait(TraitDef trait)
         {
-            religion.Clear();
+            Wipe();
             if (!religion.Contains(trait))
             {
                 religion.Add(trait);
@@ -186,11 +217,7 @@ namespace Religion
 
         public void TryUnassignTrait(TraitDef trait)
         {
-            if (religion.Contains(trait))
-            {
-                religion.Remove(trait);
-            }
-            else return;
+            Wipe();
         }
         #endregion
 

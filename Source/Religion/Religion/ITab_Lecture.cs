@@ -33,13 +33,5 @@ namespace Religion //крыса
             PlayerKnowledgeDatabase.KnowledgeDemonstrated(ConceptDefOf.BillsTab, KnowledgeAmount.FrameDisplayed);
             float num = ReligionCardUtility.DrawCard(SelLectern);
         }
-
-        //public override void TabUpdate()
-        //{
-        //    if (this.mouseoverBill == null)
-        //        return;
-        //    this.mouseoverBill.TryDrawIngredientSearchRadiusOnMap(this.SelLectern.Position);
-        //    this.mouseoverBill = (Bill)null;
-        //}
     }
 }
