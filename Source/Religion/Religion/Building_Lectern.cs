@@ -17,7 +17,7 @@ namespace Religion
         public string timeOfbuffer;
         public bool didLecture;
 
-        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        public override void SpawnSetup(Map map, bool respawningAfterLoad = false)
         {
             base.SpawnSetup(map, false);
             Building_Altar a;

@@ -60,6 +60,7 @@
     <Compile Include="PlaceWorker_NextToAltar.cs" />
     <Compile Include="ReligionCardUtility.cs" />
     <Compile Include="ReligionUtility.cs" />
+    <Compile Include="ThoughtWorker_AtheistThoight.cs" />
     <Compile Include="ThoughtWorker_SameReligion.cs" />
     <Compile Include="TraitDef_ReligionTrait.cs" />
     <Compile Include="WorkGiver_Lecture.cs" />

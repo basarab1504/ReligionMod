@@ -11,6 +11,7 @@ namespace Religion
     [DefOf]
     class ReligionDefOf
     {
+        public static TraitDef Atheist;
         public static JobDef HoldLecture;
         public static JobDef AttendLecture;
         public static ThingDef Altar;

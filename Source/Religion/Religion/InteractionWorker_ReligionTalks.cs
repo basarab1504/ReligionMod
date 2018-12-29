@@ -15,7 +15,8 @@ namespace Religion
 
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
-            //если атеист = 0
+            if (recipient.story.traits.HasTrait(ReligionDefOf.Atheist))
+                return 0.0f;
             if (!initiator.story.traits.allTraits.Any(x => x.def is TraitDef_ReligionTrait))
                 return 0.0f;
             if (recipient.story.traits.allTraits.Any(x => x.def is TraitDef_ReligionTrait))

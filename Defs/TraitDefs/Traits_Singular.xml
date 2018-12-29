@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+	<TraitDef>
+    	<defName>Atheist</defName>
+		<commonality>0.7</commonality>
+    	<degreeDatas>
+      	<li>
+        	<label>Atheist</label>
+        	<description>{PAWN_nameDef} denying any God</description>
+      	</li>
+    	</degreeDatas>
+    	<conflictingTraits>
+      	 <li>TynanReligion</li>
+         <li>MonothosReligion</li>
+    	</conflictingTraits>		
+	</TraitDef>
+
   <Religion.TraitDef_ReligionTrait>
     	<defName>TynanReligion</defName>
 		<commonality>0.7</commonality>
