@@ -5,6 +5,9 @@
     <thoughtClass>Thought_SituationalSocial</thoughtClass>
     <workerClass>Religion.ThoughtWorker_AtheistThoight</workerClass>
     <validWhileDespawned>true</validWhileDespawned>
+    <requiredTraits>
+      <li>Atheist</li>
+    </requiredTraits>    
     <stages>
       <li>
         <label>religious</label>
