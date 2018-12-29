@@ -58,7 +58,7 @@ namespace Religion
             preachingTime.initAction = delegate
             {
                 report = "Read a prayer".Translate();
-                //MoteMaker.MakeInteractionBubble(this.pawn, null, ThingDefOf.Mote_Speech, lectern.def.j);
+                MoteMaker.MakeInteractionBubble(this.pawn, null, ThingDefOf.Mote_Speech, ReligionUtility.faith);
             };
             preachingTime.defaultCompleteMode = ToilCompleteMode.Delay;
             preachingTime.defaultDuration = 1000;

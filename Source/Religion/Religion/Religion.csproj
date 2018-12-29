@@ -50,6 +50,7 @@
     <Compile Include="Building_Lectern.cs" />
     <Compile Include="Dialog_AssignTrait.cs" />
     <Compile Include="IAssignableReligion.cs" />
+    <Compile Include="InteractionWorker_ReligionTalks.cs" />
     <Compile Include="ITab_Lecture.cs" />
     <Compile Include="JobDriver_AttendLecture.cs" />
     <Compile Include="JobDriver_HoldLecture.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="PlaceWorker_NextToAltar.cs" />
     <Compile Include="ReligionCardUtility.cs" />
     <Compile Include="ReligionUtility.cs" />
+    <Compile Include="ThoughtWorker_SameReligion.cs" />
     <Compile Include="TraitDef_ReligionTrait.cs" />
     <Compile Include="WorkGiver_Lecture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

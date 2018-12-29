@@ -19,7 +19,7 @@ namespace Religion
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
-            base.SpawnSetup(map, respawningAfterLoad);
+            base.SpawnSetup(map, false);
             Building_Altar a;
             a = ReligionUtility.FindAtlarToLectern(this, map);
             a.lectern = this;

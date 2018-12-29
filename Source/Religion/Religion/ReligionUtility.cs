@@ -12,7 +12,7 @@ namespace Religion
     [StaticConstructorOnStartup]
     public static class ReligionUtility
     {
-        public static readonly Texture2D Paste = ContentFinder<Texture2D>.Get("UI/Buttons/Paste", true);
+        public static readonly Texture2D faith = ContentFinder<Texture2D>.Get("Things/Symbols/Religion", true);
         public static bool IsMorning(Map map) => GenLocalDate.HourInteger(map) > 6 && GenLocalDate.HourInteger(map) < 10;
         public static bool IsEvening(Map map) => GenLocalDate.HourInteger(map) > 18 && GenLocalDate.HourInteger(map) < 22;
         public static bool TimeToLecture(Map map, int time) => GenLocalDate.HourInteger(map) > time-1 && GenLocalDate.HourInteger(map) < time+1;
