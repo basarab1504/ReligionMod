@@ -114,6 +114,7 @@ namespace Religion
         {
             base.ExposeData();
             Scribe_Collections.Look<TraitDef>(ref this.religion, "religions", LookMode.Def);
+            Scribe_References.Look<Building_Lectern>(ref this.lectern, "AltarLectern");
         }
         }
 }

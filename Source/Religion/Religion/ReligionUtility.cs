@@ -18,6 +18,36 @@ namespace Religion
         public static bool TimeToLecture(Map map, int time) => GenLocalDate.HourInteger(map) > time-1 && GenLocalDate.HourInteger(map) < time+1;
         public static bool IsNight(Map map) => GenLocalDate.HourInteger(map) > 22;
 
+        #region Thoughts
+        public static void TryGainTempleRoomThought(Pawn pawn)
+        {
+            Room room = pawn.GetRoom();
+            ThoughtDef def = ReligionDefOf.PrayedInImpressiveTemple;
+            if (pawn == null) return;
+            if (room == null) return;
+            if (room.Role == null) return;
+            if (def == null) return;
+            if (room.Role == ReligionDefOf.Church)
+            {
+                int scoreStageIndex =
+                    RoomStatDefOf.Impressiveness.GetScoreStageIndex(room.GetStat(RoomStatDefOf.Impressiveness));
+                if (def.stages[scoreStageIndex] == null) return;
+                pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(def, scoreStageIndex), null);
+            }
+        }
+
+        public static void HeldWorshipThought(Pawn preacher)
+        {
+            if (preacher == null) return;
+            TryGainTempleRoomThought(preacher);
+            ThoughtDef newThought = ReligionDefOf.HeldLecture; // DefDatabase<ThoughtDef>.GetNamed("HeldSermon");
+            if (newThought != null)
+            {
+                preacher.needs.mood.thoughts.memories.TryGainMemory(newThought);
+            }
+        }
+        #endregion
+
         //public static Building_Lectern FindLecternToAltar(Building_Altar lectern, Map map)
         //{
         //    Room room = lectern.GetRoom(RegionType.Set_Passable);
@@ -32,7 +62,7 @@ namespace Religion
         //    return null;
         //}
 
-            public static Building_Altar FindAtlarToLectern(Building_Lectern lectern, Map map)
+        public static Building_Altar FindAtlarToLectern(Building_Lectern lectern, Map map)
         {
             Room room = lectern.GetRoom(RegionType.Set_Passable);
             List<Thing> andAdjacentThings = room.ContainedAndAdjacentThings;

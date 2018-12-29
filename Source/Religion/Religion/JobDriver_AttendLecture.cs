@@ -112,22 +112,15 @@ namespace Religion
             watch.handlingFacing = true;
             yield return watch;
             yield return Toils_Jump.JumpIf(watch, () => preacher.CurJob.def == ReligionDefOf.HoldLecture);
-            this.AddFinishAction(delegate
-            {
-                JoyUtility.TryGainRecRoomThought(this.pawn);
-            });
-
-            //this.AddFinishAction(() =>
+            //this.AddFinishAction(delegate
             //{
-            //    //When the ritual is finished -- then let's give the thoughts
-            //    if (DropAltar.currentWorshipState == Building_SacrificialAltar.WorshipState.finishing ||
-            //        DropAltar.currentWorshipState == Building_SacrificialAltar.WorshipState.finished)
-            //    {
-            //        Cthulhu.Utility.DebugReport("Called end tick check");
-            //        CultUtility.HoldWorshipTickCheckEnd(this.pawn);
-            //    }
-
+            //    JoyUtility.TryGainRecRoomThought(this.pawn);
             //});
+
+            this.AddFinishAction(() =>
+            {
+                ReligionUtility.TryGainTempleRoomThought(pawn);
+            });
 
             yield break;
         }

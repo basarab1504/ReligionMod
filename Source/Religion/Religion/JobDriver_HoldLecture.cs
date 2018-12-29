@@ -58,6 +58,7 @@ namespace Religion
             preachingTime.initAction = delegate
             {
                 report = "Read a prayer".Translate();
+                //MoteMaker.MakeInteractionBubble(this.pawn, null, ThingDefOf.Mote_Speech, lectern.def.j);
             };
             preachingTime.defaultCompleteMode = ToilCompleteMode.Delay;
             preachingTime.defaultDuration = 1000;
@@ -68,17 +69,10 @@ namespace Religion
                 actor.skills.Learn(SkillDefOf.Social, 0.25f);
             };
             yield return preachingTime;
-            //this.AddFinishAction(() =>
-            //{
-            //    //When the ritual is finished -- then let's give the thoughts
-            //    if (Altar.currentWorshipState == Building_SacrificialAltar.WorshipState.finishing ||
-            //        Altar.currentWorshipState == Building_SacrificialAltar.WorshipState.finished)
-            //    {
-            //        CultUtility.AttendWorshipTickCheckEnd(PreacherPawn, this.pawn);
-            //        Cthulhu.Utility.DebugReport("Called end tick check");
-            //    }
-            //    pawn.ClearAllReservations();
-            //});
+            this.AddFinishAction(() =>
+            {
+                ReligionUtility.HeldWorshipThought(pawn);
+            });
             yield break;
         }
     }

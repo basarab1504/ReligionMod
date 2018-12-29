@@ -34,76 +34,6 @@ namespace Religion
             base.Destroy(mode);           
         }
 
-        public void Wipe()
-        {
-            owners.Clear();
-            religion.Clear();
-            listeners.Clear();
-            for (int i = 0; i < daysOfLectures.Count; ++i)
-                daysOfLectures[i] = false;
-            timeOfLecture = 9;
-            timeOfbuffer = string.Empty;
-            didLecture = false;
-        }
-
-        public void Listeners()
-        {
-            if (listeners.Count != 0)
-                listeners.Clear();
-            if (listeners.Count == 0)
-                foreach (Pawn x in Map.mapPawns.FreeColonists)
-                    if (x.story.traits.HasTrait(religion[0]) && x != owners[0] &&
-                               x.RaceProps.Humanlike &&
-                               !x.IsPrisoner &&
-                               x.Faction == Faction &&
-                               x.RaceProps.intelligence == Intelligence.Humanlike &&
-                               !x.Downed && !x.Dead &&
-                               !x.InMentalState && !x.InAggroMentalState &&
-                               x.CurJob.def != ReligionDefOf.HoldLecture &&
-                               x.CurJob.def != ReligionDefOf.AttendLecture &&
-                               x.CurJob.def != JobDefOf.Capture &&
-                               x.CurJob.def != JobDefOf.ExtinguishSelf && //Oh god help
-                               x.CurJob.def != JobDefOf.Rescue && //Saving lives is more important
-                               x.CurJob.def != JobDefOf.TendPatient && //Saving lives is more important
-                               x.CurJob.def != JobDefOf.BeatFire && //Fire?! This is more important
-                               x.CurJob.def != JobDefOf.Lovin && //Not ready~~
-                               x.CurJob.def != JobDefOf.LayDown && //They're resting
-                               x.CurJob.def != JobDefOf.FleeAndCower //They're not cowering
-                            )
-                        listeners.Add(x);
-        }
-
-        public void TryLecture()
-        {
-            if (!owners.NullOrEmpty())
-            {
-                didLecture = true;
-                Listeners();
-                ReligionUtility.GiveLectureJob(this, owners[0]);
-                foreach (Pawn p in listeners)
-                    ReligionUtility.GiveAttendJob(this, p);
-            }
-            else
-            {
-                didLecture = true;
-                Messages.Message("No preacher assigned".Translate(), MessageTypeDefOf.NegativeEvent);
-            }
-                
-        }
-
-        public void TryForcedLecture()
-        {
-            if (!owners.NullOrEmpty())
-            {
-                Listeners();
-                ReligionUtility.GiveLectureJob(this, owners[0]);
-                foreach (Pawn p in listeners)
-                    ReligionUtility.GiveAttendJob(this, p);
-            }
-            else
-            Messages.Message("No preacher assigned".Translate(), MessageTypeDefOf.NegativeEvent);
-        }
-
         public override void TickRare()
         {
             if (!Spawned) return;
@@ -221,6 +151,78 @@ namespace Religion
         }
         #endregion
 
+        #region helpFuncs
+        public void Wipe()
+        {
+            owners.Clear();
+            religion.Clear();
+            listeners.Clear();
+            for (int i = 0; i < daysOfLectures.Count; ++i)
+                daysOfLectures[i] = false;
+            timeOfLecture = 9;
+            timeOfbuffer = string.Empty;
+            didLecture = false;
+        }
+
+        public void Listeners()
+        {
+            if (listeners.Count != 0)
+                listeners.Clear();
+            if (listeners.Count == 0)
+                foreach (Pawn x in Map.mapPawns.FreeColonists)
+                    if (x.story.traits.HasTrait(religion[0]) && x != owners[0] &&
+                               x.RaceProps.Humanlike &&
+                               !x.IsPrisoner &&
+                               x.Faction == Faction &&
+                               x.RaceProps.intelligence == Intelligence.Humanlike &&
+                               !x.Downed && !x.Dead &&
+                               !x.InMentalState && !x.InAggroMentalState &&
+                               x.CurJob.def != ReligionDefOf.HoldLecture &&
+                               x.CurJob.def != ReligionDefOf.AttendLecture &&
+                               x.CurJob.def != JobDefOf.Capture &&
+                               x.CurJob.def != JobDefOf.ExtinguishSelf && //Oh god help
+                               x.CurJob.def != JobDefOf.Rescue && //Saving lives is more important
+                               x.CurJob.def != JobDefOf.TendPatient && //Saving lives is more important
+                               x.CurJob.def != JobDefOf.BeatFire && //Fire?! This is more important
+                               x.CurJob.def != JobDefOf.Lovin && //Not ready~~
+                               x.CurJob.def != JobDefOf.LayDown && //They're resting
+                               x.CurJob.def != JobDefOf.FleeAndCower //They're not cowering
+                            )
+                        listeners.Add(x);
+        }
+
+        public void TryLecture()
+        {
+            if (!owners.NullOrEmpty())
+            {
+                didLecture = true;
+                Listeners();
+                ReligionUtility.GiveLectureJob(this, owners[0]);
+                foreach (Pawn p in listeners)
+                    ReligionUtility.GiveAttendJob(this, p);
+            }
+            else
+            {
+                didLecture = true;
+                Messages.Message("No preacher assigned".Translate(), MessageTypeDefOf.NegativeEvent);
+            }
+
+        }
+
+        public void TryForcedLecture()
+        {
+            if (!owners.NullOrEmpty())
+            {
+                Listeners();
+                ReligionUtility.GiveLectureJob(this, owners[0]);
+                foreach (Pawn p in listeners)
+                    ReligionUtility.GiveAttendJob(this, p);
+            }
+            else
+                Messages.Message("No preacher assigned".Translate(), MessageTypeDefOf.NegativeEvent);
+        }
+        #endregion
+
         [DebuggerHidden]
         public override IEnumerable<Gizmo> GetGizmos()
         {
@@ -285,7 +287,7 @@ namespace Religion
             Scribe_Values.Look<bool>(ref this.didLecture, "morning", false, false);
             Scribe_Values.Look<int>(ref this.timeOfLecture, "timeOfLecture");
             Scribe_Collections.Look<TraitDef>(ref this.religion, "religions", LookMode.Def);
-            Scribe_Collections.Look<Pawn>(ref this.owners, "owners", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<Pawn>(ref this.owners, "owners", LookMode.Reference);
             Scribe_Collections.Look<bool>(ref this.daysOfLectures, "daysOfLectures");           
         }
     }
