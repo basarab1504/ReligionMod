@@ -12,7 +12,8 @@
     	<conflictingTraits>
       	 <li>TynanReligion</li>
          <li>MonothosReligion</li>
-    	</conflictingTraits>		
+         <li>AegonReligion</li>         
+    	</conflictingTraits>	
 	</TraitDef>
 
   <Religion.TraitDef_ReligionTrait>
@@ -25,9 +26,16 @@
       	</li>
     	</degreeDatas>
     	<conflictingTraits>
+    	 <li>MonothosReligion</li>
+    	 <li>AegonReligion</li>    		
       	 <li>Cannibal</li>
-         <li>MonothosReligion</li>
     	</conflictingTraits>
+    	<requiredWorkTypes>
+    	 <li>Preacher</li>	
+    	</requiredWorkTypes>
+    	<foreignReligions>
+    		<li>MonothosReligion</li>
+    	</foreignReligions>
     </Religion.TraitDef_ReligionTrait>
 
   <Religion.TraitDef_ReligionTrait>
@@ -40,8 +48,31 @@
       	</li>
     	</degreeDatas>
     	<conflictingTraits>
+    	 <li>TynanReligion</li>
+    	 <li>AegonReligion</li>    		
       	 <li>Cannibal</li>
-         <li>TynanReligion</li>
     	</conflictingTraits>
+    	<requiredWorkTypes>
+    	 <li>Preacher</li>	
+    	</requiredWorkTypes>    	
+  </Religion.TraitDef_ReligionTrait>
+
+    <Religion.TraitDef_ReligionTrait>
+    	<defName>AegonReligion</defName>
+		<commonality>0.7</commonality>
+    	<degreeDatas>
+      	<li>
+        	<label>Aegon Faith</label>
+        	<description>{PAWN_nameDef} has faith in Aegon.</description>
+      	</li>
+    	</degreeDatas>
+    	<conflictingTraits>
+    	 <li>TynanReligion</li>
+    	 <li>MonothosReligion</li>
+      	 <li>Cannibal</li>
+    	</conflictingTraits>
+    	<requiredWorkTypes>
+    	 <li>Preacher</li>	
+    	</requiredWorkTypes>    	
   </Religion.TraitDef_ReligionTrait>
 </Defs>

@@ -14,4 +14,17 @@
     </stages>
   </ThoughtDef>
 
+  <ThoughtDef>
+    <defName>ForeignReligiousThought</defName>
+    <thoughtClass>Thought_SituationalSocial</thoughtClass>
+    <workerClass>Religion.ThoughtWorker_ForeignReligion</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>foreign religion</label>
+        <baseOpinionOffset>-15</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
 </Defs>

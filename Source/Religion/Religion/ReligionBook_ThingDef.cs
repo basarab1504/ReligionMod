@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using RimWorld;
 using Verse;
 
 namespace Religion
 {
-    class TraitDef_ReligionTrait : TraitDef
+    public class ReligionBook_ThingDef : ThingDef
     {
-        public List<TraitDef> foreignReligions = new List<TraitDef>();
+        public TraitDef religion;       
     }
 }

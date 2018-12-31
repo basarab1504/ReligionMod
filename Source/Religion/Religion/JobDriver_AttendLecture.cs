@@ -112,11 +112,6 @@ namespace Religion
             watch.handlingFacing = true;
             yield return watch;
             yield return Toils_Jump.JumpIf(watch, () => preacher.CurJob.def == ReligionDefOf.HoldLecture);
-            //this.AddFinishAction(delegate
-            //{
-            //    JoyUtility.TryGainRecRoomThought(this.pawn);
-            //});
-
             this.AddFinishAction(() =>
             {
                 ReligionUtility.TryGainTempleRoomThought(pawn);
