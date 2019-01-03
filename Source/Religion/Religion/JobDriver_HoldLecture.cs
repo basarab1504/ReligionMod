@@ -8,6 +8,7 @@ namespace Religion
 {
     class JobDriver_HoldLecture : JobDriver
     {
+        bool isLecturing = false;
         protected Building_Lectern lectern
         {
             get
@@ -41,6 +42,9 @@ namespace Religion
         {
             this.FailOnDestroyedOrNull(TargetIndex.A);
 
+            yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.Touch);
+            yield return Toils_Haul.TakeToInventory(TargetIndex.B, 1);
+
             Toil goToAltar = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
             yield return goToAltar;
 
@@ -51,6 +55,9 @@ namespace Religion
             waitingTime.initAction = delegate
             {
                 report = "Waiting for congregation".Translate();
+                lectern.Listeners();
+                foreach (Pawn p in lectern.listeners)
+                    ReligionUtility.GiveAttendJob(lectern, p);
             };
             yield return waitingTime;
 

@@ -42,7 +42,7 @@ namespace Religion
             if (ReligionUtility.TimeToLecture(Map, timeOfLecture) && daysOfLectures[(GenLocalDate.DayOfQuadrum(Map))] && didLecture == false)
             {
                 Messages.Message("is true", MessageTypeDefOf.PositiveEvent);                
-                TryLecture();
+                TryLecture(false);
             }
             if (ReligionUtility.IsEvening(Map) && didLecture == true)
             {
@@ -191,35 +191,20 @@ namespace Religion
                         listeners.Add(x);
         }
 
-        public void TryLecture()
+        public void TryLecture(bool forced)
         {
             if (!owners.NullOrEmpty())
             {
                 didLecture = true;
-                Listeners();
+;
                 ReligionUtility.GiveLectureJob(this, owners[0]);
-                foreach (Pawn p in listeners)
-                    ReligionUtility.GiveAttendJob(this, p);
             }
             else
             {
+                Messages.Message("No preacher assigned".Translate(), MessageTypeDefOf.NegativeEvent);
+            }
+            if(!forced)
                 didLecture = true;
-                Messages.Message("No preacher assigned".Translate(), MessageTypeDefOf.NegativeEvent);
-            }
-
-        }
-
-        public void TryForcedLecture()
-        {
-            if (!owners.NullOrEmpty())
-            {
-                Listeners();
-                ReligionUtility.GiveLectureJob(this, owners[0]);
-                foreach (Pawn p in listeners)
-                    ReligionUtility.GiveAttendJob(this, p);
-            }
-            else
-                Messages.Message("No preacher assigned".Translate(), MessageTypeDefOf.NegativeEvent);
         }
         #endregion
 
@@ -268,7 +253,7 @@ namespace Religion
                             Messages.Message("Select a religion and preacher first".Translate(), MessageTypeDefOf.NegativeEvent);
                         else
                         {
-                            TryForcedLecture();
+                            TryLecture(true);
                         }
                     },
                     defaultLabel = "Worship".Translate(),

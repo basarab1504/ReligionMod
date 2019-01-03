@@ -83,10 +83,19 @@ namespace Religion
                 Messages.Message("CantGiveLectureJobToPreacher".Translate(), MessageTypeDefOf.NegativeEvent);
                 return;
             }
-            Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern);
-            J.playerForced = true;
-            preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
-            preacher.jobs.TryTakeOrderedJob(J);
+            Thing book = null;
+            if (AppropriateBookInInventory(preacher, lectern.religion[0]) != null)
+                book = AppropriateBookInInventory(preacher, lectern.religion[0]);
+            else if (AppropriateBook(preacher, lectern.religion[0]) != null)
+                book = AppropriateBook(preacher, lectern.religion[0]);
+
+            if(book != null)
+            {
+                Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern, (LocalTargetInfo)book);
+                J.playerForced = true;
+                preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
+                preacher.jobs.TryTakeOrderedJob(J);
+            }
         }
 
         public static void GiveAttendJob(Building_Lectern lectern, Pawn attendee)
@@ -111,6 +120,23 @@ namespace Religion
             J.ignoreForbidden = true;
             attendee.jobs.EndCurrentJob(JobCondition.Incompletable);
             attendee.jobs.TryTakeOrderedJob(J);
+        }
+
+        public static Thing AppropriateBook(Pawn p, TraitDef religionOfPawn)
+        {
+            foreach (Thing t in p.Map.listerThings.ThingsMatching(ThingRequest.ForDef(ReligionDefOf.ReligionBook)))
+                if ((t.def as ReligionBook_ThingDef).religion == religionOfPawn)
+                    if (p.CanReach((LocalTargetInfo)t, PathEndMode.ClosestTouch, Danger.Deadly, false, TraverseMode.ByPawn))
+                        return t;
+            return null;
+        }
+
+        public static Thing AppropriateBookInInventory(Pawn p, TraitDef religionOfPawn)
+        {
+            foreach (Thing t in p.inventory.innerContainer)
+                if (t.def is ReligionBook_ThingDef && (t.def as ReligionBook_ThingDef).religion == religionOfPawn)
+                    return t;
+            return null;
         }
 
         private static readonly Color InactiveColor = new Color(0.37f, 0.37f, 0.37f, 0.8f);
