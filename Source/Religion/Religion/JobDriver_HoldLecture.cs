@@ -45,8 +45,10 @@ namespace Religion
             if(!pawn.inventory.Contains(TargetThingB))
             {
                 yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.Touch);
-                yield return Toils_Haul.TakeToInventory(TargetIndex.B, 1);
+                yield return Toils_Haul.StartCarryThing(TargetIndex.B);
             }
+            else
+                yield return Toils_Misc.TakeItemFromInventoryToCarrier(pawn, TargetIndex.B);
 
             Toil goToAltar = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
             yield return goToAltar;
@@ -97,7 +99,7 @@ namespace Religion
             };
             yield return toStoreToil;
 
-            yield return Toils_Misc.TakeItemFromInventoryToCarrier(pawn, TargetIndex.B);
+            //yield return Toils_Misc.TakeItemFromInventoryToCarrier(pawn, TargetIndex.B);
             yield return Toils_Haul.CarryHauledThingToCell(TargetIndex.C);
             yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.C, Toils_Haul.TakeToInventory(TargetIndex.C,1), false);
 
