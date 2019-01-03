@@ -31,11 +31,6 @@ namespace Religion
             return base.GetReport();
         }
 
-        //public override bool TryMakePreToilReservations(bool errorOnFailed)
-        //{
-        //    return true;
-        //}
-
         [DebuggerHidden]
         protected override IEnumerable<Toil> MakeNewToils()
         {
@@ -99,7 +94,6 @@ namespace Religion
             };
             yield return toStoreToil;
 
-            //yield return Toils_Misc.TakeItemFromInventoryToCarrier(pawn, TargetIndex.B);
             yield return Toils_Haul.CarryHauledThingToCell(TargetIndex.C);
             yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.C, Toils_Haul.TakeToInventory(TargetIndex.C,1), false);
 
