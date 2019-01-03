@@ -16,21 +16,29 @@ namespace Religion
         public int timeOfLecture = 9;
         public string timeOfbuffer;
         public bool didLecture;
+        Building_Altar altar;
 
-        public override void SpawnSetup(Map map, bool respawningAfterLoad = false)
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
-            base.SpawnSetup(map, false);
-            Building_Altar a;
-            a = ReligionUtility.FindAtlarToLectern(this, map);
-            a.lectern = this;
-            if (!a.religion.NullOrEmpty())
-                religion = a.religion;
+            base.SpawnSetup(map, respawningAfterLoad);
+            if (altar == null)
+            {
+                Building_Altar a;
+                a = ReligionUtility.FindAtlarToLectern(this, map);
+                if (a != null)
+                {
+                    this.altar = a;
+                    altar.lectern = this;
+                    if (!a.religion.NullOrEmpty())
+                        TryAssignTrait(a.religion[0]);
+                }
+            }
         }
 
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
-            if (ReligionUtility.FindAtlarToLectern(this, this.Map) != null)
-            ReligionUtility.FindAtlarToLectern(this, this.Map).lectern = null;
+            if (altar != null)
+                altar.lectern = null;
             base.Destroy(mode);           
         }
 
@@ -42,7 +50,7 @@ namespace Religion
             if (ReligionUtility.TimeToLecture(Map, timeOfLecture) && daysOfLectures[(GenLocalDate.DayOfQuadrum(Map))] && didLecture == false)
             {
                 Messages.Message("is true", MessageTypeDefOf.PositiveEvent);                
-                TryLecture(false);
+                ReligionUtility.TryLecture(this,false);
             }
             if (ReligionUtility.IsEvening(Map) && didLecture == true)
             {
@@ -137,7 +145,7 @@ namespace Religion
 
         public void TryAssignTrait(TraitDef trait)
         {
-            Wipe();
+            ReligionUtility.Wipe(this);
             if (!religion.Contains(trait))
             {
                 religion.Add(trait);
@@ -147,65 +155,12 @@ namespace Religion
 
         public void TryUnassignTrait(TraitDef trait)
         {
-            Wipe();
+            ReligionUtility.Wipe(this);
         }
         #endregion
 
         #region helpFuncs
-        public void Wipe()
-        {
-            owners.Clear();
-            religion.Clear();
-            listeners.Clear();
-            for (int i = 0; i < daysOfLectures.Count; ++i)
-                daysOfLectures[i] = false;
-            timeOfLecture = 9;
-            timeOfbuffer = string.Empty;
-            didLecture = false;
-        }
 
-        public void Listeners()
-        {
-            if (listeners.Count != 0)
-                listeners.Clear();
-            if (listeners.Count == 0)
-                foreach (Pawn x in Map.mapPawns.FreeColonists)
-                    if (x.story.traits.HasTrait(religion[0]) && x != owners[0] &&
-                               x.RaceProps.Humanlike &&
-                               !x.IsPrisoner &&
-                               x.Faction == Faction &&
-                               x.RaceProps.intelligence == Intelligence.Humanlike &&
-                               !x.Downed && !x.Dead &&
-                               !x.InMentalState && !x.InAggroMentalState &&
-                               x.CurJob.def != ReligionDefOf.HoldLecture &&
-                               x.CurJob.def != ReligionDefOf.AttendLecture &&
-                               x.CurJob.def != JobDefOf.Capture &&
-                               x.CurJob.def != JobDefOf.ExtinguishSelf && //Oh god help
-                               x.CurJob.def != JobDefOf.Rescue && //Saving lives is more important
-                               x.CurJob.def != JobDefOf.TendPatient && //Saving lives is more important
-                               x.CurJob.def != JobDefOf.BeatFire && //Fire?! This is more important
-                               x.CurJob.def != JobDefOf.Lovin && //Not ready~~
-                               x.CurJob.def != JobDefOf.LayDown && //They're resting
-                               x.CurJob.def != JobDefOf.FleeAndCower //They're not cowering
-                            )
-                        listeners.Add(x);
-        }
-
-        public void TryLecture(bool forced)
-        {
-            if (!owners.NullOrEmpty())
-            {
-                didLecture = true;
-;
-                ReligionUtility.GiveLectureJob(this, owners[0]);
-            }
-            else
-            {
-                Messages.Message("No preacher assigned".Translate(), MessageTypeDefOf.NegativeEvent);
-            }
-            if(!forced)
-                didLecture = true;
-        }
         #endregion
 
         [DebuggerHidden]
@@ -253,7 +208,7 @@ namespace Religion
                             Messages.Message("Select a religion and preacher first".Translate(), MessageTypeDefOf.NegativeEvent);
                         else
                         {
-                            TryLecture(true);
+                            ReligionUtility.TryLecture(this,true);
                         }
                     },
                     defaultLabel = "Worship".Translate(),
@@ -273,7 +228,8 @@ namespace Religion
             Scribe_Values.Look<int>(ref this.timeOfLecture, "timeOfLecture");
             Scribe_Collections.Look<TraitDef>(ref this.religion, "religions", LookMode.Def);
             Scribe_Collections.Look<Pawn>(ref this.owners, "owners", LookMode.Reference);
-            Scribe_Collections.Look<bool>(ref this.daysOfLectures, "daysOfLectures");           
+            Scribe_Collections.Look<bool>(ref this.daysOfLectures, "daysOfLectures");
+            Scribe_References.Look<Building_Altar>(ref this.altar, "LecternAltar");
         }
     }
 }

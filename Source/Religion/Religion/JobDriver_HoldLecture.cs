@@ -58,7 +58,7 @@ namespace Religion
             waitingTime.initAction = delegate
             {
                 report = "Waiting for congregation".Translate();
-                lectern.Listeners();
+                ReligionUtility.Listeners(lectern, lectern.listeners);
                 foreach (Pawn p in lectern.listeners)
                     ReligionUtility.GiveAttendJob(lectern, p);
             };

@@ -48,20 +48,6 @@ namespace Religion
         }
         #endregion
 
-        //public static Building_Lectern FindLecternToAltar(Building_Altar lectern, Map map)
-        //{
-        //    Room room = lectern.GetRoom(RegionType.Set_Passable);
-        //    List<Thing> andAdjacentThings = room.ContainedAndAdjacentThings;
-        //    for (int index = 0; index < andAdjacentThings.Count; ++index)
-        //    {
-        //        if (andAdjacentThings[index] is Building_Lectern)
-        //        {
-        //            return andAdjacentThings[index] as Building_Lectern;
-        //        }
-        //    }
-        //    return null;
-        //}
-
         public static Building_Altar FindAtlarToLectern(Building_Lectern lectern, Map map)
         {
             Room room = lectern.GetRoom(RegionType.Set_Passable);
@@ -76,6 +62,22 @@ namespace Religion
             return null;
         }
 
+        public static Building_Lectern FindLecternToAltar(Building_Altar altar, Map map)
+        {
+            Room room = altar.GetRoom(RegionType.Set_Passable);
+            List<Thing> andAdjacentThings = room.ContainedAndAdjacentThings;
+            for (int index = 0; index < andAdjacentThings.Count; ++index)
+            {
+                if (andAdjacentThings[index] is Building_Lectern)
+                {
+                    return andAdjacentThings[index] as Building_Lectern;
+
+                }
+            }
+            return null;
+        }
+
+        #region LecternManagement
         public static void GiveLectureJob(Building_Lectern lectern, Pawn preacher)
         {
             if (preacher != lectern.owners[0] || preacher == null || preacher.Drafted || preacher.IsPrisoner || preacher.jobs.curJob.def == ReligionDefOf.HoldLecture)
@@ -142,6 +144,63 @@ namespace Religion
             return null;
         }
 
+        public static void Wipe(Building_Lectern lectern)
+        {
+            lectern.owners.Clear();
+            lectern.religion.Clear();
+            lectern.listeners.Clear();
+            for (int i = 0; i < lectern.daysOfLectures.Count; ++i)
+                lectern.daysOfLectures[i] = false;
+            lectern.timeOfLecture = 9;
+            lectern.timeOfbuffer = string.Empty;
+            lectern.didLecture = false;
+        }
+
+        public static void Listeners(Building_Lectern lectern, List<Pawn>listenersOfLectern)
+        {
+            if (listenersOfLectern.Count != 0)
+                listenersOfLectern.Clear();
+            if (listenersOfLectern.Count == 0)
+                foreach (Pawn x in lectern.Map.mapPawns.FreeColonists)
+                    if (x.story.traits.HasTrait(lectern.religion[0]) && x != lectern.owners[0] &&
+                               x.RaceProps.Humanlike &&
+                               !x.IsPrisoner &&
+                               x.Faction == Faction.OfPlayer &&
+                               x.RaceProps.intelligence == Intelligence.Humanlike &&
+                               !x.Downed && !x.Dead &&
+                               !x.InMentalState && !x.InAggroMentalState &&
+                               x.CurJob.def != ReligionDefOf.HoldLecture &&
+                               x.CurJob.def != ReligionDefOf.AttendLecture &&
+                               x.CurJob.def != JobDefOf.Capture &&
+                               x.CurJob.def != JobDefOf.ExtinguishSelf && //Oh god help
+                               x.CurJob.def != JobDefOf.Rescue && //Saving lives is more important
+                               x.CurJob.def != JobDefOf.TendPatient && //Saving lives is more important
+                               x.CurJob.def != JobDefOf.BeatFire && //Fire?! This is more important
+                               x.CurJob.def != JobDefOf.Lovin && //Not ready~~
+                               x.CurJob.def != JobDefOf.LayDown && //They're resting
+                               x.CurJob.def != JobDefOf.FleeAndCower //They're not cowering
+                            )
+                        listenersOfLectern.Add(x);
+        }
+
+        public static void TryLecture(Building_Lectern lectern, bool forced)
+        {
+            if (!lectern.owners.NullOrEmpty())
+            {
+                lectern.didLecture = true;
+                ;
+                ReligionUtility.GiveLectureJob(lectern, lectern.owners[0]);
+            }
+            else
+            {
+                Messages.Message("No preacher assigned".Translate(), MessageTypeDefOf.NegativeEvent);
+            }
+            if (!forced)
+                lectern.didLecture = true;
+        }
+        #endregion
+
+        #region Misc
         private static readonly Color InactiveColor = new Color(0.37f, 0.37f, 0.37f, 0.8f);
 
         static void CheckboxDraw(float x, float y, bool active, bool disabled, float size = 24f, Texture2D texChecked = null, Texture2D texUnchecked = null)
@@ -174,5 +233,6 @@ namespace Religion
             CheckboxDraw((float)((double)rect.x + (double)rect.width - 24.0), rect.y, checkOn, disabled, 24f, (Texture2D)null, (Texture2D)null);
             Verse.Text.Anchor = anchor;
         }
+        #endregion
     };
 }

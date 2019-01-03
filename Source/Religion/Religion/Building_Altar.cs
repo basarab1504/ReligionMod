@@ -17,6 +17,20 @@ namespace Religion
         public List<TraitDef> religion = new List<TraitDef>();
         public Building_Lectern lectern;
 
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            if (lectern == null)
+            {
+                Building_Lectern a;
+                a = ReligionUtility.FindLecternToAltar(this, map);
+                if (a != null)
+                {
+                    this.lectern = a;
+                }
+            }
+        }
+
         #region ITrait
         public IEnumerable<TraitDef> AssigningTrait
         {
@@ -67,23 +81,16 @@ namespace Religion
             {
                 religion.Remove(trait);
                 if (lectern != null)
-                    lectern.Wipe();
+                    ReligionUtility.Wipe(lectern);
             }
             else return;
         }
         #endregion
 
-        //public override void SpawnSetup(Map map, bool respawningAfterLoad)
-        //{
-        //    base.SpawnSetup(map, respawningAfterLoad);
-        //    Building_Lectern a;
-        //    a = ReligionUtility.FindLecternToAltar(this, map);
-        //    this.lectern = a;
-        //}
-
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
-            lectern.Wipe();
+            if(lectern != null)
+            ReligionUtility.Wipe(lectern);
             base.Destroy(mode);
         }
 
