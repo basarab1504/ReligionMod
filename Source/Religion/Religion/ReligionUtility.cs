@@ -84,6 +84,7 @@ namespace Religion
                 return;
             }
             Thing book = null;
+
             if (AppropriateBookInInventory(preacher, lectern.religion[0]) != null)
                 book = AppropriateBookInInventory(preacher, lectern.religion[0]);
             else if (AppropriateBook(preacher, lectern.religion[0]) != null)
@@ -96,6 +97,8 @@ namespace Religion
                 preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
                 preacher.jobs.TryTakeOrderedJob(J);
             }
+            else
+            Messages.Message("NoBook".Translate(), MessageTypeDefOf.NegativeEvent);
         }
 
         public static void GiveAttendJob(Building_Lectern lectern, Pawn attendee)
@@ -171,5 +174,5 @@ namespace Religion
             CheckboxDraw((float)((double)rect.x + (double)rect.width - 24.0), rect.y, checkOn, disabled, 24f, (Texture2D)null, (Texture2D)null);
             Verse.Text.Anchor = anchor;
         }
-    }
+    };
 }

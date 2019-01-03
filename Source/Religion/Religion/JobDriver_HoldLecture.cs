@@ -8,7 +8,6 @@ namespace Religion
 {
     class JobDriver_HoldLecture : JobDriver
     {
-        bool isLecturing = false;
         protected Building_Lectern lectern
         {
             get
@@ -19,7 +18,7 @@ namespace Religion
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            return this.pawn.Reserve(this.job.targetA, this.job, this.job.def.joyMaxParticipants, 0, (ReservationLayerDef)null, true);
+            return true;
         }
 
         private string report = "";
@@ -41,9 +40,13 @@ namespace Religion
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDestroyedOrNull(TargetIndex.A);
+            this.FailOnDestroyedOrNull(TargetIndex.B);
 
-            yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.Touch);
-            yield return Toils_Haul.TakeToInventory(TargetIndex.B, 1);
+            if(!pawn.inventory.Contains(TargetThingB))
+            {
+                yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.Touch);
+                yield return Toils_Haul.TakeToInventory(TargetIndex.B, 1);
+            }
 
             Toil goToAltar = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
             yield return goToAltar;
@@ -76,6 +79,28 @@ namespace Religion
                 actor.skills.Learn(SkillDefOf.Social, 0.25f);
             };
             yield return preachingTime;
+
+            Toil toStoreToil = new Toil();
+            toStoreToil.initAction = delegate
+            {
+                Pawn actor = toStoreToil.actor;
+                Job curJob = actor.jobs.curJob;
+                IntVec3 foundCell = IntVec3.Invalid;
+                StoreUtility.TryFindBestBetterStoreCellFor(curJob.targetB.Thing, actor, actor.Map, StoragePriority.Important, Faction.OfPlayer, out foundCell, true);
+                if(!foundCell.IsValid)
+                    StoreUtility.TryFindBestBetterStoreCellFor(curJob.targetB.Thing, actor, actor.Map, StoragePriority.Unstored, Faction.OfPlayer, out foundCell, true);
+                actor.carryTracker.TryStartCarry(TargetB.Thing);
+                if(foundCell.IsValid)
+                curJob.targetC = (LocalTargetInfo)foundCell;
+                foreach (Pawn p in lectern.listeners)
+                    p.jobs.EndCurrentJob(JobCondition.Succeeded);
+            };
+            yield return toStoreToil;
+
+            yield return Toils_Misc.TakeItemFromInventoryToCarrier(pawn, TargetIndex.B);
+            yield return Toils_Haul.CarryHauledThingToCell(TargetIndex.C);
+            yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.C, Toils_Haul.TakeToInventory(TargetIndex.C,1), false);
+
             this.AddFinishAction(() =>
             {
                 ReligionUtility.HeldWorshipThought(pawn);
