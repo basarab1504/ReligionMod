@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Verse;
+using System.Linq;
 using Verse.AI.Group;
 using RimWorld;
 
@@ -78,10 +79,18 @@ namespace Religion
 
         List<Pawn> SpawnPawnsReligion(IncidentParms parms)
         {
+            List<TraitDef> rels = DefDatabase<TraitDef>.AllDefsListForReading.FindAll(x => x is TraitDef_ReligionTrait);
+            Trait religion = new Trait(rels.RandomElement());
             Map target = (Map)parms.target;
-            List<Pawn> list = PawnGroupMakerUtility.GeneratePawns(IncidentParmsUtility.GetDefaultPawnGroupMakerParms(ReligionDefOf.ReligionPawnGroupKindDef, parms, true), false).ToList<Pawn>();
+            List<Pawn> list = PawnGroupMakerUtility.GeneratePawns(IncidentParmsUtility.GetDefaultPawnGroupMakerParms(this.PawnGroupKindDef, parms, true), false).ToList<Pawn>();
+            foreach(Pawn p in list)
+            {
+                p.story.traits.GainTrait(religion);
+            }
             foreach (Thing newThing in list)
+            {               
                 GenSpawn.Spawn(newThing, CellFinder.RandomClosewalkCellNear(parms.spawnCenter, target, 5, (Predicate<IntVec3>)null), target, WipeMode.Vanish);
+            }            
             return list;
         }
 
