@@ -49,13 +49,13 @@ namespace Religion
             base.TickRare();
             if (ReligionUtility.TimeToLecture(Map, timeOfLecture) && daysOfLectures[(GenLocalDate.DayOfQuadrum(Map))] && didLecture == false)
             {
-                Messages.Message("is true", MessageTypeDefOf.PositiveEvent);                
+                //Messages.Message("is true", MessageTypeDefOf.PositiveEvent);                
                 ReligionUtility.TryLecture(this,false);
             }
             if (ReligionUtility.IsEvening(Map) && didLecture == true)
             {
                 didLecture = false;
-                Messages.Message("is false", MessageTypeDefOf.PositiveEvent);
+                //Messages.Message("is false", MessageTypeDefOf.PositiveEvent);
             }
         } //проверка почти каждый тик, ужас
 
@@ -157,10 +157,6 @@ namespace Religion
         {
             ReligionUtility.Wipe(this);
         }
-        #endregion
-
-        #region helpFuncs
-
         #endregion
 
         [DebuggerHidden]

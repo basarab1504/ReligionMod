@@ -29,7 +29,8 @@ namespace Religion
         public override void Interacted(Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks, out string letterText, out string letterLabel, out LetterDef letterDef)
         {
             Trait t = initiator.story.traits.allTraits.Find(x => x.def is TraitDef_ReligionTrait);
-            if(t != null)
+            base.Interacted(initiator, recipient, extraSentencePacks, out letterText, out letterLabel, out letterDef);
+            if (t != null)
             {
                 if (Rand.Value < Mathf.InverseLerp(0f, 100f, recipient.relations.OpinionOf(initiator)))
                 {
@@ -38,8 +39,7 @@ namespace Religion
                     letterLabel = "Is now religious".Translate();
                     letterDef = LetterDefOf.PositiveEvent;
                 }
-            }
-            base.Interacted(initiator, recipient, extraSentencePacks, out letterText, out letterLabel, out letterDef);
+            }           
         }
     }
 }

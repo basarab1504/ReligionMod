@@ -9,4 +9,14 @@
     <joyKind>PrayingKind</joyKind>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
+
+    <JobDef>
+    <defName>ReadBook</defName>
+    <driverClass>Religion.JobDriver_ReadBook</driverClass>
+    <reportString>reading a book</reportString>
+    <joyDuration>4000</joyDuration>
+    <joyMaxParticipants>1</joyMaxParticipants>
+    <joyKind>PrayingKind</joyKind>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
 </Defs>

@@ -14,6 +14,7 @@ namespace Religion
         public static TraitDef Atheist;
         public static JobDef HoldLecture;
         public static JobDef AttendLecture;
+        public static JobDef ReadBook;
         public static ThingDef Altar;
         public static ThingDef Lectern;
         public static ThingDef ReligionBook;

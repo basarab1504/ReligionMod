@@ -31,7 +31,6 @@ namespace Religion
             {
                 int scoreStageIndex =
                     RoomStatDefOf.Impressiveness.GetScoreStageIndex(room.GetStat(RoomStatDefOf.Impressiveness));
-                Messages.Message(scoreStageIndex.ToString(), MessageTypeDefOf.NegativeEvent);
                 if (def.stages[scoreStageIndex] == null) return;
                 pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(def, scoreStageIndex), null);
             }
