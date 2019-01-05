@@ -39,6 +39,7 @@ namespace Religion
 
 
         private const float TraderChance = 0.75f;
+        TraitDef religionDef;
 
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
@@ -80,7 +81,8 @@ namespace Religion
         List<Pawn> SpawnPawnsReligion(IncidentParms parms)
         {
             List<TraitDef> rels = DefDatabase<TraitDef>.AllDefsListForReading.FindAll(x => x is TraitDef_ReligionTrait);
-            Trait religion = new Trait(rels.RandomElement());
+            religionDef = ReligionDefOf.TynanReligion;
+            Trait religion = new Trait(religionDef);
             Map target = (Map)parms.target;
             List<Pawn> list = PawnGroupMakerUtility.GeneratePawns(IncidentParmsUtility.GetDefaultPawnGroupMakerParms(this.PawnGroupKindDef, parms, true), false).ToList<Pawn>();
             foreach(Pawn p in list)
@@ -112,12 +114,15 @@ namespace Religion
             TraderKindDef traderKindDef = faction.def.visitorTraderKinds.RandomElementByWeight<TraderKindDef>((Func<TraderKindDef, float>)(traderDef => traderDef.CalculatedCommonality));
             pawn.trader.traderKind = traderKindDef;
             pawn.inventory.DestroyAll(DestroyMode.Vanish);
-            foreach (Thing thing in ThingSetMakerDefOf.TraderStock.root.Generate(new ThingSetMakerParams()
+            List<Thing> things = ThingSetMakerDefOf.TraderStock.root.Generate(new ThingSetMakerParams()
             {
                 traderDef = traderKindDef,
                 tile = new int?(map.Tile),
                 traderFaction = faction
-            }))
+            });
+            //ThingDef n = DefDatabase<ReligionBook_ThingDef>.AllDefsListForReading.Find(x => x.religion == religionDef);
+            //things.Add(ThingMaker.MakeThing(n)); //////////////////
+            foreach (Thing thing in things)
             {
                 Pawn p = thing as Pawn;
                 if (p != null)
@@ -132,6 +137,17 @@ namespace Religion
                     thing.Destroy(DestroyMode.Vanish);
             }
             PawnInventoryGenerator.GiveRandomFood(pawn);
+            //////if(n != null)
+            ////{
+            ////    Thing book = ThingMaker.MakeThing(n);
+            ////    Messages.Message(book.ToString() + " " + (book.def as ReligionBook_ThingDef).religion.ToString(), MessageTypeDefOf.NegativeEvent);
+            ////    Pawn a = book as Pawn;
+            ////    if (a.Faction != pawn.Faction)
+            ////        a.SetFaction(pawn.Faction, (Pawn)null);
+            ////    IntVec3 locc = CellFinder.RandomClosewalkCellNear(pawn.Position, map, 5, (Predicate<IntVec3>)null);
+            ////    GenSpawn.Spawn((Thing)a, locc, map, WipeMode.Vanish);
+            ////    lord.AddPawn(a);
+            ////}
             return true;
         }
     }

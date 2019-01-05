@@ -20,18 +20,12 @@
       <DeteriorationRate>0</DeteriorationRate>
       <SellPriceFactor>0.25</SellPriceFactor>
     </statBases>
-    <costList>
-      <WoodLog>1</WoodLog>
-    </costList>
     <stackLimit>1</stackLimit>
     <tradeNeverStack>true</tradeNeverStack>	
     <altitudeLayer>Item</altitudeLayer>
     <alwaysHaulable>True</alwaysHaulable>
     <tickerType>Never</tickerType>
     <techLevel>Neolithic</techLevel>
-    <tradeTags>
-      <li>Artifact</li>
-    </tradeTags>
     <inspectorTabs>
       <li>ITab_Art</li>
     </inspectorTabs>	
