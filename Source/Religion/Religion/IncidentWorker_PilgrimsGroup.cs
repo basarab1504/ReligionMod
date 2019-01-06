@@ -53,7 +53,9 @@ namespace Religion
             RCellFinder.TryFindRandomSpotJustOutsideColony(pawns[0], out result);
             LordJob_VisitColony lordJobVisitColony = new LordJob_VisitColony(parms.faction, result);
             LordMaker.MakeNewLord(parms.faction, (LordJob)lordJobVisitColony, target, (IEnumerable<Pawn>)pawns);
-            bool flag = this.TryConvertOnePawnToSmallTrader(pawns, parms.faction, target);
+            bool flag = false;
+            if ((double)Rand.Value < 0.75)
+                flag = this.TryConvertOnePawnToSmallTrader(pawns, parms.faction, target);
             Pawn pawn = pawns.Find((Predicate<Pawn>)(x => parms.faction.leader == x));
             string letterLabel;
             string letterText;

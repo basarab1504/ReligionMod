@@ -13,7 +13,7 @@
     <statBases>
 	  <Mass>0.3</Mass>
       <WorkToMake>2000</WorkToMake>
-      <MarketValue>20</MarketValue>	
+      <MarketValue>350</MarketValue>	
       <MaxHitPoints>20</MaxHitPoints>
       <Flammability>1.0</Flammability>
       <DeteriorationRate>0</DeteriorationRate>
