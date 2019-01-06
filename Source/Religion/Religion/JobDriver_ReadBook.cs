@@ -91,6 +91,7 @@ namespace Religion
             {
                 if(!pawn.story.traits.allTraits.Any(x => x.def is TraitDef_ReligionTrait) && !pawn.story.traits.HasTrait(ReligionDefOf.Atheist))
                 {
+                    if(Rand.Value < 0.15f)
                     pawn.story.traits.GainTrait(new Trait(book.religion));
                     Find.LetterStack.ReceiveLetter(pawn.ToString() + " in faith".Translate(), "Is now religious".Translate(), LetterDefOf.PositiveEvent, (LookTargets)((Thing)this.pawn), (Faction)null, (string)null);
                 }
