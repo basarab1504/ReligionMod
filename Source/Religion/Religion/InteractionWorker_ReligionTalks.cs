@@ -10,7 +10,7 @@ namespace Religion
 {
     class InteractionWorker_ReligionTalks : InteractionWorker
     {
-        private const float BaseChance = 0.02f;
+        private const float BaseChance = 0.10f;
         private const float SpouseRelationChanceFactor = 0.4f;
 
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
