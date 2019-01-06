@@ -65,6 +65,7 @@
     <Compile Include="ReligionUtility.cs" />
     <Compile Include="StockGenerator_Book.cs" />
     <Compile Include="ThingWithComps_Book.cs" />
+    <Compile Include="ThoughtDef_NoChurchDef.cs" />
     <Compile Include="ThoughtWorker_AtheistThoight.cs" />
     <Compile Include="ThoughtWorker_ForeignReligion.cs" />
     <Compile Include="ThoughtWorker_SameReligion.cs" />
