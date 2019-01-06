@@ -15,7 +15,7 @@ namespace Religion
         public static readonly Texture2D faith = ContentFinder<Texture2D>.Get("Things/Symbols/Religion", true);
         public static bool IsMorning(Map map) => GenLocalDate.HourInteger(map) > 6 && GenLocalDate.HourInteger(map) < 10;
         public static bool IsEvening(Map map) => GenLocalDate.HourInteger(map) > 18 && GenLocalDate.HourInteger(map) < 22;
-        public static bool TimeToLecture(Map map, int time) => GenLocalDate.HourInteger(map) > time-1 && GenLocalDate.HourInteger(map) < time+1;
+        public static bool TimeToLecture(Map map, int time) => GenLocalDate.HourInteger(map) > time - 1 && GenLocalDate.HourInteger(map) < time + 1;
         public static bool IsNight(Map map) => GenLocalDate.HourInteger(map) > 22;
 
         #region Thoughts
@@ -92,7 +92,7 @@ namespace Religion
             else if (AppropriateBook(preacher, lectern.religion[0]) != null)
                 book = AppropriateBook(preacher, lectern.religion[0]);
 
-            if(book != null)
+            if (book != null)
             {
                 Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern, (LocalTargetInfo)book);
                 J.playerForced = true;
@@ -100,7 +100,7 @@ namespace Religion
                 preacher.jobs.TryTakeOrderedJob(J);
             }
             else
-            Messages.Message("NoBook".Translate(), MessageTypeDefOf.NegativeEvent);
+                Messages.Message("NoBook".Translate(), MessageTypeDefOf.NegativeEvent);
         }
 
         public static void GiveAttendJob(Building_Lectern lectern, Pawn attendee)
@@ -113,7 +113,7 @@ namespace Religion
 
             IntVec3 result;
             Building chair;
-            if (!WatchBuildingUtility.TryFindBestWatchCell(lectern, attendee, true, out result, out chair))           
+            if (!WatchBuildingUtility.TryFindBestWatchCell(lectern, attendee, true, out result, out chair))
             {
                 WatchBuildingUtility.TryFindBestWatchCell(lectern, attendee, false, out result, out chair);
             }
@@ -129,7 +129,7 @@ namespace Religion
 
         public static Thing AppropriateBook(Pawn p, TraitDef religionOfPawn)
         {
-            foreach (Thing t in p.Map.listerThings.ThingsMatching(ThingRequest.ForDef(ReligionDefOf.ReligionBook)))
+            foreach (Thing t in p.Map.listerThings.AllThings.FindAll(x => x.def.isBook()))
                 if ((t.def as ReligionBook_ThingDef).religion == religionOfPawn)
                     if (p.CanReach((LocalTargetInfo)t, PathEndMode.ClosestTouch, Danger.Deadly, false, TraverseMode.ByPawn))
                         return t;
@@ -156,7 +156,7 @@ namespace Religion
             lectern.didLecture = false;
         }
 
-        public static void Listeners(Building_Lectern lectern, List<Pawn>listenersOfLectern)
+        public static void Listeners(Building_Lectern lectern, List<Pawn> listenersOfLectern)
         {
             if (listenersOfLectern.Count != 0)
                 listenersOfLectern.Clear();
@@ -200,6 +200,11 @@ namespace Religion
         }
         #endregion
 
+        public static bool isBook(this ThingDef p)
+        {
+            return typeof(ThingWithComps_Book).IsAssignableFrom(p.thingClass);
+        }
+
         #region Misc
         private static readonly Color InactiveColor = new Color(0.37f, 0.37f, 0.37f, 0.8f);
 
@@ -234,5 +239,5 @@ namespace Religion
             Verse.Text.Anchor = anchor;
         }
         #endregion
-    };
+    }
 }

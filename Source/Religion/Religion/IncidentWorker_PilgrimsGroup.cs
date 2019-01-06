@@ -53,9 +53,7 @@ namespace Religion
             RCellFinder.TryFindRandomSpotJustOutsideColony(pawns[0], out result);
             LordJob_VisitColony lordJobVisitColony = new LordJob_VisitColony(parms.faction, result);
             LordMaker.MakeNewLord(parms.faction, (LordJob)lordJobVisitColony, target, (IEnumerable<Pawn>)pawns);
-            bool flag = false;
-            if ((double)Rand.Value < 0.75)
-                flag = this.TryConvertOnePawnToSmallTrader(pawns, parms.faction, target);
+            bool flag = this.TryConvertOnePawnToSmallTrader(pawns, parms.faction, target);
             Pawn pawn = pawns.Find((Predicate<Pawn>)(x => parms.faction.leader == x));
             string letterLabel;
             string letterText;
@@ -81,7 +79,7 @@ namespace Religion
         List<Pawn> SpawnPawnsReligion(IncidentParms parms)
         {
             List<TraitDef> rels = DefDatabase<TraitDef>.AllDefsListForReading.FindAll(x => x is TraitDef_ReligionTrait);
-            religionDef = ReligionDefOf.TynanReligion;
+            religionDef = rels.RandomElement();
             Trait religion = new Trait(religionDef);
             Map target = (Map)parms.target;
             List<Pawn> list = PawnGroupMakerUtility.GeneratePawns(IncidentParmsUtility.GetDefaultPawnGroupMakerParms(this.PawnGroupKindDef, parms, true), false).ToList<Pawn>();
@@ -111,17 +109,21 @@ namespace Religion
             Lord lord = pawn.GetLord();
             pawn.mindState.wantsToTradeWithColony = true;
             PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn, true);
-            TraderKindDef traderKindDef = faction.def.visitorTraderKinds.RandomElementByWeight<TraderKindDef>((Func<TraderKindDef, float>)(traderDef => traderDef.CalculatedCommonality));
+            TraderKindDef traderKindDef = ReligionDefOf.Pilgrim_Standart;
             pawn.trader.traderKind = traderKindDef;
             pawn.inventory.DestroyAll(DestroyMode.Vanish);
+            ThingDef n = DefDatabase<ReligionBook_ThingDef>.AllDefsListForReading.Find(x => x.religion == religionDef);
+            StockGenerator_Book forBook = new StockGenerator_Book();
+            forBook.thingDef = n;
+            forBook.countRange.min = 1;
+            forBook.countRange.max = 1;
+            traderKindDef.stockGenerators.Add(forBook);
             List<Thing> things = ThingSetMakerDefOf.TraderStock.root.Generate(new ThingSetMakerParams()
             {
                 traderDef = traderKindDef,
                 tile = new int?(map.Tile),
                 traderFaction = faction
             });
-            //ThingDef n = DefDatabase<ReligionBook_ThingDef>.AllDefsListForReading.Find(x => x.religion == religionDef);
-            //things.Add(ThingMaker.MakeThing(n)); //////////////////
             foreach (Thing thing in things)
             {
                 Pawn p = thing as Pawn;

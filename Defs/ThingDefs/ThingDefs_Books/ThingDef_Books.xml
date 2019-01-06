@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>  
   <Religion.ReligionBook_ThingDef Name="ReligionBookBase" Abstract="True">
-	<defName>ReligionBook</defName>
     <thingClass>Religion.ThingWithComps_Book</thingClass>
     <thingCategories>
       <li>Items</li>
@@ -35,6 +34,7 @@
   </Religion.ReligionBook_ThingDef>
 
   <Religion.ReligionBook_ThingDef ParentName="ReligionBookBase">
+  <defName>BookOfTynanFaith</defName>
   <label>BookOfTynanFaith</label>
   <description>Big old book for Tynans</description>
     <graphicData>
@@ -44,6 +44,34 @@
     </graphicData>    
     <religion>
       <li>TynanReligion</li>
+    </religion>
+  </Religion.ReligionBook_ThingDef>
+
+<Religion.ReligionBook_ThingDef ParentName="ReligionBookBase">
+  <defName>BookOfMonothosFaith</defName>
+  <label>BookOfMonothosFaith</label>
+  <description>Big old book for Tynans</description>
+    <graphicData>
+      <texPath>Item/Resource/Books/Grimoire</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+    </graphicData>    
+    <religion>
+      <li>MonothosReligion</li>
+    </religion>
+  </Religion.ReligionBook_ThingDef>
+
+  <Religion.ReligionBook_ThingDef ParentName="ReligionBookBase">
+  <defName>BookOfAegonFaith</defName>
+  <label>BookOfAegonFaith</label>
+  <description>Big old book for Tynans</description>
+    <graphicData>
+      <texPath>Item/Resource/Books/Grimoire</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+    </graphicData>    
+    <religion>
+      <li>AegonReligion</li>
     </religion>
   </Religion.ReligionBook_ThingDef>
 </Defs>
