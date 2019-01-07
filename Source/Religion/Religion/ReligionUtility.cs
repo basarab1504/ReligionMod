@@ -81,7 +81,7 @@ namespace Religion
         #region LecternManagement
         public static void GiveLectureJob(Building_Lectern lectern, Pawn preacher)
         {
-            if (preacher != lectern.owners[0] || preacher == null || preacher.Drafted || preacher.IsPrisoner || preacher.jobs.curJob.def == ReligionDefOf.HoldLecture)
+            if (preacher != lectern.owners[0] || preacher == null || preacher.Drafted || preacher.IsPrisoner || preacher.jobs.curJob.def == ReligionDefOf.HoldLecture ||preacher.InMentalState || preacher.InAggroMentalState)
             {
                 Messages.Message("CantGiveLectureJobToPreacher".Translate(), MessageTypeDefOf.NegativeEvent);
                 return;
@@ -189,7 +189,6 @@ namespace Religion
             if (!lectern.owners.NullOrEmpty())
             {
                 lectern.didLecture = true;
-                ;
                 ReligionUtility.GiveLectureJob(lectern, lectern.owners[0]);
             }
             else
