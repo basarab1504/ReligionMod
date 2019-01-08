@@ -2,7 +2,7 @@
 <Defs>
 	<TraitDef>
     	<defName>Atheist</defName>
-		<commonality>0.7</commonality>
+		<commonality>0.2</commonality>
     	<degreeDatas>
       	<li>
         	<label>Atheist</label>
@@ -18,7 +18,7 @@
 
   <Religion.TraitDef_ReligionTrait>
     	<defName>TynanReligion</defName>
-		<commonality>0.7</commonality>
+		<commonality>0.3</commonality>
     	<degreeDatas>
       	<li>
         	<label>Tynan Faith</label>
@@ -40,7 +40,7 @@
 
   <Religion.TraitDef_ReligionTrait>
     	<defName>MonothosReligion</defName>
-		<commonality>0.7</commonality>
+		<commonality>0.3</commonality>
     	<degreeDatas>
       	<li>
         	<label>Monothos Faith</label>
@@ -59,7 +59,7 @@
 
     <Religion.TraitDef_ReligionTrait>
     	<defName>AegonReligion</defName>
-		<commonality>0.7</commonality>
+		<commonality>0.3</commonality>
     	<degreeDatas>
       	<li>
         	<label>Aegon Faith</label>
