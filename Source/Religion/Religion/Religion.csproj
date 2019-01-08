@@ -59,6 +59,10 @@
     <Compile Include="JobDriver_ReadBook.cs" />
     <Compile Include="JoyGiver_AttendToLecture.cs" />
     <Compile Include="JoyGiver_Praying.cs" />
+    <Compile Include="MentalBreakWorker_BecomeAtheist.cs" />
+    <Compile Include="MentalBreakWorker_GainReligion.cs" />
+    <Compile Include="MentalBreakWorker_LoseAtheism.cs" />
+    <Compile Include="MentalBreakWorker_LoseReligion.cs" />
     <Compile Include="PlaceWorker_AltarPlace.cs" />
     <Compile Include="PlaceWorker_NextToAltar.cs" />
     <Compile Include="ReligionBook_ThingDef.cs" />
