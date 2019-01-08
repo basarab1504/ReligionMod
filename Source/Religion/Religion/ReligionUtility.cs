@@ -79,6 +79,15 @@ namespace Religion
         }
 
         #region LecternManagement
+
+        public static void Unclaim(Pawn p)
+        {
+            Building_Lectern b = p.Map.listerBuildings.allBuildingsColonist.Find(x => x is Building_Lectern && (x as Building_Lectern).owners.Contains(p)) as Building_Lectern;
+            if (b == null)
+                return;
+            b.TryUnassignPawn(p);
+        }
+
         public static void GiveLectureJob(Building_Lectern lectern, Pawn preacher)
         {
             //if (preacher.Dead || preacher)
