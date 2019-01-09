@@ -12,22 +12,21 @@ using Verse.Sound;
 
 namespace Religion
 {
-    public class Building_Altar : Building, IAssignableTrait
+    public class Building_Altar : Building_Storage, IAssignableTrait
     {
         public List<TraitDef> religion = new List<TraitDef>();
         public Building_Lectern lectern;
+        public Thing relic;
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            if (lectern == null)
+            Building_Lectern l = ReligionUtility.FindLecternToAltar(this, map);
+            if (l != null)
             {
-                Building_Lectern a;
-                a = ReligionUtility.FindLecternToAltar(this, map);
-                if (a != null)
-                {
-                    this.lectern = a;
-                }
+                lectern = l;
+                lectern.altar = this;
+                Log.Message(lectern.Position.ToString());
             }
         }
 
@@ -69,6 +68,9 @@ namespace Religion
             if (!religion.Contains(trait))
             {
                 religion.Add(trait);
+                ThingDef bookDef = DefDatabase<ThingDef>.AllDefsListForReading.Find(x => x.comps.Any(y => y is CompProperties_CompRelic));
+                if (bookDef != null)
+                this.GetStoreSettings().filter.SetAllow(bookDef, true);
                 if (lectern != null)
                     lectern.TryAssignTrait(trait);
             }
@@ -79,6 +81,7 @@ namespace Religion
         {
             if (religion.Contains(trait))
             {
+                this.GetStoreSettings().filter.SetDisallowAll();
                 religion.Remove(trait);
                 if (lectern != null)
                     ReligionUtility.Wipe(lectern);
@@ -89,8 +92,10 @@ namespace Religion
 
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
-            if(lectern != null)
-            ReligionUtility.Wipe(lectern);
+            if (lectern != null)
+            {
+                ReligionUtility.Wipe(lectern);
+            }
             base.Destroy(mode);
         }
 
@@ -123,5 +128,5 @@ namespace Religion
             Scribe_Collections.Look<TraitDef>(ref this.religion, "religions", LookMode.Def);
             Scribe_References.Look<Building_Lectern>(ref this.lectern, "AltarLectern");
         }
-        }
+    }
 }

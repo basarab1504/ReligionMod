@@ -16,23 +16,19 @@ namespace Religion
         public int timeOfLecture = 9;
         public string timeOfbuffer;
         public bool didLecture;
-        Building_Altar altar;
+        public Building_Altar altar;
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            if (altar == null)
+            Building_Altar l = ReligionUtility.FindAtlarToLectern(this, map);
+            if (l != null)
             {
-                Building_Altar a;
-                a = ReligionUtility.FindAtlarToLectern(this, map);
-                if (a != null)
-                {
-                    this.altar = a;
-                    altar.lectern = this;
-                    if (!a.religion.NullOrEmpty())
-                        TryAssignTrait(a.religion[0]);
-                }
+                altar = l;
+                altar.lectern = this;
+                Log.Message(altar.Position.ToString());
             }
+                
         }
 
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)

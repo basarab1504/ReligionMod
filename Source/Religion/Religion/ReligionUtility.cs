@@ -53,11 +53,14 @@ namespace Religion
         {
             Room room = lectern.GetRoom(RegionType.Set_Passable);
             List<Thing> andAdjacentThings = room.ContainedAndAdjacentThings;
+            Building_Altar l;
             for (int index = 0; index < andAdjacentThings.Count; ++index)
             {
                 if (andAdjacentThings[index] is Building_Altar)
                 {
-                    return andAdjacentThings[index] as Building_Altar;
+                    l = andAdjacentThings[index] as Building_Altar;
+                    if (l.lectern == null)
+                        return l;
                 }
             }
             return null;
@@ -67,13 +70,15 @@ namespace Religion
         {
             Room room = altar.GetRoom(RegionType.Set_Passable);
             List<Thing> andAdjacentThings = room.ContainedAndAdjacentThings;
+            Building_Lectern l;
             for (int index = 0; index < andAdjacentThings.Count; ++index)
             {
                 if (andAdjacentThings[index] is Building_Lectern)
                 {
-                    return andAdjacentThings[index] as Building_Lectern;
-
-                }
+                    l = andAdjacentThings[index] as Building_Lectern;
+                    if (l.altar == null)
+                        return l;
+                }                  
             }
             return null;
         }
@@ -148,6 +153,19 @@ namespace Religion
             return null;
         }
 
+        public static Thing AppropriateRelic(Pawn p, TraitDef religionOfPawn)
+        {
+            TraitDef rel;
+            foreach (Thing t in p.Map.listerThings.AllThings.FindAll(x => x.TryGetComp<CompRelic>() != null))
+            {
+                rel = t.TryGetComp<CompRelic>().religion;
+                if (rel == religionOfPawn)
+                    if (p.CanReach((LocalTargetInfo)t, PathEndMode.ClosestTouch, Danger.Deadly, false, TraverseMode.ByPawn))
+                        return t;
+            }
+            return null;
+        }
+
         public static Thing AppropriateBookInInventory(Pawn p, TraitDef religionOfPawn)
         {
             foreach (Thing t in p.inventory.innerContainer)
@@ -166,6 +184,7 @@ namespace Religion
             lectern.timeOfLecture = 9;
             lectern.timeOfbuffer = string.Empty;
             lectern.didLecture = false;
+            lectern.altar = null;
         }
 
         public static void Listeners(Building_Lectern lectern, List<Pawn> listenersOfLectern)

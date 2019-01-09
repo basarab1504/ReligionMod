@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ThingDef Name="BaseAltar" ParentName="BuildingBase" Abstract="True">
+    <thingClass>Religion.Building_Altar</thingClass>     
     <designationCategory>ReligionBuildings</designationCategory> 
-    <passability>PassThroughOnly</passability>
     <altitudeLayer>Building</altitudeLayer>
     <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
     <rotatable>true</rotatable>
@@ -11,7 +11,7 @@
       <li>
         <compClass>CompQuality</compClass>
       </li>
-    </comps>
+    </comps> 
     <placeWorkers>
       <li>PlaceWorker_WatchArea</li>
       <li>Religion.PlaceWorker_AltarPlace</li>
@@ -19,13 +19,15 @@
     <building>
       <joyKind>PrayingKind</joyKind>
     </building>    
+    <inspectorTabs>
+      <li>ITab_Storage</li>
+    </inspectorTabs>
   </ThingDef>  
 
   <ThingDef ParentName="BaseAltar">
     <defName>Altar</defName>
     <label>Altar</label>
-    <description>Holy Altar of all faith commonwealth.</description>
-    <thingClass>Religion.Building_Altar</thingClass>    
+    <description>Holy Altar of all faith commonwealth.</description>   
     <graphicData>
       <texPath>Things/Religion/Altar</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -55,6 +57,11 @@
     </stuffCategories>
     <costStuffCount>65</costStuffCount>    
     <building>
+      <preventDeteriorationOnTop>true</preventDeteriorationOnTop>
+      <ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+      <defaultStorageSettings>
+        <priority>Critical</priority>
+      </defaultStorageSettings>
       <watchBuildingStandDistanceRange>
         <min>1</min>
         <max>8</max>

@@ -17,7 +17,7 @@ namespace Religion
             Building_Altar altar = t as Building_Altar;
             if (!(t is Building_Altar))
                 return false;
-            if (altar.religion == null || altar.religion.Count == 0)
+            if (altar.religion == null || altar.relic == null || altar.religion.Count == 0)
                 return false;
             if (pawn.story.traits.HasTrait(altar.religion[0]))
                 return true;
