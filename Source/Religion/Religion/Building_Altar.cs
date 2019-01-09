@@ -21,13 +21,19 @@ namespace Religion
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            Building_Lectern l = ReligionUtility.FindLecternToAltar(this, map);
-            if (l != null)
+            if(lectern == null)
             {
-                lectern = l;
-                lectern.altar = this;
-                Log.Message(lectern.Position.ToString());
+                Log.Message("LECTERN IS NULL");
+                Building_Lectern l = ReligionUtility.FindLecternToAltar(this, map);
+                if (l != null)
+                {
+                    lectern = l;
+                    lectern.altar = this;
+                    Log.Message("OH I FOUND LECTERN!" + lectern.Position);
+                }
             }
+            else
+                Log.Message("LECTERN IS NOT NULL");
         }
 
         #region ITrait
@@ -90,10 +96,17 @@ namespace Religion
         }
         #endregion
 
+        public override void Notify_ReceivedThing(Thing newItem)
+        {
+            base.Notify_ReceivedThing(newItem);
+            relic = newItem;
+        }
+
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
             if (lectern != null)
             {
+                Log.Message("GOODBYE MR.LECTERN!");
                 ReligionUtility.Wipe(lectern);
             }
             base.Destroy(mode);
@@ -127,6 +140,7 @@ namespace Religion
             base.ExposeData();
             Scribe_Collections.Look<TraitDef>(ref this.religion, "religions", LookMode.Def);
             Scribe_References.Look<Building_Lectern>(ref this.lectern, "AltarLectern");
+            Scribe_References.Look<Thing>(ref this.relic, "relic");
         }
     }
 }

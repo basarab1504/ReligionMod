@@ -21,20 +21,30 @@ namespace Religion
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            Building_Altar l = ReligionUtility.FindAtlarToLectern(this, map);
-            if (l != null)
+            if (altar == null)
             {
-                altar = l;
-                altar.lectern = this;
-                Log.Message(altar.Position.ToString());
-            }
-                
+                Log.Message("ALTAR IS NULL");
+                Building_Altar l = ReligionUtility.FindAtlarToLectern(this, map);
+                if (l != null)
+                {
+                    altar = l;
+                    altar.lectern = this;
+                    if (!altar.religion.NullOrEmpty())
+                        TryAssignTrait(altar.religion[0]);
+                    Log.Message("OH I FOUND ALTAR " + altar.Position);
+                }
+            } 
+            else
+                Log.Message("ALTAR IS NOT NULL");
         }
 
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
             if (altar != null)
+            {
+                Log.Message("GOODBYE MR.ALTAR!");
                 altar.lectern = null;
+            }
             base.Destroy(mode);           
         }
 
@@ -141,7 +151,7 @@ namespace Religion
 
         public void TryAssignTrait(TraitDef trait)
         {
-            ReligionUtility.Wipe(this);
+            religion.Clear();
             if (!religion.Contains(trait))
             {
                 religion.Add(trait);
