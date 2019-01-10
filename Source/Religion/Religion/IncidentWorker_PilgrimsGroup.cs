@@ -114,7 +114,7 @@ namespace Religion
             TraderKindDef traderKindDef = ReligionDefOf.Pilgrim_Standart;
             pawn.trader.traderKind = traderKindDef;
             pawn.inventory.DestroyAll(DestroyMode.Vanish);
-            ThingDef n = DefDatabase<ReligionBook_ThingDef>.AllDefsListForReading.Find(x => x.religion == religionDef);
+            ThingDef n = DefDatabase<ThingDef>.AllDefsListForReading.Find(x => x.comps.Any(y => y is CompProperties_CompRelic && (y as CompProperties_CompRelic).religionTrait == religionDef));
             StockGenerator_Book forBook = new StockGenerator_Book();
             forBook.thingDef = n;
             forBook.countRange.min = 1;

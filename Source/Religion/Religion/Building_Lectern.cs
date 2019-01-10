@@ -23,7 +23,7 @@ namespace Religion
             base.SpawnSetup(map, respawningAfterLoad);
             if (altar == null)
             {
-                Log.Message("ALTAR IS NULL");
+                //Log.Message("ALTAR IS NULL");
                 Building_Altar l = ReligionUtility.FindAtlarToLectern(this, map);
                 if (l != null)
                 {
@@ -31,39 +31,39 @@ namespace Religion
                     altar.lectern = this;
                     if (!altar.religion.NullOrEmpty())
                         TryAssignTrait(altar.religion[0]);
-                    Log.Message("OH I FOUND ALTAR " + altar.Position);
+                    //Log.Message("OH I FOUND ALTAR " + altar.Position);
                 }
             } 
-            else
-                Log.Message("ALTAR IS NOT NULL");
+            //else
+            //    Log.Message("ALTAR IS NOT NULL");
         }
 
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
             if (altar != null)
             {
-                Log.Message("GOODBYE MR.ALTAR!");
+                //Log.Message("GOODBYE MR.ALTAR!");
                 altar.lectern = null;
             }
             base.Destroy(mode);           
         }
 
-        public override void TickRare()
-        {
-            if (!Spawned) return;
-            // Don't forget the base work
-            base.TickRare();
-            if (ReligionUtility.TimeToLecture(Map, timeOfLecture) && daysOfLectures[(GenLocalDate.DayOfQuadrum(Map))] && didLecture == false)
-            {
-                //Messages.Message("is true", MessageTypeDefOf.PositiveEvent);                
-                ReligionUtility.TryLecture(this,false);
-            }
-            if (ReligionUtility.IsEvening(Map) && didLecture == true)
-            {
-                didLecture = false;
-                //Messages.Message("is false", MessageTypeDefOf.PositiveEvent);
-            }
-        } //проверка почти каждый тик, ужас
+        //public override void TickRare()
+        //{
+        //    if (!Spawned) return;
+        //    // Don't forget the base work
+        //    base.TickRare();
+        //    if (ReligionUtility.TimeToLecture(Map, timeOfLecture) && daysOfLectures[(GenLocalDate.DayOfQuadrum(Map))] && didLecture == false)
+        //    {
+        //        //Messages.Message("is true", MessageTypeDefOf.PositiveEvent);                
+        //        ReligionUtility.TryLecture(this,false);
+        //    }
+        //    if (ReligionUtility.IsEvening(Map) && didLecture == true)
+        //    {
+        //        didLecture = false;
+        //        //Messages.Message("is false", MessageTypeDefOf.PositiveEvent);
+        //    }
+        //} //проверка почти каждый тик, ужас
 
         #region IBuilding
         public IEnumerable<Pawn> AssigningCandidates
@@ -155,6 +155,7 @@ namespace Religion
             if (!religion.Contains(trait))
             {
                 religion.Add(trait);
+                //Log.Message("oh, i assigned you rel!");
             }
             else return;
         }
@@ -206,12 +207,7 @@ namespace Religion
                 {
                     action = delegate
                     {
-                        if (religion.NullOrEmpty() || owners.NullOrEmpty())
-                            Messages.Message("Select a religion and preacher first".Translate(), MessageTypeDefOf.NegativeEvent);
-                        else
-                        {
-                            ReligionUtility.TryLecture(this,true);
-                        }
+                        ReligionUtility.TryLecture(this, true);
                     },
                     defaultLabel = "Worship".Translate(),
                     defaultDesc = "WorshipDesc".Translate(),

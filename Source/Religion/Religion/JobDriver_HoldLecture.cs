@@ -18,7 +18,7 @@ namespace Religion
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            return true;
+            return this.pawn.Reserve(this.job.targetB, this.job, 1, -1, (ReservationLayerDef)null, errorOnFailed);
         }
 
         private string report = "";

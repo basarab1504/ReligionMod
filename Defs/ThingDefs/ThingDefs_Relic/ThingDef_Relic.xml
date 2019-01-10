@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs> 
   <ThingDef Name="ReligionRelic" Abstract="True">
-    <thingClass>Religion.ThingWithComps_Book</thingClass>
+    <thingClass>ThingWithComps</thingClass>
     <thingCategories>
       <li>Items</li>
     </thingCategories>
@@ -46,6 +46,38 @@
     	<li Class="Religion.CompProperties_CompRelic">
       		<religionTrait>TynanReligion</religionTrait>
   		</li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="ReligionRelic">
+  <defName>RelicOfMonothos</defName>
+  <label>RelicOfMonothos</label>
+  <description>Big old relic for Monothos</description>
+    <graphicData>
+      <texPath>Item/Resource/Books/Grimoire</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+    </graphicData>    
+    <comps>
+      <li Class="Religion.CompProperties_CompRelic">
+          <religionTrait>MonothosReligion</religionTrait>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="ReligionRelic">
+  <defName>RelicOfAegons</defName>
+  <label>RelicOfAegons</label>
+  <description>Big old relic for RelicOfAegons</description>
+    <graphicData>
+      <texPath>Item/Resource/Books/Grimoire</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+    </graphicData>    
+    <comps>
+      <li Class="Religion.CompProperties_CompRelic">
+          <religionTrait>AegonReligion</religionTrait>
+      </li>
     </comps>
   </ThingDef>
 </Defs>

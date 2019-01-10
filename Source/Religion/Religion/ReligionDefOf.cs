@@ -15,7 +15,7 @@ namespace Religion
         public static TraitDef_ReligionTrait TynanReligion;
         public static JobDef HoldLecture;
         public static JobDef AttendLecture;
-        public static JobDef ReadBook;
+        //public static JobDef ReadBook;
         public static ThingDef Altar;
         public static ThingDef Lectern;
         public static RoomRoleDef Church;

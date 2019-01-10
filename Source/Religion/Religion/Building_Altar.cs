@@ -23,17 +23,17 @@ namespace Religion
             base.SpawnSetup(map, respawningAfterLoad);
             if(lectern == null)
             {
-                Log.Message("LECTERN IS NULL");
+                //Log.Message("LECTERN IS NULL");
                 Building_Lectern l = ReligionUtility.FindLecternToAltar(this, map);
                 if (l != null)
                 {
                     lectern = l;
                     lectern.altar = this;
-                    Log.Message("OH I FOUND LECTERN!" + lectern.Position);
+                    //Log.Message("OH I FOUND LECTERN!" + lectern.Position);
                 }
             }
-            else
-                Log.Message("LECTERN IS NOT NULL");
+            //else
+            //    Log.Message("LECTERN IS NOT NULL");
         }
 
         #region ITrait
@@ -70,11 +70,11 @@ namespace Religion
 
         public void TryAssignTrait(TraitDef trait)
         {
-            religion.Clear();
+            UnassginAll();
             if (!religion.Contains(trait))
             {
                 religion.Add(trait);
-                ThingDef bookDef = DefDatabase<ThingDef>.AllDefsListForReading.Find(x => x.comps.Any(y => y is CompProperties_CompRelic));
+                ThingDef bookDef = DefDatabase<ThingDef>.AllDefsListForReading.Find(x => x.comps.Any(y => y is CompProperties_CompRelic && (y as CompProperties_CompRelic).religionTrait == trait));
                 if (bookDef != null)
                 this.GetStoreSettings().filter.SetAllow(bookDef, true);
                 if (lectern != null)
@@ -85,14 +85,21 @@ namespace Religion
 
         public void TryUnassignTrait(TraitDef trait)
         {
-            if (religion.Contains(trait))
+            UnassginAll();
+        }
+
+        public void UnassginAll()
+        {
+            this.GetStoreSettings().filter.SetDisallowAll();
+            religion.Clear();
+            if (relic != null)
+                relic = null;
+            if (lectern != null)
             {
-                this.GetStoreSettings().filter.SetDisallowAll();
-                religion.Remove(trait);
-                if (lectern != null)
-                    ReligionUtility.Wipe(lectern);
+                lectern.religion.Clear();
+                lectern.owners.Clear();
             }
-            else return;
+
         }
         #endregion
 
@@ -106,7 +113,7 @@ namespace Religion
         {
             if (lectern != null)
             {
-                Log.Message("GOODBYE MR.LECTERN!");
+                //Log.Message("GOODBYE MR.LECTERN!");
                 ReligionUtility.Wipe(lectern);
             }
             base.Destroy(mode);
@@ -115,10 +122,10 @@ namespace Religion
         [DebuggerHidden]
         public override IEnumerable<Gizmo> GetGizmos()
         {
-            foreach (Gizmo g in base.GetGizmos())
-            {
-                yield return g;
-            }
+            //foreach (Gizmo g in base.GetGizmos())
+            //{
+            //    yield return g;
+            //}
             if (base.Faction == Faction.OfPlayer)
             {
                 yield return new Command_Action

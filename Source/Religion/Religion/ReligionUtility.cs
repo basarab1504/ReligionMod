@@ -92,34 +92,7 @@ namespace Religion
                 return;
             b.TryUnassignPawn(p);
         }
-
-        public static void GiveLectureJob(Building_Lectern lectern, Pawn preacher)
-        {
-            //if (preacher.Dead || preacher)
-            //    lectern.owners.Clear();
-            if (preacher != lectern.owners[0] || preacher == null || preacher.Dead || preacher.Drafted || preacher.IsPrisoner || preacher.jobs.curJob.def == ReligionDefOf.HoldLecture ||preacher.InMentalState || preacher.InAggroMentalState)
-            {
-                Messages.Message("CantGiveLectureJobToPreacher".Translate(), MessageTypeDefOf.NegativeEvent);
-                return;
-            }
-            Thing book = null;
-
-            if (AppropriateBookInInventory(preacher, lectern.religion[0]) != null)
-                book = AppropriateBookInInventory(preacher, lectern.religion[0]);
-            else if (AppropriateBook(preacher, lectern.religion[0]) != null)
-                book = AppropriateBook(preacher, lectern.religion[0]);
-
-            if (book != null)
-            {
-                Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern, (LocalTargetInfo)book);
-                J.playerForced = true;
-                preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
-                preacher.jobs.TryTakeOrderedJob(J);
-            }
-            else
-                Messages.Message("NoBook".Translate(), MessageTypeDefOf.NegativeEvent);
-        }
-
+    
         public static void GiveAttendJob(Building_Lectern lectern, Pawn attendee)
         {
             //Log.Message("1");
@@ -146,33 +119,34 @@ namespace Religion
 
         public static Thing AppropriateBook(Pawn p, TraitDef religionOfPawn)
         {
-            foreach (Thing t in p.Map.listerThings.AllThings.FindAll(x => x.def.isBook()))
-                if ((t.def as ReligionBook_ThingDef).religion == religionOfPawn)
-                    if (p.CanReach((LocalTargetInfo)t, PathEndMode.ClosestTouch, Danger.Deadly, false, TraverseMode.ByPawn))
-                        return t;
-            return null;
-        }
-
-        public static Thing AppropriateRelic(Pawn p, TraitDef religionOfPawn)
-        {
-            TraitDef rel;
-            foreach (Thing t in p.Map.listerThings.AllThings.FindAll(x => x.TryGetComp<CompRelic>() != null))
+            foreach(Thing t in p.Map.listerThings.AllThings.FindAll(x => x is ThingWithComps_Book))
             {
-                rel = t.TryGetComp<CompRelic>().religion;
-                if (rel == religionOfPawn)
-                    if (p.CanReach((LocalTargetInfo)t, PathEndMode.ClosestTouch, Danger.Deadly, false, TraverseMode.ByPawn))
-                        return t;
+                if (t.TryGetComp<CompReligionBook>().religion == religionOfPawn)
+                    return t;
             }
             return null;
         }
 
-        public static Thing AppropriateBookInInventory(Pawn p, TraitDef religionOfPawn)
-        {
-            foreach (Thing t in p.inventory.innerContainer)
-                if (t.def is ReligionBook_ThingDef && (t.def as ReligionBook_ThingDef).religion == religionOfPawn)
-                    return t;
-            return null;
-        }
+        //public static Thing AppropriateRelic(Pawn p, TraitDef religionOfPawn)
+        //{
+        //    TraitDef rel;
+        //    foreach (Thing t in p.Map.listerThings.AllThings.FindAll(x => x.TryGetComp<CompRelic>() != null))
+        //    {
+        //        rel = t.TryGetComp<CompRelic>().religion;
+        //        if (rel == religionOfPawn)
+        //            if (p.CanReach((LocalTargetInfo)t, PathEndMode.ClosestTouch, Danger.Deadly, false, TraverseMode.ByPawn))
+        //                return t;
+        //    }
+        //    return null;
+        //}
+
+        //public static Thing AppropriateBookInInventory(Pawn p, TraitDef religionOfPawn)
+        //{
+        //    foreach (Thing t in p.inventory.innerContainer)
+        //        if (t.def is ReligionBook_ThingDef && (t.def as ReligionBook_ThingDef).religion == religionOfPawn)
+        //            return t;
+        //    return null;
+        //}
 
         public static void Wipe(Building_Lectern lectern)
         {
@@ -216,24 +190,71 @@ namespace Religion
 
         public static void TryLecture(Building_Lectern lectern, bool forced)
         {
-            if (!lectern.owners.NullOrEmpty())
+            if(lectern == null)
             {
-                lectern.didLecture = true;
-                ReligionUtility.GiveLectureJob(lectern, lectern.owners[0]);
+                Messages.Message("ErrorLectern".Translate(), MessageTypeDefOf.NegativeEvent);
+                return;
             }
-            else
+
+            Building_Lectern lectern_ = lectern;
+
+            if (lectern_.religion.NullOrEmpty())
             {
-                Messages.Message("No preacher assigned".Translate(), MessageTypeDefOf.NegativeEvent);
+                Messages.Message("SelectAReligion".Translate(), MessageTypeDefOf.NegativeEvent);
+                return;
             }
+            if (lectern_.owners.NullOrEmpty())
+            {
+                Messages.Message("SelectAPreacher".Translate(), MessageTypeDefOf.NegativeEvent);
+                return;
+            }
+
+            Pawn preacher = lectern_.owners[0];
+
+            if (lectern_.altar.relic == null)
+            {
+                Messages.Message("NoRelicOnAltar".Translate(), MessageTypeDefOf.NegativeEvent);
+                return;
+            }
+            if (preacher.Dead || preacher.Drafted || preacher.IsPrisoner
+                || preacher.jobs.curJob.def == ReligionDefOf.HoldLecture 
+                || preacher.InMentalState || preacher.InAggroMentalState)
+            {
+                Messages.Message("CantGiveLectureJobToPreacher".Translate(), MessageTypeDefOf.NegativeEvent);
+                if (preacher.Dead)
+                {
+                    Messages.Message("PreacherIsDead".Translate(), MessageTypeDefOf.NegativeEvent);
+                    lectern_.owners.Clear();
+                }
+                return;
+            }
+
+            if (AppropriateBook(preacher, lectern_.religion[0]) == null)
+            {
+                Messages.Message("NoBookAvaliable".Translate(), MessageTypeDefOf.NegativeEvent);
+                return;
+            }
+
+            Thing book = AppropriateBook(preacher, lectern_.religion[0]);
+            //Log.Message(book.Position.ToString());
+                //if (book == null)
+                //{
+                //    Messages.Message("NoBookOfReligion".Translate(), MessageTypeDefOf.NegativeEvent);
+                //    return;
+                //}
+
+            ////if (AppropriateBookInInventory(preacher, lectern.religion[0]) != null)
+            ////    book = AppropriateBookInInventory(preacher, lectern.religion[0]);
+
             if (!forced)
-                lectern.didLecture = true;
+                lectern_.didLecture = true;
+
+            Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern_, (LocalTargetInfo)book);
+            J.playerForced = true;
+            preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
+            preacher.jobs.TryTakeOrderedJob(J);
         }
         #endregion
-
-        public static bool isBook(this ThingDef p)
-        {
-            return typeof(ThingWithComps_Book).IsAssignableFrom(p.thingClass);
-        }
 
         #region BookReading
         private static List<CompGatherSpot> workingSpots = new List<CompGatherSpot>();
@@ -242,49 +263,49 @@ namespace Religion
         private static List<ThingDef> nurseableDrugs = new List<ThingDef>();
         private const float GatherRadius = 3.9f;
 
-        public static Job PlaceToRead(Pawn pawn, Thing t)
-        {
+        //public static Job PlaceToRead(Pawn pawn, Thing t)
+        //{
 
-            if (pawn.Map.gatherSpotLister.activeSpots.Count == 0)
-                return (Job)null;
-            workingSpots.Clear();
-            for (int index = 0; index < pawn.Map.gatherSpotLister.activeSpots.Count; ++index)
-                workingSpots.Add(pawn.Map.gatherSpotLister.activeSpots[index]);
-            CompGatherSpot result1;
-            while (workingSpots.TryRandomElement<CompGatherSpot>(out result1))
-            {
-                workingSpots.Remove(result1);
-                if (!result1.parent.IsForbidden(pawn) && pawn.CanReach((LocalTargetInfo)((Thing)result1.parent), PathEndMode.Touch, Danger.None, false, TraverseMode.ByPawn) && (result1.parent.IsSociallyProper(pawn) && result1.parent.IsPoliticallyProper(pawn)))
-                {
-                    if (result1.parent.def.surfaceType == SurfaceType.Eat)
-                    {
-                        Messages.Message("1", MessageTypeDefOf.NegativeEvent);
-                        Thing chair;
-                        if (!TryFindChairBesideTable((Thing)result1.parent, pawn, out chair))
-                            return (Job)null;
-                        return new Job(ReligionDefOf.ReadBook, (LocalTargetInfo)((Thing)result1.parent), (LocalTargetInfo)chair, (LocalTargetInfo)t);
-                    }
-                    else
-                    {
-                        Thing chair;
-                        if (TryFindChairNear(result1.parent.Position, pawn, out chair))
-                        {
-                            Messages.Message("2", MessageTypeDefOf.NegativeEvent);
-                            return new Job(ReligionDefOf.ReadBook, (LocalTargetInfo)((Thing)result1.parent), (LocalTargetInfo)chair, (LocalTargetInfo)t);
-                        }
-                        else
-                        {
-                            IntVec3 result2;
-                            if (!TryFindSitSpotOnGroundNear(result1.parent.Position, pawn, out result2))
-                                return (Job)null;
-                            Messages.Message("3", MessageTypeDefOf.NegativeEvent);
-                            return new Job(ReligionDefOf.ReadBook, (LocalTargetInfo)((Thing)result1.parent), (LocalTargetInfo)result2, (LocalTargetInfo)t);
-                        }
-                    }
-                }
-            }
-            return (Job)null;
-        }
+        //    if (pawn.Map.gatherSpotLister.activeSpots.Count == 0)
+        //        return (Job)null;
+        //    workingSpots.Clear();
+        //    for (int index = 0; index < pawn.Map.gatherSpotLister.activeSpots.Count; ++index)
+        //        workingSpots.Add(pawn.Map.gatherSpotLister.activeSpots[index]);
+        //    CompGatherSpot result1;
+        //    while (workingSpots.TryRandomElement<CompGatherSpot>(out result1))
+        //    {
+        //        workingSpots.Remove(result1);
+        //        if (!result1.parent.IsForbidden(pawn) && pawn.CanReach((LocalTargetInfo)((Thing)result1.parent), PathEndMode.Touch, Danger.None, false, TraverseMode.ByPawn) && (result1.parent.IsSociallyProper(pawn) && result1.parent.IsPoliticallyProper(pawn)))
+        //        {
+        //            if (result1.parent.def.surfaceType == SurfaceType.Eat)
+        //            {
+        //                Messages.Message("1", MessageTypeDefOf.NegativeEvent);
+        //                Thing chair;
+        //                if (!TryFindChairBesideTable((Thing)result1.parent, pawn, out chair))
+        //                    return (Job)null;
+        //                return new Job(ReligionDefOf.ReadBook, (LocalTargetInfo)((Thing)result1.parent), (LocalTargetInfo)chair, (LocalTargetInfo)t);
+        //            }
+        //            else
+        //            {
+        //                Thing chair;
+        //                if (TryFindChairNear(result1.parent.Position, pawn, out chair))
+        //                {
+        //                    Messages.Message("2", MessageTypeDefOf.NegativeEvent);
+        //                    return new Job(ReligionDefOf.ReadBook, (LocalTargetInfo)((Thing)result1.parent), (LocalTargetInfo)chair, (LocalTargetInfo)t);
+        //                }
+        //                else
+        //                {
+        //                    IntVec3 result2;
+        //                    if (!TryFindSitSpotOnGroundNear(result1.parent.Position, pawn, out result2))
+        //                        return (Job)null;
+        //                    Messages.Message("3", MessageTypeDefOf.NegativeEvent);
+        //                    return new Job(ReligionDefOf.ReadBook, (LocalTargetInfo)((Thing)result1.parent), (LocalTargetInfo)result2, (LocalTargetInfo)t);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return (Job)null;
+        //}
 
         private static bool TryFindChairBesideTable(Thing table, Pawn sitter, out Thing chair)
         {
