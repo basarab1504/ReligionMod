@@ -249,7 +249,10 @@ namespace Religion
             if (!forced)
                 lectern_.didLecture = true;
 
-            Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern_, (LocalTargetInfo)book);
+            Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern_, (LocalTargetInfo)book)
+            {
+                count = 1
+            };
             J.playerForced = true;
             preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
             preacher.jobs.TryTakeOrderedJob(J);
