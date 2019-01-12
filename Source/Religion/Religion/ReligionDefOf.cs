@@ -24,5 +24,6 @@ namespace Religion
         public static ThoughtDef PrayedInImpressiveTemple;
         public static TraderKindDef Pilgrim_Standart;
         public static ThoughtDef HeldLecture;
+        public static ThoughtDef AttendedLecture;
     }
 }

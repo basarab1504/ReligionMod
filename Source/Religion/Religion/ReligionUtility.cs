@@ -61,6 +61,17 @@ namespace Religion
                 preacher.needs.mood.thoughts.memories.TryGainMemory(newThought);
             }
         }
+
+        public static void AttendedLectureThought(Pawn prayer)
+        {
+            if (prayer == null) return;
+            TryGainTempleRoomThought(prayer);
+            ThoughtDef newThought = ReligionDefOf.AttendedLecture; // DefDatabase<ThoughtDef>.GetNamed("HeldSermon");
+            if (newThought != null)
+            {
+                prayer.needs.mood.thoughts.memories.TryGainMemory(newThought);
+            }
+        }
         #endregion
 
         public static Building_Altar FindAtlarToLectern(Building_Lectern lectern, Map map)

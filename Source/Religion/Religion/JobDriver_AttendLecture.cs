@@ -115,6 +115,7 @@ namespace Religion
             this.AddFinishAction(() =>
             {
                 ReligionUtility.TryGainTempleRoomThought(pawn);
+                ReligionUtility.AttendedLectureThought(pawn);
                 ReligionUtility.TryAddAddiction(pawn);
             });
 

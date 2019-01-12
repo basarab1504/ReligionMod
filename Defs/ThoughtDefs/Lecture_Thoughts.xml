@@ -8,7 +8,20 @@
       <li>
         <label>held lecture</label>
         <description>I felt powerful to stand up and deliver the services.</description>
-        <baseMoodEffect>5</baseMoodEffect>
+        <baseMoodEffect>15</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>AttendedLecture</defName>
+    <durationDays>0.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>held lecture</label>
+        <description>I felt powerful to stand up and deliver the services.</description>
+        <baseMoodEffect>10</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
