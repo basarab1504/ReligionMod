@@ -15,6 +15,11 @@
     <label>religion need</label>
     <causesNeed>Religion_Need</causesNeed>
     <everCurableByItem>false</everCurableByItem>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.1</severityPerDay>
+      </li>
+    </comps>    
     <stages>
       <li>
       </li>

@@ -8,16 +8,15 @@
     <category>Item</category>
     <pathCost>10</pathCost>
     <useHitPoints>true</useHitPoints>
-	<selectable>true</selectable>	
+	  <selectable>true</selectable>	
     <drawGUIOverlay>true</drawGUIOverlay>
     <statBases>
 	  <Mass>0.3</Mass>
-      <WorkToMake>2000</WorkToMake>
-      <MarketValue>350</MarketValue>	
+      <WorkToMake>65000</WorkToMake>
       <MaxHitPoints>20</MaxHitPoints>
       <Flammability>1.0</Flammability>
+      <SellPriceFactor>1.10</SellPriceFactor>
       <DeteriorationRate>0</DeteriorationRate>
-      <SellPriceFactor>0.25</SellPriceFactor>
     </statBases>
     <stackLimit>1</stackLimit>
     <tradeNeverStack>true</tradeNeverStack>	
@@ -25,12 +24,42 @@
     <alwaysHaulable>True</alwaysHaulable>
     <tickerType>Never</tickerType>
     <techLevel>Neolithic</techLevel>
-    <inspectorTabs>
+    <!--<inspectorTabs>
       <li>ITab_Art</li>
-    </inspectorTabs>	
+    </inspectorTabs>-->	
     <comps>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+      <li Class="CompProperties_Art">
+        <nameMaker>NamerArtSculpture</nameMaker>
+        <descriptionMaker>ArtDescription_Sculpture</descriptionMaker>
+        <canBeEnjoyedAsArt>true</canBeEnjoyedAsArt>
+      </li>      
       <li Class="CompProperties_Forbiddable"/>     
     </comps>
+    <recipeMaker>
+      <workSpeedStat>SculptingSpeed</workSpeedStat>
+      <workSkill>Artistic</workSkill>
+      <unfinishedThingDef>UnfinishedSculpture</unfinishedThingDef>
+      <effectWorking>Sculpt</effectWorking>
+      <soundWorking>Recipe_Sculpt</soundWorking>
+      <recipeUsers>
+        <li>TableSculpting</li>
+      </recipeUsers>
+      <defaultIngredientFilter>
+        <categories>
+          <li>Root</li>
+        </categories>
+        <disallowedThingDefs>
+          <li>Gold</li>
+          <li>Silver</li>
+          <li>Plasteel</li>
+          <li>Jade</li>
+          <li>Uranium</li>
+        </disallowedThingDefs>
+      </defaultIngredientFilter>    
+    </recipeMaker>   
   </ThingDef> 
 
   <ThingDef ParentName="ReligionRelic">
@@ -47,6 +76,12 @@
       		<religionTrait>TynanReligion</religionTrait>
   		</li>
     </comps>
+    <costStuffCount>300</costStuffCount>   
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
   </ThingDef>
 
   <ThingDef ParentName="ReligionRelic">
@@ -63,6 +98,12 @@
           <religionTrait>MonothosReligion</religionTrait>
       </li>
     </comps>
+    <costStuffCount>300</costStuffCount> 
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>  
   </ThingDef>
 
   <ThingDef ParentName="ReligionRelic">
@@ -79,5 +120,11 @@
           <religionTrait>AegonReligion</religionTrait>
       </li>
     </comps>
+    <costStuffCount>300</costStuffCount>   
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
   </ThingDef>
 </Defs>
