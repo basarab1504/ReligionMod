@@ -19,6 +19,20 @@ namespace Religion
         public static bool TimeToLecture(Map map, int time) => GenLocalDate.HourInteger(map) > time - 1 && GenLocalDate.HourInteger(map) < time + 1;
         public static bool IsNight(Map map) => GenLocalDate.HourInteger(map) > 22;
 
+        #region Addiction
+        public static void TryAddAddiction(Pawn p)
+        {
+            Need n = p.needs.AllNeeds.Find(x => x.def == ReligionDefOf.Religion_Need);
+            if (n == null)
+                p.health.AddHediff(ReligionDefOf.ReligionAddiction);
+            else
+            {
+                n.CurLevel = 1f;
+            }
+            
+        }
+        #endregion
+
         #region Thoughts
         public static void TryGainTempleRoomThought(Pawn pawn)
         {

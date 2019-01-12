@@ -115,6 +115,7 @@ namespace Religion
             this.AddFinishAction(() =>
             {
                 ReligionUtility.TryGainTempleRoomThought(pawn);
+                ReligionUtility.TryAddAddiction(pawn);
             });
 
             yield break;

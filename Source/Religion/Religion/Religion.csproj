@@ -57,6 +57,7 @@
     <Compile Include="CompRelic.cs" />
     <Compile Include="CompReligionBook.cs" />
     <Compile Include="Dialog_AssignTrait.cs" />
+    <Compile Include="FaithCategory.cs" />
     <Compile Include="HarmonyPatches.cs" />
     <Compile Include="IAssignableReligion.cs" />
     <Compile Include="IncidentWorker_PilgrimsGroup.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="MentalBreakWorker_GainReligion.cs" />
     <Compile Include="MentalBreakWorker_LoseAtheism.cs" />
     <Compile Include="MentalBreakWorker_LoseReligion.cs" />
+    <Compile Include="Need_Faith.cs" />
     <Compile Include="PlaceWorker_AltarPlace.cs" />
     <Compile Include="PlaceWorker_NextToAltar.cs" />
     <Compile Include="ReligionCardUtility.cs" />

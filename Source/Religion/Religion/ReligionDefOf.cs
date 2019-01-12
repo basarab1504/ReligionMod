@@ -11,6 +11,8 @@ namespace Religion
     [DefOf]
     class ReligionDefOf
     {
+        public static NeedDef Religion_Need;
+        public static HediffDef ReligionAddiction;
         public static TraitDef Atheist;
         public static TraitDef_ReligionTrait TynanReligion;
         public static JobDef HoldLecture;

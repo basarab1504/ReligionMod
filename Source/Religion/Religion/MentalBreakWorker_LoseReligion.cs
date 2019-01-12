@@ -23,6 +23,11 @@ namespace Religion
         {
             Trait religion = pawn.story.traits.allTraits.Find(x => x.def is TraitDef_ReligionTrait);
             pawn.story.traits.allTraits.Remove(religion);
+            Hediff h = pawn.health.hediffSet.GetFirstHediffOfDef(ReligionDefOf.ReligionAddiction);
+            if (h != null)
+            {               
+                pawn.health.hediffSet.hediffs.Remove(h);
+            }
             if (Rand.Value < 0.25)
                 pawn.story.traits.GainTrait(new Trait(ReligionDefOf.Atheist));
             return base.TryStart(pawn, reason, causedByMood);
