@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+
+  <ChemicalDef>
+    <defName>Faith</defName>
+    <label>faith</label>
+    <addictionHediff>ReligionAddiction</addictionHediff>
+    <toleranceHediff>ReligionTolerance</toleranceHediff>
+    <onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+  </ChemicalDef>
+
   <NeedDef ParentName="DrugAddictionNeedBase">
     <defName>Religion_Need</defName>
     <needClass>Need_Chemical</needClass>
@@ -17,7 +26,7 @@
     <everCurableByItem>false</everCurableByItem>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-0.1</severityPerDay>
+        <severityPerDay>-0.3</severityPerDay>
       </li>
     </comps>    
     <stages>
@@ -33,6 +42,19 @@
         </capMods>
       </li>
     </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="DrugToleranceBase">
+    <defName>ReligionTolerance</defName>
+    <label>religion tolerance</label>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.020</severityPerDay>
+      </li>
+      <li Class="HediffCompProperties_DrugEffectFactor">
+        <chemical>Faith</chemical>
+      </li>
+    </comps>
   </HediffDef>
 
   <ThoughtDef>

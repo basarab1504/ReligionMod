@@ -8,23 +8,23 @@ using Verse;
 
 namespace Religion
 {
-    public class ThoughtWorker_NoChurch : ThoughtWorker
+    class ThoughtWorker_NoPreacher : ThoughtWorker
     {
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
-            if (p.story.traits.allTraits.Find(x => x.def is TraitDef_ReligionTrait)!=null)
+            if (/*p.story.traits.allTraits.Find(x => x.def is TraitDef_ReligionTrait) != null && */p.needs.AllNeeds.Any(x => x.def == ReligionDefOf.Religion_Need))
             {
                 TraitDef pawnReligion = p.story.traits.allTraits.Find(x => x.def is TraitDef_ReligionTrait).def;
                 List<Thing> altars = p.Map.listerThings.ThingsMatching(ThingRequest.ForDef(ReligionDefOf.Altar));
-                if(!altars.NullOrEmpty())
+                if (!altars.NullOrEmpty())
                 {
                     foreach (Building_Altar a in altars)
                     {
-                        if (a.religion.Contains(pawnReligion) && a.relic != null /* && a.lectern != null*/)
+                        if (a.religion.Contains(pawnReligion) && a.relic != null && a.lectern != null && !a.lectern.owners.NullOrEmpty())
                             return ThoughtState.Inactive;
                     }
+                    return (ThoughtState)true;
                 }
-                return (ThoughtState)true;
             }
             return ThoughtState.Inactive;
         }

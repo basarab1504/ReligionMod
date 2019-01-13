@@ -10,9 +10,20 @@
         <description>There's no place i could pray!</description>
         <baseMoodEffect>-15</baseMoodEffect>
       </li>
+    </stages>
+    <nullifyingTraits>
+      <li>Atheist</li>    	
+    </nullifyingTraits>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>ImpossibleToAttend</defName>
+    <workerClass>Religion.ThoughtWorker_NoPreacher</workerClass>
+    <validWhileDespawned>false</validWhileDespawned>
+    <stages>
       <li>
         <label>no preacher</label>
-        <description>There's no one to help my soul</description>
+        <description>There's no chance to help my soul</description>
         <baseMoodEffect>-10</baseMoodEffect>
       </li>
     </stages>

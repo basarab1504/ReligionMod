@@ -25,5 +25,6 @@ namespace Religion
         public static TraderKindDef Pilgrim_Standart;
         public static ThoughtDef HeldLecture;
         public static ThoughtDef AttendedLecture;
+        public static HediffDef ReligionTolerance;
     }
 }

@@ -2,26 +2,26 @@
 <Defs>
   <ThoughtDef>
     <defName>HeldLecture</defName>
-    <durationDays>0.5</durationDays>
-    <stackLimit>1</stackLimit>
-    <stages>
-      <li>
-        <label>held lecture</label>
-        <description>I felt powerful to stand up and deliver the services.</description>
-        <baseMoodEffect>15</baseMoodEffect>
-      </li>
-    </stages>
-  </ThoughtDef>
-
-  <ThoughtDef>
-    <defName>AttendedLecture</defName>
-    <durationDays>0.5</durationDays>
+    <durationDays>1</durationDays>
     <stackLimit>1</stackLimit>
     <stages>
       <li>
         <label>held lecture</label>
         <description>I felt powerful to stand up and deliver the services.</description>
         <baseMoodEffect>10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>AttendedLecture</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>attended lecture</label>
+        <description>I felt powerful to stand up and deliver the services.</description>
+        <baseMoodEffect>8</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

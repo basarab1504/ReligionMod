@@ -29,7 +29,11 @@ namespace Religion
             {
                 n.CurLevel = 1f;
             }
-            
+            Hediff h = p.health.hediffSet.GetFirstHediffOfDef(ReligionDefOf.ReligionTolerance);
+            if (h == null)
+                p.health.AddHediff(ReligionDefOf.ReligionTolerance);
+            else
+                h.Severity += 0.3f;
         }
         #endregion
 

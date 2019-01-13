@@ -60,6 +60,14 @@ namespace Religion
             }
         }
 
+        private float ChemicalFallPerTickMult
+        {
+            get
+            {
+                return this.pawn.health.hediffSet.GetFirstHediffOfDef(ReligionDefOf.ReligionTolerance).Severity / 60000f;
+            }
+        }
+
         public override void SetInitialLevel()
         {
             this.CurLevelPercentage = Rand.Range(0.8f, 1f);
@@ -69,7 +77,7 @@ namespace Religion
         {
             if (this.IsFrozen)
                 return;
-            this.CurLevel -= this.ChemicalFallPerTick * 150f;
+            this.CurLevel -= (this.ChemicalFallPerTick + this.ChemicalFallPerTickMult) * 150f;
         }
 
     }
