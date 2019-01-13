@@ -33,7 +33,7 @@ namespace Religion
             if (h == null)
                 p.health.AddHediff(ReligionDefOf.ReligionTolerance);
             else
-                h.Severity += 0.3f;
+                h.Severity += 0.1f;
         }
         #endregion
 

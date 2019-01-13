@@ -48,22 +48,22 @@ namespace Religion
             base.Destroy(mode);           
         }
 
-        //public override void TickRare()
-        //{
-        //    if (!Spawned) return;
-        //    // Don't forget the base work
-        //    base.TickRare();
-        //    if (ReligionUtility.TimeToLecture(Map, timeOfLecture) && daysOfLectures[(GenLocalDate.DayOfQuadrum(Map))] && didLecture == false)
-        //    {
-        //        //Messages.Message("is true", MessageTypeDefOf.PositiveEvent);                
-        //        ReligionUtility.TryLecture(this,false);
-        //    }
-        //    if (ReligionUtility.IsEvening(Map) && didLecture == true)
-        //    {
-        //        didLecture = false;
-        //        //Messages.Message("is false", MessageTypeDefOf.PositiveEvent);
-        //    }
-        //} //проверка почти каждый тик, ужас
+        public override void TickRare()
+        {
+            if (!Spawned) return;
+            // Don't forget the base work
+            base.TickRare();
+            if (ReligionUtility.TimeToLecture(Map, timeOfLecture) && daysOfLectures[(GenLocalDate.DayOfQuadrum(Map))] && didLecture == false)
+            {
+                //Messages.Message("is true", MessageTypeDefOf.PositiveEvent);                
+                ReligionUtility.TryLecture(this, false);
+            }
+            if (ReligionUtility.IsEvening(Map) && didLecture == true)
+            {
+                didLecture = false;
+                //Messages.Message("is false", MessageTypeDefOf.PositiveEvent);
+            }
+        } //проверка почти каждый тик, ужас
 
         #region IBuilding
         public IEnumerable<Pawn> AssigningCandidates

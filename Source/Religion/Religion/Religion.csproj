@@ -67,6 +67,7 @@
     <Compile Include="JobDriver_AttendLecture.cs" />
     <Compile Include="JobDriver_HoldLecture.cs" />
     <Compile Include="JobDriver_ReadBook.cs" />
+    <Compile Include="JobGiver_WanderChurch.cs" />
     <Compile Include="JoyGiver_AttendToLecture.cs" />
     <Compile Include="JoyGiver_Praying.cs" />
     <Compile Include="MentalBreakWorker_BecomeAtheist.cs" />

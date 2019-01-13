@@ -100,6 +100,7 @@ namespace Religion
             this.AddFinishAction(() =>
             {
                 ReligionUtility.HeldWorshipThought(pawn);
+                Religion.ReligionUtility.TryAddAddiction(pawn);
             });
             yield break;
         }
