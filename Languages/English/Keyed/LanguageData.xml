@@ -25,4 +25,6 @@
 <DayOf>Day</DayOf>
 <SinglePilgrimVisitorArrivesTraderInfo>{PAWN_pronoun} seems to have a few items and religion books to trade.</SinglePilgrimVisitorArrivesTraderInfo>
 <GroupPilgrimVisitorsArriveTraderInfo>They seem to have a few items and religion books to trade.</GroupPilgrimVisitorsArriveTraderInfo>
+<WaitingForCongregation>Waiting for congregation.</WaitingForCongregation>
+<ReadAPrayer>Read a prayer.</ReadAPrayer>
 </LanguageData>
