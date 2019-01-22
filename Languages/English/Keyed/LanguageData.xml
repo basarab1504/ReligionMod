@@ -29,5 +29,7 @@
 <ReadAPrayer>Read a prayer.</ReadAPrayer>
 <NowBelieveIn>now believe in</NowBelieveIn>
 <IsNowReligious>Is now religious</IsNowReligious>
-<LowSkillPreacher>Low skill preacher (Min skill: 8)</LowSkillPreacher>
+<LowSkillPreacher>Low skill preacher</LowSkillPreacher>
+<NoAvaliableCandidates>No avaliable candidates for preacher job</NoAvaliableCandidates>
+<MinSkillPreacher>(minimun skill: {0})</MinSkillPreacher>
 </LanguageData>

@@ -108,7 +108,7 @@ namespace Religion
             if (!owners.Contains(pawn))
             {
                 if (pawn.skills.GetSkill(SkillDefOf.Social).levelInt < 8)
-                    Messages.Message("LowSkillPreacher".Translate(), MessageTypeDefOf.NegativeEvent);
+                    Messages.Message("LowSkillPreacher".Translate() + " " + "MinSkillPreacher".Translate(8.ToString()), MessageTypeDefOf.NegativeEvent);
                 owners.Add(pawn);
             }
             else return;

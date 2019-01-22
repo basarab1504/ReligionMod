@@ -41,7 +41,12 @@ namespace Religion
             {
                 if (Widgets.ButtonText(owner, "SetOwner".Translate(), true, false, true))
                 {
-                    Find.WindowStack.Add((Window)new Dialog_AssignBuildingOwner(SelLectern));
+                    if (SelLectern.Map.mapPawns.FreeColonists.Any
+                    (x => x.story.traits.HasTrait(SelLectern.religion[0])
+                    && !x.skills.GetSkill(SkillDefOf.Social).TotallyDisabled))
+                        Find.WindowStack.Add((Window)new Dialog_AssignBuildingOwner(SelLectern));
+                    else
+                        Messages.Message("NoAvaliableCandidates".Translate(), MessageTypeDefOf.NegativeEvent);
                 }
 
                 if(!SelLectern.owners.NullOrEmpty())
