@@ -24,8 +24,8 @@ namespace Religion //крыса
         public ITab_Lecture()
         {
             this.size = ITab_Lecture.WinSize;
-            this.labelKey = "TabLecture";
-            this.tutorTag = "Lectures";
+            this.labelKey = "TabLecture".Translate();
+            //this.tutorTag = "Lectures".Translate();
         }
 
         protected override void FillTab()

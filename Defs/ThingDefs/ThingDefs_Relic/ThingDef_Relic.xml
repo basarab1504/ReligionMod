@@ -30,12 +30,7 @@
     <comps>
       <li>
         <compClass>CompQuality</compClass>
-      </li>
-      <li Class="CompProperties_Art">
-        <nameMaker>NamerArtSculpture</nameMaker>
-        <descriptionMaker>ArtDescription_Sculpture</descriptionMaker>
-        <canBeEnjoyedAsArt>true</canBeEnjoyedAsArt>
-      </li>      
+      </li> 
       <li Class="CompProperties_Forbiddable"/>     
     </comps>
     <recipeMaker>
@@ -64,7 +59,7 @@
 
   <ThingDef ParentName="ReligionRelic">
   <defName>RelicOfTynans</defName>
-  <label>RelicOfTynans</label>
+  <label>Relic of Tynans</label>
   <description>Big old relic for Tynans</description>
     <graphicData>
       <texPath>Item/Resource/Books/Grimoire</texPath>
@@ -76,7 +71,7 @@
       		<religionTrait>TynanReligion</religionTrait>
   		</li>
     </comps>
-    <costStuffCount>300</costStuffCount>   
+    <costStuffCount>200</costStuffCount>   
     <stuffCategories>
       <li>Metallic</li>
       <li>Woody</li>
@@ -86,7 +81,7 @@
 
   <ThingDef ParentName="ReligionRelic">
   <defName>RelicOfMonothos</defName>
-  <label>RelicOfMonothos</label>
+  <label>Relic of Monothos</label>
   <description>Big old relic for Monothos</description>
     <graphicData>
       <texPath>Item/Resource/Books/Grimoire</texPath>
@@ -98,7 +93,7 @@
           <religionTrait>MonothosReligion</religionTrait>
       </li>
     </comps>
-    <costStuffCount>300</costStuffCount> 
+    <costStuffCount>200</costStuffCount> 
     <stuffCategories>
       <li>Metallic</li>
       <li>Woody</li>
@@ -108,7 +103,7 @@
 
   <ThingDef ParentName="ReligionRelic">
   <defName>RelicOfAegons</defName>
-  <label>RelicOfAegons</label>
+  <label>Relic of Aegons</label>
   <description>Big old relic for RelicOfAegons</description>
     <graphicData>
       <texPath>Item/Resource/Books/Grimoire</texPath>
@@ -120,7 +115,7 @@
           <religionTrait>AegonReligion</religionTrait>
       </li>
     </comps>
-    <costStuffCount>300</costStuffCount>   
+    <costStuffCount>200</costStuffCount>   
     <stuffCategories>
       <li>Metallic</li>
       <li>Woody</li>

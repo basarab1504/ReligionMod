@@ -19,9 +19,44 @@
     <stackLimit>1</stackLimit>
     <stages>
       <li>
-        <label>attended lecture</label>
-        <description>I felt powerful to stand up and deliver the services.</description>
-        <baseMoodEffect>8</baseMoodEffect>
+        <label>repulsive lecture</label>
+        <description>I spent some time listeting to an awful lecture. It's weird.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+      <li>
+        <label>mediocre lecture</label>
+        <description>I spent some time listeting to an mediocre lecture.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+      <li>
+        <label>fine lecture</label>
+        <description>I spent some time listeting to an fine lecture.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>      
+      <li>
+        <label>intersting lecture</label>
+        <description>I spent some time listeting to an intersting lecture.</description>
+        <baseMoodEffect>7</baseMoodEffect>
+      </li>
+      <li>
+        <label>impressive lecture</label>
+        <description>I spent some time listeting to an impressive lecture.</description>
+        <baseMoodEffect>9</baseMoodEffect>
+      </li>
+      <li>
+        <label>very impressive lecture</label>
+        <description>I spent some time listeting to an very impressive lecture.</description>
+        <baseMoodEffect>12</baseMoodEffect>
+      </li>
+      <li>
+        <label>unbelievably impressive lecture</label>
+        <description>I spent some time listeting to an unbelievably impressive lecture.</description>
+        <baseMoodEffect>16</baseMoodEffect>
+      </li>
+      <li>
+        <label>wonderful lecture</label>
+        <description>I spent some time listeting to an wonderful lecture. I could stay there forever.</description>
+        <baseMoodEffect>20</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

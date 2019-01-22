@@ -117,8 +117,8 @@ namespace Religion
                 //if (Rand.Value < Mathf.InverseLerp(0f, 100f, recipient.relations.OpinionOf(initiator)))
                 //{
                     recipient.story.traits.GainTrait(t);
-                    letterText = recipient.ToString() + " now believe in " + t.def.LabelCap.Translate();
-                    letterLabel = "Is now religious".Translate();
+                    letterText = recipient.ToString() + "NowBelieveIn" + t.def.LabelCap.Translate();
+                    letterLabel = "IsNowReligious".Translate();
                     letterDef = LetterDefOf.PositiveEvent;
                 //}
             }           

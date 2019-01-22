@@ -61,14 +61,14 @@ namespace Religion
             string letterText;
             if (pawns.Count == 1)
             {
-                string str1 = !flag ? string.Empty : "\n\n" + "SingleVisitorArrivesTraderInfo".Translate(pawns[0].Named("PAWN")).AdjustedFor(pawns[0], "PAWN");
+                string str1 = !flag ? string.Empty : "\n\n" + "SinglePilgrimVisitorArrivesTraderInfo".Translate(pawns[0].Named("PAWN")).AdjustedFor(pawns[0], "PAWN");
                 string str2 = pawn == null ? string.Empty : "\n\n" + "SingleVisitorArrivesLeaderInfo".Translate(pawns[0].Named("PAWN")).AdjustedFor(pawns[0], "PAWN");
                 letterLabel = "LetterLabelSingleVisitorArrives".Translate();
                 letterText = "SingleVisitorArrives".Translate((NamedArgument)pawns[0].story.Title, (NamedArgument)parms.faction.Name, (NamedArgument)pawns[0].Name.ToStringFull, (NamedArgument)str1, (NamedArgument)str2, pawns[0].Named("PAWN")).AdjustedFor(pawns[0], "PAWN");
             }
             else
             {
-                string str1 = !flag ? string.Empty : "\n\n" + "GroupVisitorsArriveTraderInfo".Translate();
+                string str1 = !flag ? string.Empty : "\n\n" + "GroupPilgrimVisitorsArriveTraderInfo".Translate();
                 string str2 = pawn == null ? string.Empty : "\n\n" + "GroupVisitorsArriveLeaderInfo".Translate((NamedArgument)pawn.LabelShort, (NamedArgument)((Thing)pawn));
                 letterLabel = "LetterLabelGroupVisitorsArrive".Translate();
                 letterText = "GroupVisitorsArrive".Translate((NamedArgument)parms.faction.Name, (NamedArgument)str1, (NamedArgument)str2);

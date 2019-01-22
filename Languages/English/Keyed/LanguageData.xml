@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+<AssignReligion>Assign Religion</AssignReligion>
+<AssignReligionDesc>Assign religion desc</AssignReligionDesc>
+<OneAltarInRoom>Only one altar in room</OneAltarInRoom>
+<IndoorOnly>Indoor only</IndoorOnly>
+<OneLecternInRoom>Only one lectern in room</OneLecternInRoom>
+<MustPlaceNextToBuildedAltar>Must be placed next to builded altar</MustPlaceNextToBuildedAltar>
+<ReligionMustBeAssignedThroughAltar>Religion must be assigned</ReligionMustBeAssignedThroughAltar>
+<TimeOfLecture>Time of lecture</TimeOfLecture>
+<Day>Day</Day>
+<SetOwner>Set owner</SetOwner>
+<TakeABook>Take a book</TakeABook>
+<ErrorLectern>No lectern placed</ErrorLectern>
+<SelectAReligion>No assigned religion</SelectAReligion>
+<SelectAPreacher>No assigned preacher</SelectAPreacher>
+<NoRelicOnAltar>No relic on altar</NoRelicOnAltar>
+<CantGiveLectureJobToPreacher>Cant give lecture job to preacher</CantGiveLectureJobToPreacher>
+<PreacherIsDead>Preacher is dead</PreacherIsDead>
+<NoBookAvaliable>No book avaliable</NoBookAvaliable>
+<Worship>Worship</Worship>
+<WorshipDesc>Worship desc</WorshipDesc>
+<TabLecture>Lecture tab</TabLecture>
+<DayOf>Day</DayOf>
+<SinglePilgrimVisitorArrivesTraderInfo>{PAWN_pronoun} seems to have a few items and religion books to trade.</SinglePilgrimVisitorArrivesTraderInfo>
+<GroupPilgrimVisitorsArriveTraderInfo>They seem to have a few items and religion books to trade.</GroupPilgrimVisitorsArriveTraderInfo>
+</LanguageData>

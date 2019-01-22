@@ -20,7 +20,27 @@ namespace Religion
         public static bool IsNight(Map map) => GenLocalDate.HourInteger(map) > 22;
 
         #region Addiction
-        public static void TryAddAddiction(Pawn p)
+
+        public static void TryAddAddiction(Pawn p, Pawn preacher)
+        {
+            Need n = p.needs.AllNeeds.Find(x => x.def == ReligionDefOf.Religion_Need);
+            if (n == null)
+            {
+                if (preacher.skills.GetSkill(SkillDefOf.Social).levelInt >= 8)
+                    p.health.AddHediff(ReligionDefOf.ReligionAddiction);
+            }
+            else
+            {
+                n.CurLevel = 1f;
+            }
+            //Hediff h = p.health.hediffSet.GetFirstHediffOfDef(ReligionDefOf.ReligionTolerance);
+            //if (h == null)
+            //    p.health.AddHediff(ReligionDefOf.ReligionTolerance);
+            //else
+            //    h.Severity += 0.1f;
+        }
+
+        public static void TryAddAddictionForPreacher(Pawn p)
         {
             Need n = p.needs.AllNeeds.Find(x => x.def == ReligionDefOf.Religion_Need);
             if (n == null)
@@ -29,11 +49,11 @@ namespace Religion
             {
                 n.CurLevel = 1f;
             }
-            Hediff h = p.health.hediffSet.GetFirstHediffOfDef(ReligionDefOf.ReligionTolerance);
-            if (h == null)
-                p.health.AddHediff(ReligionDefOf.ReligionTolerance);
-            else
-                h.Severity += 0.1f;
+            //Hediff h = p.health.hediffSet.GetFirstHediffOfDef(ReligionDefOf.ReligionTolerance);
+            //if (h == null)
+            //    p.health.AddHediff(ReligionDefOf.ReligionTolerance);
+            //else
+            //    h.Severity += 0.1f;
         }
         #endregion
 
@@ -55,6 +75,74 @@ namespace Religion
             }
         }
 
+        public static void AttendedLectureThought(Pawn pawn, Pawn preacher)
+        {
+            ThoughtDef def = ReligionDefOf.AttendedLecture;
+            if (pawn == null) return;
+            if (preacher == null) return;
+            if (def == null) return;
+            int skill = preacher.skills.GetSkill(SkillDefOf.Social).levelInt;
+            switch(skill)
+            {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    {
+                        pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(def, 0), null);
+                        break;
+                    }
+                case 6:
+                case 7:
+                    {
+                        break;
+                    }
+                case 8:
+                case 9:
+                    {
+                        pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(def, 1), null);
+                        break;
+                    }
+                case 10:
+                case 11:
+                    {
+                        pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(def, 2), null);
+                        break;
+                    }
+                case 12:
+                case 13:
+                    {
+                        pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(def, 3), null);
+                        break;
+                    }
+                case 14:
+                case 15:
+                    {
+                        pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(def, 4), null);
+                        break;
+                    }
+                case 16:
+                case 17:
+                    {
+                        pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(def, 5), null);
+                        break;
+                    }
+                case 18:
+                case 19:
+                    {
+                        pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(def, 6), null);
+                        break;
+                    }
+                case 20:
+                    {
+                        pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(def, 7), null);
+                        break;
+                    }
+            }
+        }
+
         public static void HeldWorshipThought(Pawn preacher)
         {
             if (preacher == null) return;
@@ -66,16 +154,16 @@ namespace Religion
             }
         }
 
-        public static void AttendedLectureThought(Pawn prayer)
-        {
-            if (prayer == null) return;
-            TryGainTempleRoomThought(prayer);
-            ThoughtDef newThought = ReligionDefOf.AttendedLecture; // DefDatabase<ThoughtDef>.GetNamed("HeldSermon");
-            if (newThought != null)
-            {
-                prayer.needs.mood.thoughts.memories.TryGainMemory(newThought);
-            }
-        }
+        //public static void AttendedLectureThought(Pawn prayer)
+        //{
+        //    if (prayer == null) return;
+        //    TryGainTempleRoomThought(prayer);
+        //    ThoughtDef newThought = ReligionDefOf.AttendedLecture; // DefDatabase<ThoughtDef>.GetNamed("HeldSermon");
+        //    if (newThought != null)
+        //    {
+        //        prayer.needs.mood.thoughts.memories.TryGainMemory(newThought);
+        //    }
+        //}
         #endregion
 
         public static Building_Altar FindAtlarToLectern(Building_Lectern lectern, Map map)

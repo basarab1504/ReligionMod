@@ -54,7 +54,7 @@ namespace Religion
             waitingTime.WithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
             waitingTime.initAction = delegate
             {
-                report = "Waiting for congregation".Translate();
+                report = "WaitingForCongregation".Translate();
                 ReligionUtility.Listeners(lectern, lectern.listeners);
                 foreach (Pawn p in lectern.listeners)
                     ReligionUtility.GiveAttendJob(lectern, p);
@@ -64,11 +64,11 @@ namespace Religion
             Toil preachingTime = new Toil();
             preachingTime.initAction = delegate
             {
-                report = "Read a prayer".Translate();
+                report = "ReadAPrayer".Translate();
                 MoteMaker.MakeInteractionBubble(this.pawn, null, ThingDefOf.Mote_Speech, ReligionUtility.faith);
             };
             preachingTime.defaultCompleteMode = ToilCompleteMode.Delay;
-            preachingTime.defaultDuration = 1000;
+            preachingTime.defaultDuration = 1800;
             preachingTime.WithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
             preachingTime.tickAction = delegate
             {
@@ -100,7 +100,7 @@ namespace Religion
             this.AddFinishAction(() =>
             {
                 ReligionUtility.HeldWorshipThought(pawn);
-                Religion.ReligionUtility.TryAddAddiction(pawn);
+                Religion.ReligionUtility.TryAddAddictionForPreacher(pawn);
             });
             yield break;
         }

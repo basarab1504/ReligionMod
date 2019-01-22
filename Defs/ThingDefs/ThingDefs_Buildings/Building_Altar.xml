@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ThingDef Name="BaseAltar" ParentName="BuildingBase" Abstract="True">
-    <thingCategories>
-      <li>ReligiousBuilding</li>
-    </thingCategories>
     <thingClass>Religion.Building_Altar</thingClass>     
     <designationCategory>ReligionBuildings</designationCategory> 
     <altitudeLayer>Building</altitudeLayer>
@@ -22,10 +19,9 @@
     <building>
       <joyKind>PrayingKind</joyKind>
     </building>    
-    <inspectorTabs>
+    <!--<inspectorTabs>
       <li>ITab_Storage</li>
-    </inspectorTabs>
-    <minifiedDef>MinifiedThing</minifiedDef>
+    </inspectorTabs>-->
   </ThingDef>  
 
   <ThingDef ParentName="BaseAltar">
@@ -35,8 +31,8 @@
     <graphicData>
       <texPath>Things/Religion/Altar</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
       <drawSize>(3,3)</drawSize>
+      <shaderType>CutoutComplex</shaderType>      
       <damageData>
         <rectN>(0.25,0.234375,0.5,0.28125)</rectN>
         <rectS>(0.25,0.234375,0.5,0.28125)</rectS>

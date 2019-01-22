@@ -71,8 +71,14 @@ namespace Religion
             get
             {
                 if (!this.Spawned || this.religion.NullOrEmpty())
+                {
+                    Messages.Message("NoAvaliableCandidates".Translate(), MessageTypeDefOf.NeutralEvent);
                     return Enumerable.Empty<Pawn>();
-                return Map.mapPawns.FreeColonists.Where(x => x.story.traits.HasTrait(religion[0]) && !Map.listerBuildings.allBuildingsColonist.Any(u => u is Building_Lectern && (u as Building_Lectern).owners.Contains(x)));
+                }
+                return Map.mapPawns.FreeColonists.Where
+                    (x => x.story.traits.HasTrait(religion[0])
+                    && !x.skills.GetSkill(SkillDefOf.Social).TotallyDisabled
+                    && !Map.listerBuildings.allBuildingsColonist.Any(u => u is Building_Lectern && (u as Building_Lectern).owners.Contains(x)));
             }
         }
 
@@ -173,7 +179,7 @@ namespace Religion
             {
                 yield return g;
             }
-            if (base.Faction == Faction.OfPlayer)
+            if (base.Faction == Faction.OfPlayer && Prefs.DevMode)
             {
 
                 //yield return new Command_Action

@@ -12,7 +12,7 @@ namespace Religion
     {
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
-            if (p.story.traits.allTraits.Find(x => x.def is TraitDef_ReligionTrait)!=null)
+            if (p.story.traits.allTraits.Find(x => x.def is TraitDef_ReligionTrait)!=null && p.IsColonist)
             {
                 TraitDef pawnReligion = p.story.traits.allTraits.Find(x => x.def is TraitDef_ReligionTrait).def;
                 List<Thing> altars = p.Map.listerThings.ThingsMatching(ThingRequest.ForDef(ReligionDefOf.Altar));

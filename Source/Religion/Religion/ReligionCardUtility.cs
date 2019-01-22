@@ -48,6 +48,7 @@ namespace Religion
                 {
                     Rect timeOf = new Rect(xOffset, y + (height * 2), width, height);
                     string label = "TimeOfLecture".Translate();
+                    string dayOf = "DayOf".Translate();
                     Widgets.Label(timeOf, label);
 
                     Rect numer = new Rect(xOffset + width, y + (height * 2), 24f, 24f);
@@ -57,12 +58,12 @@ namespace Religion
                     for (int i = 0; i < 15; ++i)
                     {
                         Rect rect4 = new Rect(xOffset, forDaysY + (i * 22), width, 20f);
-                        ReligionUtility.CheckboxLabeled(rect4, SelLectern, i, ("Day " + (i + 1)).Translate(), SelLectern.daysOfLectures[i], false, null, null, false);
+                        ReligionUtility.CheckboxLabeled(rect4, SelLectern, i, dayOf + " " + (i + 1), SelLectern.daysOfLectures[i], false, null, null, false);
                     }
                 }
             }
             else
-                Widgets.Label(new Rect(xOffset, y, width*2, height), "Religion must be assigned through altar".Translate());
+                Widgets.Label(new Rect(xOffset, y, width*2, height), "ReligionMustBeAssignedThroughAltar".Translate());
             return 0f;
         }
     }
