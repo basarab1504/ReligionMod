@@ -21,7 +21,8 @@ namespace Religion
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            if(lectern == null)
+            PlayerKnowledgeDatabase.KnowledgeDemonstrated(ReligionDefOf.ReligionKnowlegde, KnowledgeAmount.Total);
+            if (lectern == null)
             {
                 //Log.Message("LECTERN IS NULL");
                 Building_Lectern l = ReligionUtility.FindLecternToAltar(this, map);
