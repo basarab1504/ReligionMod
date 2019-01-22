@@ -10,37 +10,37 @@ namespace Religion
 {
     class InteractionWorker_ReligionTalks : InteractionWorker
     {
-        private static readonly SimpleCurve CompatibilityFactorCurve = new SimpleCurve()
-    {
-      {
-        new CurvePoint(2.5f, 4f),
-        true
-      },
-      {
-        new CurvePoint(1.5f, 3f),
-        true
-      },
-      {
-        new CurvePoint(0.5f, 2f),
-        true
-      },
-      {
-        new CurvePoint(-0.5f, 1f),
-        true
-      },
-      {
-        new CurvePoint(-1f, 0.75f),
-        true
-      },
-      {
-        new CurvePoint(-2f, 0.5f),
-        true
-      },
-      {
-        new CurvePoint(-3f, 0.4f),
-        true
-      }
-    };
+    //    private static readonly SimpleCurve CompatibilityFactorCurve = new SimpleCurve()
+    //{
+    //  {
+    //    new CurvePoint(2.5f, 4f),
+    //    true
+    //  },
+    //  {
+    //    new CurvePoint(1.5f, 3f),
+    //    true
+    //  },
+    //  {
+    //    new CurvePoint(0.5f, 2f),
+    //    true
+    //  },
+    //  {
+    //    new CurvePoint(-0.5f, 1f),
+    //    true
+    //  },
+    //  {
+    //    new CurvePoint(-1f, 0.75f),
+    //    true
+    //  },
+    //  {
+    //    new CurvePoint(-2f, 0.5f),
+    //    true
+    //  },
+    //  {
+    //    new CurvePoint(-3f, 0.4f),
+    //    true
+    //  }
+    //};
         private static readonly SimpleCurve OpinionFactorCurve = new SimpleCurve()
     {
       {
@@ -102,9 +102,10 @@ namespace Religion
                 return 0.0f;
 
                 float num;
-                num = 1f * OpinionFactorCurve.Evaluate((float)initiator.relations.OpinionOf(recipient)) * CompatibilityFactorCurve.Evaluate(initiator.relations.CompatibilityWith(recipient));
+                num = 1f * OpinionFactorCurve.Evaluate((float)initiator.relations.OpinionOf(recipient))/* * CompatibilityFactorCurve.Evaluate(initiator.relations.CompatibilityWith(recipient))*/;
                 float curLevel = recipient.needs.mood.CurLevel;
                 num *= MoodFactorCurve.Evaluate(curLevel);
+            Log.Message("I: " + initiator.Name + " " + "R: " + recipient.Name + " " + "op: " + initiator.relations.OpinionOf(recipient) + " " + "m: " + recipient.needs.mood.CurLevel + " " + (0.007f * num).ToString());
                 return 0.007f * num;
         }
 
@@ -117,7 +118,7 @@ namespace Religion
                 //if (Rand.Value < Mathf.InverseLerp(0f, 100f, recipient.relations.OpinionOf(initiator)))
                 //{
                     recipient.story.traits.GainTrait(t);
-                    letterText = recipient.ToString() + "NowBelieveIn" + t.def.LabelCap.Translate();
+                    letterText = recipient.ToString() + " " + "NowBelieveIn".Translate() + " " + t.LabelCap;
                     letterLabel = "IsNowReligious".Translate();
                     letterDef = LetterDefOf.PositiveEvent;
                 //}

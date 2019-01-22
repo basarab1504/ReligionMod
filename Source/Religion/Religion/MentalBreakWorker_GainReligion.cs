@@ -15,10 +15,8 @@ namespace Religion
             float baseCommonality = this.def.baseCommonality;
             if (pawn.Faction == Faction.OfPlayer && this.def.commonalityFactorPerPopulationCurve != null)
                 baseCommonality *= this.def.commonalityFactorPerPopulationCurve.Evaluate((float)PawnsFinder.AllMaps_FreeColonists.Count<Pawn>());
-            if (pawn.story.traits.allTraits.Any(x => x.def is TraitDef_ReligionTrait))
+            if (pawn.story.traits.allTraits.Any(x => x.def is TraitDef_ReligionTrait || x.def == ReligionDefOf.Atheist))
                 return 0;
-            if(pawn.story.traits.allTraits.Any(x => x.def == ReligionDefOf.Atheist))
-            return baseCommonality / 2;
             return baseCommonality;
         }
 

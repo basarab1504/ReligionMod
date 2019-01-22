@@ -2,7 +2,7 @@
 <Defs>
   <ThoughtDef>
     <defName>HeldLecture</defName>
-    <durationDays>1</durationDays>
+    <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
     <stages>
       <li>
@@ -15,7 +15,7 @@
 
   <ThoughtDef>
     <defName>AttendedLecture</defName>
-    <durationDays>1</durationDays>
+    <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
     <stages>
       <li>

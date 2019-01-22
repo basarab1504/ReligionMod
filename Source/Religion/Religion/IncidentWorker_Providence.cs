@@ -45,8 +45,9 @@ namespace Religion
             Pawn pawn = PotentialVictimCandidates(parms.target).RandomElement();
             if (pawn == null)
                 return false;
-            pawn.story.traits.GainTrait(Religion());
-            Find.LetterStack.ReceiveLetter(this.def.letterLabel, pawn.LabelCap + " " + def.letterText, this.def.letterDef, (LookTargets)pawn, (Faction)null, (string)null);
+            Trait t = Religion();
+            pawn.story.traits.GainTrait(t);
+            Find.LetterStack.ReceiveLetter(this.def.letterLabel, pawn.LabelCap + " " + def.letterText + " " + t.LabelCap, this.def.letterDef, (LookTargets)pawn, (Faction)null, (string)null);
             return true;
         }
     }
