@@ -72,7 +72,6 @@ namespace Religion
             {
                 if (!this.Spawned || this.religion.NullOrEmpty())
                 {
-                    Messages.Message("NoAvaliableCandidates".Translate(), MessageTypeDefOf.NeutralEvent);
                     return Enumerable.Empty<Pawn>();
                 }
                 return Map.mapPawns.FreeColonists.Where
@@ -108,6 +107,8 @@ namespace Religion
             owners.Clear();
             if (!owners.Contains(pawn))
             {
+                if (pawn.skills.GetSkill(SkillDefOf.Social).levelInt < 8)
+                    Messages.Message("LowSkillPreacher".Translate(), MessageTypeDefOf.NegativeEvent);
                 owners.Add(pawn);
             }
             else return;

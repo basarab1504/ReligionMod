@@ -35,7 +35,7 @@
 
   <ThingDef ParentName="ReligionBookBase">
   <defName>BookOfTynanFaith</defName>
-  <label>BookOfTynanFaith</label>
+  <label>Book of Tynan Faith</label>
   <description>Big old book for Tynans</description>
     <graphicData>
       <texPath>Item/Resource/Books/Grimoire</texPath>
@@ -51,8 +51,8 @@
 
   <ThingDef ParentName="ReligionBookBase">
   <defName>BookOfMonothosFaith</defName>
-  <label>BookOfMonothosFaith</label>
-  <description>Big old book for Tynans</description>
+  <label>Book of Monothos Faith</label>
+  <description>Big old book for Monothos</description>
     <graphicData>
       <texPath>Item/Resource/Books/Grimoire</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -67,8 +67,8 @@
   
   <ThingDef ParentName="ReligionBookBase">
   <defName>BookOfAegonFaith</defName>
-  <label>BookOfAegonFaith</label>
-  <description>Big old book for Tynans</description>
+  <label>Book of Aegon Faith</label>
+  <description>Big old book for Aegon</description>
     <graphicData>
       <texPath>Item/Resource/Books/Grimoire</texPath>
       <graphicClass>Graphic_Single</graphicClass>

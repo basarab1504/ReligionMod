@@ -30,9 +30,6 @@
     	 <li>AegonReligion</li>    		
       	 <li>Cannibal</li>
     	</conflictingTraits>
-    	<requiredWorkTypes>
-    	 <li>Preacher</li>	
-    	</requiredWorkTypes>
     	<foreignReligions>
     		<li>MonothosReligion</li>
     	</foreignReligions>
@@ -51,10 +48,7 @@
     	 <li>TynanReligion</li>
     	 <li>AegonReligion</li>    		
       	 <li>Cannibal</li>
-    	</conflictingTraits>
-    	<requiredWorkTypes>
-    	 <li>Preacher</li>	
-    	</requiredWorkTypes>    	
+    	</conflictingTraits>   	
   </Religion.TraitDef_ReligionTrait>
 
     <Religion.TraitDef_ReligionTrait>
@@ -70,9 +64,6 @@
     	 <li>TynanReligion</li>
     	 <li>MonothosReligion</li>
       	 <li>Cannibal</li>
-    	</conflictingTraits>
-    	<requiredWorkTypes>
-    	 <li>Preacher</li>	
-    	</requiredWorkTypes>    	
+    	</conflictingTraits>   	
   </Religion.TraitDef_ReligionTrait>
 </Defs>
