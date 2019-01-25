@@ -7,7 +7,7 @@
    	 	<symbol>Things/Symbols/Religion</symbol>
     	<logRulesInitiator>
       		<rulesStrings>
-        		<li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about his God.</li>
+        		<li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about his faith.</li>
       		</rulesStrings>
     	</logRulesInitiator>
  	</InteractionDef>

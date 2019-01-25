@@ -6,4 +6,11 @@
     <priority>50</priority>
     <helpText>Religion helps people to rest their soul and get calmness. You have to satifsy their need of piety. \n\nIf your character is religious, he will be probably upset because of not having a place to pray. \n\nYou can start with building a church, that necessary to give a religious character some comfort. It means, you have to build a room with an altar in it.</helpText>
   </ConceptDef>	
+
+  <ConceptDef>
+    <defName>LectureKnowlegde</defName>
+    <label>Lecture</label>
+    <priority>50</priority>
+    <helpText>Religion helps people to rest their soul and get calmness. You have to satifsy their need of piety. \n\nIf your character is religious, he will be probably upset because of not having a place to pray. \n\nYou can start with building a church, that necessary to give a religious character some comfort. It means, you have to build a room with an altar in it.</helpText>
+  </ConceptDef>	
 </Defs>

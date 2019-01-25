@@ -2,6 +2,7 @@
 <Defs>
   <ThingDef Name="LecternBase" ParentName="BuildingBase" Abstract="True">
     <canOverlapZones>false</canOverlapZones>
+    <altitudeLayer>Building</altitudeLayer>    
     <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
     <statBases>
       <Mass>20</Mass>
@@ -21,6 +22,19 @@
     <inspectorTabs>
       <li>Religion.ITab_Lecture</li>
     </inspectorTabs>
+    <researchPrerequisites>
+      <li>ReligionStuff</li>
+    </researchPrerequisites> 
+    <comps>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+      <li Class="CompProperties_RoomIdentifier">
+        <roomStat>Impressiveness</roomStat>
+      </li>
+    </comps>
+    <designationHotKey>Misc4</designationHotKey>
+    <tickerType>Rare</tickerType>
   </ThingDef>
 
   <ThingDef ParentName="LecternBase">
@@ -40,7 +54,7 @@
       </damageData>
     </graphicData>
     <castEdgeShadows>true</castEdgeShadows>
-    <staticSunShadowHeight>0.20</staticSunShadowHeight>
+    <staticSunShadowHeight>0.10</staticSunShadowHeight>
     <costStuffCount>45</costStuffCount>
     <costList>
       <WoodLog>20</WoodLog>
@@ -48,8 +62,8 @@
     <stuffCategories>
       <li>Metallic</li>
       <li>Woody</li>
+      <li>Stony</li>
     </stuffCategories>
-    <altitudeLayer>Building</altitudeLayer>
     <fillPercent>0.5</fillPercent>
     <useHitPoints>True</useHitPoints>
     <statBases>
@@ -71,12 +85,5 @@
       </watchBuildingStandDistanceRange>
       <watchBuildingStandRectWidth>7</watchBuildingStandRectWidth>
     </building> 
-    <designationHotKey>Misc4</designationHotKey>
-    <tickerType>Rare</tickerType>
-    <comps>
-      <li>
-        <compClass>CompQuality</compClass>
-      </li>
-    </comps>
   </ThingDef>
 </Defs>

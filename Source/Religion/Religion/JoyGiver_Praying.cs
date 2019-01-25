@@ -33,7 +33,9 @@ namespace Religion
             IntVec3 result;
             Building chair;
             if (!WatchBuildingUtility.TryFindBestWatchCell(t, pawn, this.def.desireSit, out result, out chair))
-                return (Job)null;
+            {
+                WatchBuildingUtility.TryFindBestWatchCell(t, pawn, false, out result, out chair);
+            }
             return new Job(this.def.jobDef, (LocalTargetInfo)t, (LocalTargetInfo)result, (LocalTargetInfo)((Thing)chair));
         }
     }

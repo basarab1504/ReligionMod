@@ -3,32 +3,31 @@
 
 <AssignReligion>Assign Religion</AssignReligion>
 <AssignReligionDesc>Assign religion desc</AssignReligionDesc>
-<OneAltarInRoom>Only one altar in room</OneAltarInRoom>
+<OneAltarInRoom>Only one altar in the room</OneAltarInRoom>
 <IndoorOnly>Indoor only</IndoorOnly>
-<OneLecternInRoom>Only one lectern in room</OneLecternInRoom>
-<MustPlaceNextToBuildedAltar>Must be placed next to builded altar</MustPlaceNextToBuildedAltar>
+<OneLecternInRoom>Only one lectern in the room</OneLecternInRoom>
+<MustPlaceNextToBuildedAltar>Must be placed next to altar</MustPlaceNextToBuildedAltar>
 <ReligionMustBeAssignedThroughAltar>Religion must be assigned</ReligionMustBeAssignedThroughAltar>
-<TimeOfLecture>Time of lecture</TimeOfLecture>
-<Day>Day</Day>
+<TimeOfLecture>Time of a lecture</TimeOfLecture>
 <SetOwner>Set owner</SetOwner>
 <TakeABook>Take a book</TakeABook>
 <ErrorLectern>No lectern placed</ErrorLectern>
 <SelectAReligion>No assigned religion</SelectAReligion>
 <SelectAPreacher>No assigned preacher</SelectAPreacher>
-<NoRelicOnAltar>No relic on altar</NoRelicOnAltar>
-<CantGiveLectureJobToPreacher>Cant give lecture job to preacher</CantGiveLectureJobToPreacher>
+<NoRelicOnAltar>No relic on the altar</NoRelicOnAltar>
+<CantGiveLectureJobToPreacher>Can't give lecture job to preacher</CantGiveLectureJobToPreacher>
 <PreacherIsDead>Preacher is dead</PreacherIsDead>
 <NoBookAvaliable>No book avaliable</NoBookAvaliable>
 <Worship>Worship</Worship>
 <WorshipDesc>Worship desc</WorshipDesc>
-<TabLecture>Lecture tab</TabLecture>
+<TabLecture>Lecture</TabLecture>
 <DayOf>Day</DayOf>
 <SinglePilgrimVisitorArrivesTraderInfo>{PAWN_pronoun} seems to have a few items and religion books to trade.</SinglePilgrimVisitorArrivesTraderInfo>
 <GroupPilgrimVisitorsArriveTraderInfo>They seem to have a few items and religion books to trade.</GroupPilgrimVisitorsArriveTraderInfo>
 <WaitingForCongregation>Waiting for congregation.</WaitingForCongregation>
-<ReadAPrayer>Read a prayer.</ReadAPrayer>
-<NowBelieveIn>now believe in</NowBelieveIn>
-<IsNowReligious>Is now religious</IsNowReligious>
+<ReadAPrayer>Read a pray.</ReadAPrayer>
+<NowBelieveIn>believes in</NowBelieveIn>
+<IsNowReligious>Became religious</IsNowReligious>
 <LowSkillPreacher>Low skill preacher</LowSkillPreacher>
 <NoAvaliableCandidates>No avaliable candidates for preacher job</NoAvaliableCandidates>
 <MinSkillPreacher>(minimun skill: {0})</MinSkillPreacher>

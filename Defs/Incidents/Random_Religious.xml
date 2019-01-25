@@ -11,9 +11,9 @@
       <li>Map_RaidBeacon</li>
       <li>Caravan</li>
     </targetTags>
-    <letterText>had a povidence. And now is in faith of</letterText>
+    <letterText>had a povidence and believed in</letterText>
     <letterDef>PositiveEvent</letterDef>
     <label>providence</label>
-    <letterLabel>Is now religious</letterLabel>
+    <letterLabel>Became religious</letterLabel>
   </IncidentDef>	
 </Defs>

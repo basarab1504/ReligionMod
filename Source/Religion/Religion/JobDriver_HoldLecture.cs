@@ -86,7 +86,7 @@ namespace Religion
                 StoreUtility.TryFindBestBetterStoreCellFor(curJob.targetB.Thing, actor, actor.Map, StoragePriority.Important, Faction.OfPlayer, out foundCell, true);
                 if(!foundCell.IsValid)
                     StoreUtility.TryFindBestBetterStoreCellFor(curJob.targetB.Thing, actor, actor.Map, StoragePriority.Unstored, Faction.OfPlayer, out foundCell, true);
-                actor.carryTracker.TryStartCarry(TargetB.Thing);
+                //actor.carryTracker.TryStartCarry(TargetB.Thing);
                 if(foundCell.IsValid)
                 curJob.targetC = (LocalTargetInfo)foundCell;
                 foreach (Pawn p in lectern.listeners)
@@ -100,7 +100,7 @@ namespace Religion
             this.AddFinishAction(() =>
             {
                 ReligionUtility.HeldWorshipThought(pawn);
-                Religion.ReligionUtility.TryAddAddictionForPreacher(pawn);
+                ReligionUtility.TryAddAddictionForPreacher(pawn);
             });
             yield break;
         }

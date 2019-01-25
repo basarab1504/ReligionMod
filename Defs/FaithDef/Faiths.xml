@@ -13,7 +13,7 @@
     <defName>Religion_Need</defName>
     <needClass>Need_Chemical</needClass>
     <label>relgion need</label>
-    <description>This person's body is enhanced by luciferium mechanites.\n\nWithout regular doses of luciferium, the mechanites will lose cohesion. If this happens, the user becomes continuously, violently insane and eventually dies.\n\nThis addiction never goes away.</description>
+    <description>Because of religiosity, this person needs to attend worships regulary to avoid uncomfortable feelings.</description>
     <listPriority>45</listPriority>
     <fallPerDay>0.25</fallPerDay>
   </NeedDef>
@@ -67,8 +67,8 @@
         <visible>false</visible>
       </li>
       <li>
-        <label>long time no lecture</label>
-        <description>I really wish I pray to my God.</description>
+        <label>no worship for a long time</label>
+        <description>I really wish to attend a worship.</description>
         <baseMoodEffect>-20</baseMoodEffect>
       </li>
     </stages>

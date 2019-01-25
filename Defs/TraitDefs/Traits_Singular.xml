@@ -22,13 +22,13 @@
     	<degreeDatas>
       	<li>
         	<label>Tynan Faith</label>
-        	<description>{PAWN_nameDef} has faith in Tynan.</description>
+        	<description>{PAWN_nameDef} believes in Tynan.</description>
       	</li>
     	</degreeDatas>
     	<conflictingTraits>
     	 <li>MonothosReligion</li>
     	 <li>AegonReligion</li>    		
-      	 <li>Cannibal</li>
+       <li>Cannibal</li>
     	</conflictingTraits>
     	<foreignReligions>
     		<li>MonothosReligion</li>
@@ -41,13 +41,13 @@
     	<degreeDatas>
       	<li>
         	<label>Monothos Faith</label>
-        	<description>{PAWN_nameDef} has faith in Monthos.</description>
+        	<description>{PAWN_nameDef} believes in Monthos.</description>
       	</li>
     	</degreeDatas>
     	<conflictingTraits>
     	 <li>TynanReligion</li>
     	 <li>AegonReligion</li>    		
-      	 <li>Cannibal</li>
+       <li>Cannibal</li>
     	</conflictingTraits>   	
   </Religion.TraitDef_ReligionTrait>
 
@@ -57,13 +57,13 @@
     	<degreeDatas>
       	<li>
         	<label>Aegon Faith</label>
-        	<description>{PAWN_nameDef} has faith in Aegon.</description>
+        	<description>{PAWN_nameDef} believes in Aegon.</description>
       	</li>
     	</degreeDatas>
     	<conflictingTraits>
     	 <li>TynanReligion</li>
     	 <li>MonothosReligion</li>
-      	 <li>Cannibal</li>
+       <li>Cannibal</li>
     	</conflictingTraits>   	
   </Religion.TraitDef_ReligionTrait>
 </Defs>

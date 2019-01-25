@@ -21,6 +21,7 @@ namespace Religion
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
+            PlayerKnowledgeDatabase.KnowledgeDemonstrated(ReligionDefOf.LectureKnowlegde, KnowledgeAmount.Total);
             if (altar == null)
             {
                 //Log.Message("ALTAR IS NULL");

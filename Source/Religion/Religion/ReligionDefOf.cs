@@ -27,5 +27,6 @@ namespace Religion
         public static ThoughtDef AttendedLecture;
         public static HediffDef ReligionTolerance;
         public static ConceptDef ReligionKnowlegde;
+        public static ConceptDef LectureKnowlegde;
     }
 }
