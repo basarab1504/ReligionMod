@@ -9,7 +9,7 @@ using Verse.AI;
 
 namespace Religion
 {
-    class JoyGiver_AttendToLecture : JoyGiver_InteractBuilding
+    class JoyGiver_AttendToWorship : JoyGiver_InteractBuilding
     {
         protected override bool CanInteractWith(Pawn pawn, Thing t, bool inBed)
         {
@@ -21,7 +21,7 @@ namespace Religion
             if (lectern.religion.NullOrEmpty())
                 return false;
             Pawn preacher = lectern.owners[0];
-            if (pawn.story.traits.HasTrait(lectern.religion[0]) && preacher.CurJobDef == ReligionDefOf.HoldLecture)
+            if (pawn.story.traits.HasTrait(lectern.religion[0]) && preacher.CurJobDef == ReligionDefOf.HoldWorship)
                 return true;
             return false;
         }

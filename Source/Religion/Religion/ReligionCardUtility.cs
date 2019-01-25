@@ -52,18 +52,18 @@ namespace Religion
                 if(!SelLectern.owners.NullOrEmpty())
                 {
                     Rect timeOf = new Rect(xOffset, y + (height * 2), width, height);
-                    string label = "TimeOfLecture".Translate();
+                    string label = "TimeOfWorship".Translate();
                     string dayOf = "DayOf".Translate();
                     Widgets.Label(timeOf, label);
 
                     Rect numer = new Rect(xOffset + width, y + (height * 2), 24f, 24f);
-                    Widgets.TextFieldNumeric<int>(numer, ref SelLectern.timeOfLecture, ref SelLectern.timeOfbuffer, 1f, 23f);
+                    Widgets.TextFieldNumeric<int>(numer, ref SelLectern.timeOfWorship, ref SelLectern.timeOfbuffer, 1f, 23f);
 
                     float forDaysY = y + height * 3;
                     for (int i = 0; i < 15; ++i)
                     {
                         Rect rect4 = new Rect(xOffset, forDaysY + (i * 22), width, 20f);
-                        ReligionUtility.CheckboxLabeled(rect4, SelLectern, i, dayOf + " " + (i + 1), SelLectern.daysOfLectures[i], false, null, null, false);
+                        ReligionUtility.CheckboxLabeled(rect4, SelLectern, i, dayOf + " " + (i + 1), SelLectern.daysOfWorships[i], false, null, null, false);
                     }
                 }
             }

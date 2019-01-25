@@ -9,7 +9,7 @@ using Verse.AI;
 
 namespace Religion
 {
-    class WorkGiver_Lecture : WorkGiver_Scanner
+    class WorkGiver_Worship : WorkGiver_Scanner
     {
         public override ThingRequest PotentialWorkThingRequest
         {
@@ -42,7 +42,7 @@ namespace Religion
 
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            return new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)t);
+            return new Job(ReligionDefOf.HoldWorship, (LocalTargetInfo)t);
         }
     }
 }

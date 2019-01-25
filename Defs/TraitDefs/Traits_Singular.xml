@@ -41,7 +41,7 @@
     	<degreeDatas>
       	<li>
         	<label>Monothos Faith</label>
-        	<description>{PAWN_nameDef} believes in Monthos.</description>
+        	<description>{PAWN_nameDef} believes in Monothos.</description>
       	</li>
     	</degreeDatas>
     	<conflictingTraits>

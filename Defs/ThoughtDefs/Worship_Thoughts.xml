@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ThoughtDef>
-    <defName>HeldLecture</defName>
+    <defName>HeldWorship</defName>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
     <stages>
@@ -14,47 +14,47 @@
   </ThoughtDef>
 
   <ThoughtDef>
-    <defName>AttendedLecture</defName>
+    <defName>AttendedWorship</defName>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
     <stages>
       <li>
-        <label>repulsive lecture</label>
+        <label>repulsive worship</label>
         <description>I spent some time being on awful worship. It's weird.</description>
         <baseMoodEffect>-5</baseMoodEffect>
       </li>
       <li>
-        <label>mediocre lecture</label>
+        <label>mediocre worship</label>
         <description>I spent some time being on mediocre worship.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
       <li>
-        <label>fine lecture</label>
+        <label>fine worship</label>
         <description>I spent some time being on fine worship.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>      
       <li>
-        <label>intersting lecture</label>
+        <label>intersting worship</label>
         <description>I spent some time being on intersting worship.</description>
         <baseMoodEffect>7</baseMoodEffect>
       </li>
       <li>
-        <label>impressive lecture</label>
+        <label>impressive worship</label>
         <description>I spent some time being on impressive worship.</description>
         <baseMoodEffect>9</baseMoodEffect>
       </li>
       <li>
-        <label>very impressive lecture</label>
+        <label>very impressive worship</label>
         <description>I spent some time being on very impressive worship.</description>
         <baseMoodEffect>12</baseMoodEffect>
       </li>
       <li>
-        <label>unbelievably impressive lecture</label>
+        <label>unbelievably impressive worship</label>
         <description>I spent some time being on unbelievably impressive worship.</description>
         <baseMoodEffect>16</baseMoodEffect>
       </li>
       <li>
-        <label>wonderful lecture</label>
+        <label>wonderful worship</label>
         <description>I spent some time being on wonderful worship. I could stay there forever.</description>
         <baseMoodEffect>20</baseMoodEffect>
       </li>

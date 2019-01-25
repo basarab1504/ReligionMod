@@ -16,7 +16,7 @@ namespace Religion
         public static readonly Texture2D faith = ContentFinder<Texture2D>.Get("Things/Symbols/Religion", true);
         public static bool IsMorning(Map map) => GenLocalDate.HourInteger(map) > 6 && GenLocalDate.HourInteger(map) < 10;
         public static bool IsEvening(Map map) => GenLocalDate.HourInteger(map) > 18 && GenLocalDate.HourInteger(map) < 22;
-        public static bool TimeToLecture(Map map, int time) => GenLocalDate.HourInteger(map) > time - 1 && GenLocalDate.HourInteger(map) < time + 1;
+        public static bool TimeToWorship(Map map, int time) => GenLocalDate.HourInteger(map) > time - 1 && GenLocalDate.HourInteger(map) < time + 1;
         public static bool IsNight(Map map) => GenLocalDate.HourInteger(map) > 22;
 
         #region Addiction
@@ -75,9 +75,9 @@ namespace Religion
             }
         }
 
-        public static void AttendedLectureThought(Pawn pawn, Pawn preacher)
+        public static void AttendedWorshipThought(Pawn pawn, Pawn preacher)
         {
-            ThoughtDef def = ReligionDefOf.AttendedLecture;
+            ThoughtDef def = ReligionDefOf.AttendedWorship;
             if (pawn == null) return;
             if (preacher == null) return;
             if (def == null) return;
@@ -147,18 +147,18 @@ namespace Religion
         {
             if (preacher == null) return;
             TryGainTempleRoomThought(preacher);
-            ThoughtDef newThought = ReligionDefOf.HeldLecture; // DefDatabase<ThoughtDef>.GetNamed("HeldSermon");
+            ThoughtDef newThought = ReligionDefOf.HeldWorship; // DefDatabase<ThoughtDef>.GetNamed("HeldSermon");
             if (newThought != null)
             {
                 preacher.needs.mood.thoughts.memories.TryGainMemory(newThought);
             }
         }
 
-        //public static void AttendedLectureThought(Pawn prayer)
+        //public static void AttendedWorshipThought(Pawn prayer)
         //{
         //    if (prayer == null) return;
         //    TryGainTempleRoomThought(prayer);
-        //    ThoughtDef newThought = ReligionDefOf.AttendedLecture; // DefDatabase<ThoughtDef>.GetNamed("HeldSermon");
+        //    ThoughtDef newThought = ReligionDefOf.AttendedWorship; // DefDatabase<ThoughtDef>.GetNamed("HeldSermon");
         //    if (newThought != null)
         //    {
         //        prayer.needs.mood.thoughts.memories.TryGainMemory(newThought);
@@ -216,7 +216,7 @@ namespace Religion
             //if (lectern.owners[0] == attendee) return;
             if (attendee.Drafted) return;
             if (attendee.IsPrisoner) return;
-            if (attendee.jobs.curJob.def == ReligionDefOf.AttendLecture) return;
+            if (attendee.jobs.curJob.def == ReligionDefOf.AttendWorship) return;
 
             IntVec3 result;
             Building chair;
@@ -224,7 +224,7 @@ namespace Religion
             {
                 WatchBuildingUtility.TryFindBestWatchCell(lectern, attendee, false, out result, out chair);
             }
-            Job J = new Job(ReligionDefOf.AttendLecture, (LocalTargetInfo)lectern, (LocalTargetInfo)result, (LocalTargetInfo)((Thing)chair));
+            Job J = new Job(ReligionDefOf.AttendWorship, (LocalTargetInfo)lectern, (LocalTargetInfo)result, (LocalTargetInfo)((Thing)chair));
             J.playerForced = true;
             J.ignoreJoyTimeAssignment = true;
             J.expiryInterval = 9999;
@@ -270,11 +270,11 @@ namespace Religion
             lectern.owners.Clear();
             lectern.religion.Clear();
             lectern.listeners.Clear();
-            for (int i = 0; i < lectern.daysOfLectures.Count; ++i)
-                lectern.daysOfLectures[i] = false;
-            lectern.timeOfLecture = 9;
+            for (int i = 0; i < lectern.daysOfWorships.Count; ++i)
+                lectern.daysOfWorships[i] = false;
+            lectern.timeOfWorship = 9;
             lectern.timeOfbuffer = string.Empty;
-            lectern.didLecture = false;
+            lectern.didWorship = false;
             lectern.altar = null;
         }
 
@@ -291,8 +291,8 @@ namespace Religion
                                x.RaceProps.intelligence == Intelligence.Humanlike &&
                                !x.Downed && !x.Dead &&
                                !x.InMentalState && !x.InAggroMentalState &&
-                               x.CurJob.def != ReligionDefOf.HoldLecture &&
-                               x.CurJob.def != ReligionDefOf.AttendLecture &&
+                               x.CurJob.def != ReligionDefOf.HoldWorship &&
+                               x.CurJob.def != ReligionDefOf.AttendWorship &&
                                x.CurJob.def != JobDefOf.Capture &&
                                x.CurJob.def != JobDefOf.ExtinguishSelf && //Oh god help
                                x.CurJob.def != JobDefOf.Rescue && //Saving lives is more important
@@ -305,7 +305,7 @@ namespace Religion
                         listenersOfLectern.Add(x);
         }
 
-        public static void TryLecture(Building_Lectern lectern, bool forced)
+        public static void TryWorship(Building_Lectern lectern, bool forced)
         {
             if(lectern == null)
             {
@@ -334,10 +334,10 @@ namespace Religion
                 return;
             }
             if (preacher.Dead || preacher.Drafted || preacher.IsPrisoner
-                || preacher.jobs.curJob.def == ReligionDefOf.HoldLecture 
+                || preacher.jobs.curJob.def == ReligionDefOf.HoldWorship 
                 || preacher.InMentalState || preacher.InAggroMentalState)
             {
-                Messages.Message("CantGiveLectureJobToPreacher".Translate(), MessageTypeDefOf.NegativeEvent);
+                Messages.Message("CantGiveWorshipJobToPreacher".Translate(), MessageTypeDefOf.NegativeEvent);
                 if (preacher.Dead)
                 {
                     Messages.Message("PreacherIsDead".Translate(), MessageTypeDefOf.NegativeEvent);
@@ -364,9 +364,9 @@ namespace Religion
             ////    book = AppropriateBookInInventory(preacher, lectern.religion[0]);
 
             if (!forced)
-                lectern_.didLecture = true;
+                lectern_.didWorship = true;
 
-            Job J = new Job(ReligionDefOf.HoldLecture, (LocalTargetInfo)lectern_, (LocalTargetInfo)book)
+            Job J = new Job(ReligionDefOf.HoldWorship, (LocalTargetInfo)lectern_, (LocalTargetInfo)book)
             {
                 count = 1
             };
@@ -497,7 +497,7 @@ namespace Religion
             Widgets.Label(rect, label);
             if (!disabled && Widgets.ButtonInvisible(rect, false))
             {
-                lectern.daysOfLectures[i] = !checkOn;
+                lectern.daysOfWorships[i] = !checkOn;
                 if (checkOn)
                     SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera((Map)null);
                 else

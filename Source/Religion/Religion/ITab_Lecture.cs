@@ -9,7 +9,7 @@ using RimWorld;
 
 namespace Religion //крыса
 {
-    public class ITab_Lecture : ITab
+    public class ITab_Worship : ITab
     {
         private static readonly Vector2 WinSize = new Vector2(420f, 480f);
 
@@ -21,11 +21,11 @@ namespace Religion //крыса
             }
         }
 
-        public ITab_Lecture()
+        public ITab_Worship()
         {
-            this.size = ITab_Lecture.WinSize;
-            this.labelKey = "TabLecture".Translate();
-            //this.tutorTag = "Lectures".Translate();
+            this.size = ITab_Worship.WinSize;
+            this.labelKey = "TabWorship".Translate();
+            //this.tutorTag = "Worships".Translate();
         }
 
         protected override void FillTab()

@@ -20,7 +20,7 @@
     </placeWorkers>
     <designationCategory>ReligionBuildings</designationCategory>
     <inspectorTabs>
-      <li>Religion.ITab_Lecture</li>
+      <li>Religion.ITab_Worship</li>
     </inspectorTabs>
     <researchPrerequisites>
       <li>ReligionStuff</li>

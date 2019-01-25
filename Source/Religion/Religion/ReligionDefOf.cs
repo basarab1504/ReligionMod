@@ -15,18 +15,18 @@ namespace Religion
         public static HediffDef ReligionAddiction;
         public static TraitDef Atheist;
         public static TraitDef_ReligionTrait TynanReligion;
-        public static JobDef HoldLecture;
-        public static JobDef AttendLecture;
+        public static JobDef HoldWorship;
+        public static JobDef AttendWorship;
         //public static JobDef ReadBook;
         public static ThingDef Altar;
         public static ThingDef Lectern;
         public static RoomRoleDef Church;
         public static ThoughtDef PrayedInImpressiveTemple;
         public static TraderKindDef Pilgrim_Standart;
-        public static ThoughtDef HeldLecture;
-        public static ThoughtDef AttendedLecture;
+        public static ThoughtDef HeldWorship;
+        public static ThoughtDef AttendedWorship;
         public static HediffDef ReligionTolerance;
         public static ConceptDef ReligionKnowlegde;
-        public static ConceptDef LectureKnowlegde;
+        public static ConceptDef WorshipKnowlegde;
     }
 }

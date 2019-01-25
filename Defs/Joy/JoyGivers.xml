@@ -16,14 +16,14 @@
   </JoyGiverDef>
 
   <JoyGiverDef>
-    <defName>AttendToLecture</defName>
-    <giverClass>Religion.JoyGiver_AttendToLecture</giverClass>
+    <defName>AttendToWorship</defName>
+    <giverClass>Religion.JoyGiver_AttendToWorship</giverClass>
     <baseChance>3.5</baseChance>
     <canDoWhileInBed>false</canDoWhileInBed>
     <thingDefs>
       <li>Lectern</li>
     </thingDefs>
-    <jobDef>AttendLecture</jobDef>
+    <jobDef>AttendWorship</jobDef>
     <joyKind>PrayingKind</joyKind>
     <requiredCapacities>
       <li>Sight</li>

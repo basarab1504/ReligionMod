@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <RecipeDef>
-    <defName>Lecture</defName>
-    <label>lecture</label>
-    <description>Lecture</description>
+    <defName>Worship</defName>
+    <label>worship</label>
+    <description>Worship</description>
     <workerClass>Recipe_Surgery</workerClass>
-    <jobString>lecturing.</jobString>
+    <jobString>worships.</jobString>
     <workAmount>0</workAmount>
     <ingredients>
     </ingredients>

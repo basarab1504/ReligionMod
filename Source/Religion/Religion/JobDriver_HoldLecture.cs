@@ -6,7 +6,7 @@ using RimWorld;
 
 namespace Religion
 {
-    class JobDriver_HoldLecture : JobDriver
+    class JobDriver_HoldWorship : JobDriver
     {
         protected Building_Lectern lectern
         {

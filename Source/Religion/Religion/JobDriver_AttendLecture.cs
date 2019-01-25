@@ -6,7 +6,7 @@ using RimWorld;
 
 namespace Religion
 {
-    class JobDriver_AttendLecture : JobDriver
+    class JobDriver_AttendWorship : JobDriver
     {
         private string report = "";
         public override string GetReport()
@@ -102,7 +102,7 @@ namespace Religion
                 this.pawn.rotationTracker.FaceCell(TargetA.Thing.OccupiedRect().ClosestCellTo(this.pawn.Position));
                 this.pawn.GainComfortFromCellIfPossible();
                 this.pawn.rotationTracker.FaceCell(TargetB.Cell);
-                if (preacher.CurJob.def != ReligionDefOf.HoldLecture)
+                if (preacher.CurJob.def != ReligionDefOf.HoldWorship)
                 {
                     this.ReadyForNextToil();
                 }
@@ -111,11 +111,11 @@ namespace Religion
             watch.defaultDuration = this.job.def.joyDuration;
             watch.handlingFacing = true;
             yield return watch;
-            yield return Toils_Jump.JumpIf(watch, () => preacher.CurJob.def == ReligionDefOf.HoldLecture);
+            yield return Toils_Jump.JumpIf(watch, () => preacher.CurJob.def == ReligionDefOf.HoldWorship);
             this.AddFinishAction(() =>
             {
                 ReligionUtility.TryGainTempleRoomThought(pawn);
-                ReligionUtility.AttendedLectureThought(pawn, preacher);
+                ReligionUtility.AttendedWorshipThought(pawn, preacher);
                 ReligionUtility.TryAddAddiction(pawn, preacher);
             });
 
