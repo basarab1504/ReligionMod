@@ -65,7 +65,10 @@ namespace Religion
             preachingTime.initAction = delegate
             {
                 report = "ReadAPrayer".Translate();
-                MoteMaker.MakeInteractionBubble(this.pawn, null, ThingDefOf.Mote_Speech, ReligionUtility.faith);
+                //MoteMaker.MakeInteractionBubble(this.pawn, null, ThingDefOf.Mote_Speech, ReligionUtility.faith);
+                InteractionDef intDef = ReligionDefOf.WorshipInteraction;
+                foreach (Pawn p in lectern.listeners)
+                    ReligionUtility.TryWorshipInteraction(pawn, p, intDef);
             };
             preachingTime.defaultCompleteMode = ToilCompleteMode.Delay;
             preachingTime.defaultDuration = 1800;
@@ -76,6 +79,7 @@ namespace Religion
                 actor.skills.Learn(SkillDefOf.Social, 0.25f);
             };
             yield return preachingTime;
+            
 
             Toil toStoreToil = new Toil();
             toStoreToil.initAction = delegate
@@ -87,8 +91,10 @@ namespace Religion
                 if(!foundCell.IsValid)
                     StoreUtility.TryFindBestBetterStoreCellFor(curJob.targetB.Thing, actor, actor.Map, StoragePriority.Unstored, Faction.OfPlayer, out foundCell, true);
                 //actor.carryTracker.TryStartCarry(TargetB.Thing);
-                if(foundCell.IsValid)
-                curJob.targetC = (LocalTargetInfo)foundCell;
+                if (foundCell.IsValid)
+                    curJob.targetC = (LocalTargetInfo)foundCell;
+                else
+                    curJob.targetC = lectern.Position;
                 foreach (Pawn p in lectern.listeners)
                     p.jobs.EndCurrentJob(JobCondition.Succeeded);
             };

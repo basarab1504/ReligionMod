@@ -33,7 +33,7 @@
   <ThingDef ParentName="BaseAltar">
     <defName>Altar</defName>
     <label>Altar</label>
-    <description>A desc for a relic which makes the church completed.</description>   
+    <description>A desk for a relic which makes the church completed.</description>   
     <graphicData>
       <texPath>Things/Religion/Altar</texPath>
       <graphicClass>Graphic_Multi</graphicClass>

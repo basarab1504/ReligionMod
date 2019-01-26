@@ -118,7 +118,6 @@ namespace Religion
                 ReligionUtility.AttendedWorshipThought(pawn, preacher);
                 ReligionUtility.TryAddAddiction(pawn, preacher);
             });
-
             yield break;
         }
     }

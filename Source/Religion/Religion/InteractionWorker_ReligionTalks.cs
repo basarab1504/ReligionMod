@@ -105,7 +105,6 @@ namespace Religion
                 num = 1f * OpinionFactorCurve.Evaluate((float)initiator.relations.OpinionOf(recipient))/* * CompatibilityFactorCurve.Evaluate(initiator.relations.CompatibilityWith(recipient))*/;
                 float curLevel = recipient.needs.mood.CurLevel;
                 num *= MoodFactorCurve.Evaluate(curLevel);
-            Log.Message("I: " + initiator.Name + " " + "R: " + recipient.Name + " " + "op: " + initiator.relations.OpinionOf(recipient) + " " + "m: " + recipient.needs.mood.CurLevel + " " + (0.007f * num).ToString());
                 return 0.007f * num;
         }
 

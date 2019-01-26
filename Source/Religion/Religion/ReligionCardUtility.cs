@@ -39,6 +39,8 @@ namespace Religion
 
             if(!SelLectern.religion.NullOrEmpty())
             {
+                if (Prefs.DevMode)
+                    Widgets.CheckboxLabeled(rel, "didWorshipToday", ref SelLectern.didWorship, false, null, null, false);
                 if (Widgets.ButtonText(owner, "SetOwner".Translate(), true, false, true))
                 {
                     if (SelLectern.Map.mapPawns.FreeColonists.Any

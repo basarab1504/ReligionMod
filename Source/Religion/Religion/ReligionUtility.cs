@@ -200,6 +200,49 @@ namespace Religion
             return null;
         }
 
+        public static bool TryWorshipInteraction(Pawn preacher, Pawn recipient, InteractionDef intDef)
+        {
+            Pawn_InteractionsTracker tracker = preacher.interactions;
+            if (preacher == recipient)
+            {
+                Log.Warning(preacher.ToString() + " tried to interact with self, interaction=" + intDef.defName, false);
+                return false;
+            }
+            if (!tracker.CanInteractNowWith(recipient))
+                return false;
+            List<RulePackDef> extraSentencePacks = new List<RulePackDef>();
+            //if (intDef.initiatorThought != null)
+            //    Pawn_InteractionsTracker.AddInteractionThought(preacher, recipient, intDef.initiatorThought);
+            //if (intDef.recipientThought != null && recipient.needs.mood != null)
+            //    Pawn_InteractionsTracker.AddInteractionThought(recipient, preacher, intDef.recipientThought);
+            //if (intDef.initiatorXpGainSkill != null)
+            //    preacher.skills.Learn(intDef.initiatorXpGainSkill, (float)intDef.initiatorXpGainAmount, false);
+            //if (intDef.recipientXpGainSkill != null && recipient.RaceProps.Humanlike)
+            //    recipient.skills.Learn(intDef.recipientXpGainSkill, (float)intDef.recipientXpGainAmount, false);
+            bool flag = false;
+            if (recipient.RaceProps.Humanlike)
+                flag = recipient.interactions.CheckSocialFightStart(intDef, preacher);
+            string letterText;
+            string letterLabel;
+            LetterDef letterDef;
+            if (!flag)
+            {
+                intDef.Worker.Interacted(preacher, recipient, extraSentencePacks, out letterText, out letterLabel, out letterDef);
+            }
+            else
+            {
+                letterText = (string)null;
+                letterLabel = (string)null;
+                letterDef = (LetterDef)null;
+            }
+            MoteMaker.MakeInteractionBubble(preacher, recipient, intDef.interactionMote, intDef.Symbol);
+            if (flag)
+                extraSentencePacks.Add(RulePackDefOf.Sentence_SocialFightStarted);
+            PlayLogEntry_Interaction entryInteraction = new PlayLogEntry_Interaction(intDef, preacher, recipient, extraSentencePacks);
+            Find.PlayLog.Add((LogEntry)entryInteraction);
+            return true;
+        }
+
         #region LecternManagement
 
         public static void Unclaim(Pawn p)
@@ -212,8 +255,6 @@ namespace Religion
     
         public static void GiveAttendJob(Building_Lectern lectern, Pawn attendee)
         {
-            //Log.Message("1");
-            //if (lectern.owners[0] == attendee) return;
             if (attendee.Drafted) return;
             if (attendee.IsPrisoner) return;
             if (attendee.jobs.curJob.def == ReligionDefOf.AttendWorship) return;
@@ -230,7 +271,7 @@ namespace Religion
             J.expiryInterval = 9999;
             J.ignoreDesignations = true;
             J.ignoreForbidden = true;
-            attendee.jobs.EndCurrentJob(JobCondition.Incompletable);
+            //attendee.jobs.EndCurrentJob(JobCondition.Incompletable);
             attendee.jobs.TryTakeOrderedJob(J);
         }
 
@@ -292,15 +333,15 @@ namespace Religion
                                !x.Downed && !x.Dead &&
                                !x.InMentalState && !x.InAggroMentalState &&
                                x.CurJob.def != ReligionDefOf.HoldWorship &&
-                               x.CurJob.def != ReligionDefOf.AttendWorship &&
-                               x.CurJob.def != JobDefOf.Capture &&
-                               x.CurJob.def != JobDefOf.ExtinguishSelf && //Oh god help
-                               x.CurJob.def != JobDefOf.Rescue && //Saving lives is more important
-                               x.CurJob.def != JobDefOf.TendPatient && //Saving lives is more important
-                               x.CurJob.def != JobDefOf.BeatFire && //Fire?! This is more important
-                               x.CurJob.def != JobDefOf.Lovin && //Not ready~~
-                               x.CurJob.def != JobDefOf.LayDown && //They're resting
-                               x.CurJob.def != JobDefOf.FleeAndCower //They're not cowering
+                               x.CurJob.def != ReligionDefOf.AttendWorship/* &&*/
+                               //x.CurJob.def != JobDefOf.Capture &&
+                               //x.CurJob.def != JobDefOf.ExtinguishSelf && //Oh god help
+                               //x.CurJob.def != JobDefOf.Rescue && //Saving lives is more important
+                               //x.CurJob.def != JobDefOf.TendPatient && //Saving lives is more important
+                               //x.CurJob.def != JobDefOf.BeatFire && //Fire?! This is more important
+                               //x.CurJob.def != JobDefOf.Lovin && //Not ready~~
+                               //x.CurJob.def != JobDefOf.LayDown && //They're resting
+                               //x.CurJob.def != JobDefOf.FleeAndCower //They're not cowering
                             )
                         listenersOfLectern.Add(x);
         }
@@ -317,12 +358,14 @@ namespace Religion
 
             if (lectern_.religion.NullOrEmpty())
             {
-                Messages.Message("SelectAReligion".Translate(), MessageTypeDefOf.NegativeEvent);
+                Messages.Message("CantGiveWorshipJobToPreacher".Translate() + " : " + "SelectAReligion".Translate(), MessageTypeDefOf.NegativeEvent);
+                lectern_.didWorship = true;
                 return;
             }
             if (lectern_.owners.NullOrEmpty())
             {
-                Messages.Message("SelectAPreacher".Translate(), MessageTypeDefOf.NegativeEvent);
+                Messages.Message("CantGiveWorshipJobToPreacher".Translate() + " : " + "SelectAPreacher".Translate(), MessageTypeDefOf.NegativeEvent);
+                lectern_.didWorship = true;
                 return;
             }
 
@@ -330,7 +373,8 @@ namespace Religion
 
             if (lectern_.altar.relic == null)
             {
-                Messages.Message("NoRelicOnAltar".Translate(), MessageTypeDefOf.NegativeEvent);
+                Messages.Message("CantGiveWorshipJobToPreacher".Translate() + " : " + "NoRelicOnAltar".Translate(), MessageTypeDefOf.NegativeEvent);
+                lectern_.didWorship = true;
                 return;
             }
             if (preacher.Dead || preacher.Drafted || preacher.IsPrisoner
@@ -343,12 +387,14 @@ namespace Religion
                     Messages.Message("PreacherIsDead".Translate(), MessageTypeDefOf.NegativeEvent);
                     lectern_.owners.Clear();
                 }
+                lectern_.didWorship = true;
                 return;
             }
 
             if (AppropriateBook(preacher, lectern_.religion[0]) == null)
             {
-                Messages.Message("NoBookAvaliable".Translate(), MessageTypeDefOf.NegativeEvent);
+                Messages.Message("CantGiveWorshipJobToPreacher".Translate() + " : " + "NoBookAvaliable".Translate(), MessageTypeDefOf.NegativeEvent);
+                lectern_.didWorship = true;
                 return;
             }
 
@@ -371,9 +417,10 @@ namespace Religion
                 count = 1
             };
             J.playerForced = true;
-            preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
+            //preacher.jobs.EndCurrentJob(JobCondition.Incompletable);
             preacher.jobs.TryTakeOrderedJob(J);
         }
+
         #endregion
 
         #region BookReading

@@ -63,6 +63,7 @@
     <Compile Include="IncidentWorker_PilgrimsGroup.cs" />
     <Compile Include="IncidentWorker_Providence.cs" />
     <Compile Include="InteractionWorker_ReligionTalks.cs" />
+    <Compile Include="InteractionWorker_WorshipIntetaction.cs" />
     <Compile Include="ITab_Lecture.cs" />
     <Compile Include="JobDriver_AttendLecture.cs" />
     <Compile Include="JobDriver_HoldLecture.cs" />

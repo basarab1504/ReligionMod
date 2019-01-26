@@ -28,5 +28,6 @@ namespace Religion
         public static HediffDef ReligionTolerance;
         public static ConceptDef ReligionKnowlegde;
         public static ConceptDef WorshipKnowlegde;
+        public static InteractionDef WorshipInteraction;
     }
 }

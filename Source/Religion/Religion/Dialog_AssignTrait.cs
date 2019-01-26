@@ -46,7 +46,7 @@ namespace Religion
                 {
                     flag = true;
                     Rect rect = new Rect(0.0f, y, viewRect.width * 0.6f, 32f);
-                    Widgets.Label(rect, assignedTraitDef.defName);
+                    Widgets.Label(rect, assignedTraitDef.degreeDatas[0].label);
                     rect.x = rect.xMax;
                     rect.width = viewRect.width * 0.4f;
                     if (Widgets.ButtonText(rect, "BuildingUnassign".Translate(), true, false, true))
@@ -64,7 +64,7 @@ namespace Religion
                     if (!this.assignable.AssignedTraits.Contains<TraitDef>(assigningCandidate))
                     {
                         Rect rect = new Rect(0.0f, y, viewRect.width * 0.6f, 32f);
-                        Widgets.Label(rect, assigningCandidate.defName);
+                        Widgets.Label(rect, assigningCandidate.degreeDatas[0].label);
                         rect.x = rect.xMax;
                         rect.width = viewRect.width * 0.4f;
                         string label = !this.assignable.AssignedAnything(assigningCandidate) ? "BuildingAssign".Translate() : "BuildingReassign".Translate();

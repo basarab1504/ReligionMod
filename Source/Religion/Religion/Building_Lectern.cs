@@ -24,7 +24,6 @@ namespace Religion
             PlayerKnowledgeDatabase.KnowledgeDemonstrated(ReligionDefOf.WorshipKnowlegde, KnowledgeAmount.Total);
             if (altar == null)
             {
-                //Log.Message("ALTAR IS NULL");
                 Building_Altar l = ReligionUtility.FindAtlarToLectern(this, map);
                 if (l != null)
                 {
@@ -32,18 +31,14 @@ namespace Religion
                     altar.lectern = this;
                     if (!altar.religion.NullOrEmpty())
                         TryAssignTrait(altar.religion[0]);
-                    //Log.Message("OH I FOUND ALTAR " + altar.Position);
                 }
             } 
-            //else
-            //    Log.Message("ALTAR IS NOT NULL");
         }
 
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
             if (altar != null)
             {
-                //Log.Message("GOODBYE MR.ALTAR!");
                 altar.lectern = null;
             }
             base.Destroy(mode);           
@@ -52,19 +47,16 @@ namespace Religion
         public override void TickRare()
         {
             if (!Spawned) return;
-            // Don't forget the base work
             base.TickRare();
             if (ReligionUtility.TimeToWorship(Map, timeOfWorship) && daysOfWorships[(GenLocalDate.DayOfQuadrum(Map))] && didWorship == false)
-            {
-                //Messages.Message("is true", MessageTypeDefOf.PositiveEvent);                
+            {               
                 ReligionUtility.TryWorship(this, false);
             }
             if (ReligionUtility.IsEvening(Map) && didWorship == true)
             {
                 didWorship = false;
-                //Messages.Message("is false", MessageTypeDefOf.PositiveEvent);
             }
-        } //проверка почти каждый тик, ужас
+        }
 
         #region IBuilding
         public IEnumerable<Pawn> AssigningCandidates
@@ -163,7 +155,6 @@ namespace Religion
             if (!religion.Contains(trait))
             {
                 religion.Add(trait);
-                //Log.Message("oh, i assigned you rel!");
             }
             else return;
         }
@@ -183,34 +174,6 @@ namespace Religion
             }
             if (base.Faction == Faction.OfPlayer && Prefs.DevMode)
             {
-
-                //yield return new Command_Action
-                //{
-                //    defaultLabel = "AssignReligion".Translate(),
-                //    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
-                //    defaultDesc = "AssignReligionDesc".Translate(),
-                //    action = delegate
-                //    {
-                //        Find.WindowStack.Add(new Dialog_AssignTrait(this));
-                //    },
-                //    hotKey = KeyBindingDefOf.Misc4
-                //};
-
-                //yield return new Command_Action
-                //{
-                //    defaultLabel = "CommandBedSetOwnerLabel".Translate(),
-                //    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
-                //    defaultDesc = "CommandBedSetOwnerDesc".Translate(),
-                //    action = delegate
-                //    {
-                //        if (religion.Count == 0)
-                //            Messages.Message("Select a religion first".Translate(), MessageTypeDefOf.NegativeEvent);
-                //        else
-                //            Find.WindowStack.Add(new Dialog_AssignBuildingOwner(this));
-                //    },
-                //    hotKey = KeyBindingDefOf.Misc3
-                //};
-
                 var command_Action = new Command_Action
                 {
                     action = delegate

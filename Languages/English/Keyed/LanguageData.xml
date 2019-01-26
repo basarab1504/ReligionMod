@@ -2,12 +2,11 @@
 <LanguageData>
 
 <AssignReligion>Assign Religion</AssignReligion>
-<AssignReligionDesc>Assign religion desc</AssignReligionDesc>
 <OneAltarInRoom>Only one altar in the room</OneAltarInRoom>
 <IndoorOnly>Indoor only</IndoorOnly>
 <OneLecternInRoom>Only one lectern in the room</OneLecternInRoom>
 <MustPlaceNextToBuildedAltar>Must be placed next to altar</MustPlaceNextToBuildedAltar>
-<ReligionMustBeAssignedThroughAltar>Religion must be assigned</ReligionMustBeAssignedThroughAltar>
+<ReligionMustBeAssignedThroughAltar>Altar must be builded with assigned religion</ReligionMustBeAssignedThroughAltar>
 <TimeOfWorship>Time of a worship</TimeOfWorship>
 <SetOwner>Set owner</SetOwner>
 <TakeABook>Take a book</TakeABook>
@@ -31,4 +30,5 @@
 <LowSkillPreacher>Low skill preacher</LowSkillPreacher>
 <NoAvaliableCandidates>No avaliable candidates for preacher job</NoAvaliableCandidates>
 <MinSkillPreacher>(minimun skill: {0})</MinSkillPreacher>
+<AssignReligionDesc>Assign religion to altar. Assigned religion desides what relic should be placed on altar.</AssignReligionDesc>
 </LanguageData>

@@ -24,17 +24,13 @@ namespace Religion
             PlayerKnowledgeDatabase.KnowledgeDemonstrated(ReligionDefOf.ReligionKnowlegde, KnowledgeAmount.Total);
             if (lectern == null)
             {
-                //Log.Message("LECTERN IS NULL");
                 Building_Lectern l = ReligionUtility.FindLecternToAltar(this, map);
                 if (l != null)
                 {
                     lectern = l;
                     lectern.altar = this;
-                    //Log.Message("OH I FOUND LECTERN!" + lectern.Position);
                 }
             }
-            //else
-            //    Log.Message("LECTERN IS NOT NULL");
         }
 
         #region ITrait
@@ -44,7 +40,7 @@ namespace Religion
             {
                 if (!this.Spawned)
                     return Enumerable.Empty<TraitDef>();
-                return DefDatabase<TraitDef>.AllDefsListForReading.FindAll(x => x is TraitDef_ReligionTrait); //наверное тут
+                return DefDatabase<TraitDef>.AllDefsListForReading.FindAll(x => x is TraitDef_ReligionTrait);
             }
         }
 
@@ -114,7 +110,6 @@ namespace Religion
         {
             if (lectern != null)
             {
-                //Log.Message("GOODBYE MR.LECTERN!");
                 ReligionUtility.Wipe(lectern);
             }
             base.Destroy(mode);
@@ -123,16 +118,12 @@ namespace Religion
         [DebuggerHidden]
         public override IEnumerable<Gizmo> GetGizmos()
         {
-            //foreach (Gizmo g in base.GetGizmos())
-            //{
-            //    yield return g;
-            //}
             if (base.Faction == Faction.OfPlayer)
             {
                 yield return new Command_Action
                 {
                     defaultLabel = "AssignReligion".Translate(),
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
+                    icon = ContentFinder<Texture2D>.Get("Things/Symbols/AssignReligion", true),
                     defaultDesc = "AssignReligionDesc".Translate(),
                     action = delegate
                     {
