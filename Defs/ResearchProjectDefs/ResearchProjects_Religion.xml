@@ -10,5 +10,17 @@
     <researchViewX>0</researchViewX>
     <researchViewY>1.5</researchViewY>
   </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>ReligionRelics</defName>
+    <label>relics making</label>
+    <description>Craft a relic of religion.</description>
+    <tab>ReligionTab</tab>
+    <baseCost>800</baseCost>
+    <techLevel>Neolithic</techLevel>
+    <prerequisites>
+      <li>ReligionStuff</li>
+    </prerequisites>
+  </ResearchProjectDef>  
 </Defs>
 

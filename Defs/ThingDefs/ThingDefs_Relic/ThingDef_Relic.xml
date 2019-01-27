@@ -37,6 +37,7 @@
       <workSpeedStat>SculptingSpeed</workSpeedStat>
       <workSkill>Artistic</workSkill>
       <unfinishedThingDef>UnfinishedSculpture</unfinishedThingDef>
+      <researchPrerequisite>ReligionRelics</researchPrerequisite>
       <effectWorking>Sculpt</effectWorking>
       <soundWorking>Recipe_Sculpt</soundWorking>
       <recipeUsers>
