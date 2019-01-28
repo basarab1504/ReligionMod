@@ -88,8 +88,8 @@ namespace Religion
                 Job curJob = actor.jobs.curJob;
                 IntVec3 foundCell = IntVec3.Invalid;
                 StoreUtility.TryFindBestBetterStoreCellFor(curJob.targetB.Thing, actor, actor.Map, StoragePriority.Important, Faction.OfPlayer, out foundCell, true);
-                if(!foundCell.IsValid)
-                    StoreUtility.TryFindBestBetterStoreCellFor(curJob.targetB.Thing, actor, actor.Map, StoragePriority.Unstored, Faction.OfPlayer, out foundCell, true);
+                //if(!foundCell.IsValid)
+                //    StoreUtility.TryFindBestBetterStoreCellFor(curJob.targetB.Thing, actor, actor.Map, StoragePriority.Unstored, Faction.OfPlayer, out foundCell, true);
                 //actor.carryTracker.TryStartCarry(TargetB.Thing);
                 if (foundCell.IsValid)
                     curJob.targetC = (LocalTargetInfo)foundCell;

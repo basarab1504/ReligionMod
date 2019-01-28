@@ -11,6 +11,6 @@
     <defName>WorshipKnowlegde</defName>
     <label>Worship</label>
     <priority>50</priority>
-    <helpText>You are able to set a worships. In lectern tab "Worship" you can set days and time of worships. Be careful, if your preacher is not well qualified for this, your religious pawns would get a debuff, and if preacher is qualified, they probably going to be kind of "addicted" to worships. That's means you have to satisfy their need by assign more worship.</helpText>
+    <helpText>You are able to set a worships. In lectern tab "Worship" you can set days and time of worships. \n\nBe careful, if your preacher is not well qualified for this, your religious pawns would get a debuff, and if preacher is qualified, they probably going to be kind of "addicted" to worships. That's means you have to satisfy their need by assign more worship. </helpText>
   </ConceptDef>	
 </Defs>
