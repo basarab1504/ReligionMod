@@ -202,14 +202,13 @@ namespace Religion
 
         public static bool TryWorshipInteraction(Pawn preacher, Pawn recipient, InteractionDef intDef)
         {
-            Pawn_InteractionsTracker tracker = preacher.interactions;
             if (preacher == recipient)
             {
                 Log.Warning(preacher.ToString() + " tried to interact with self, interaction=" + intDef.defName, false);
                 return false;
             }
-            if (!tracker.CanInteractNowWith(recipient))
-                return false;
+            //if (!tracker.CanInteractNowWith(recipient))
+            //    return false;
             List<RulePackDef> extraSentencePacks = new List<RulePackDef>();
             //if (intDef.initiatorThought != null)
             //    Pawn_InteractionsTracker.AddInteractionThought(preacher, recipient, intDef.initiatorThought);

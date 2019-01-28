@@ -83,20 +83,11 @@ namespace Religion
         {
             this.EndOnDespawnedOrNull(TargetIndex.A, JobCondition.Incompletable);
             bool hasBed = base.TargetC.HasThing && base.TargetC.Thing is Building_Bed;
-            Toil watch;
-            if (hasBed)
-            {
-                this.KeepLyingDown(TargetIndex.C);
-                yield return Toils_Bed.ClaimBedIfNonMedical(TargetIndex.C, TargetIndex.None);
-                yield return Toils_Bed.GotoBed(TargetIndex.C);
-                watch = Toils_LayDown.LayDown(TargetIndex.C, true, false, true, true);
-                watch.AddFailCondition(() => !watch.actor.Awake());
-            }
-            else
-            {
-                yield return Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell);
-                watch = new Toil();
-            }
+
+            Toil goToChurch = Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell);
+            yield return goToChurch;
+
+            Toil watch = new Toil();
             watch.AddPreTickAction(() =>
             {
                 this.pawn.rotationTracker.FaceCell(TargetA.Thing.OccupiedRect().ClosestCellTo(this.pawn.Position));
@@ -111,12 +102,17 @@ namespace Religion
             watch.defaultDuration = this.job.def.joyDuration;
             watch.handlingFacing = true;
             yield return watch;
+
             yield return Toils_Jump.JumpIf(watch, () => preacher.CurJob.def == ReligionDefOf.HoldWorship);
+
             this.AddFinishAction(() =>
             {
-                ReligionUtility.TryGainTempleRoomThought(pawn);
-                ReligionUtility.AttendedWorshipThought(pawn, preacher);
-                ReligionUtility.TryAddAddiction(pawn, preacher);
+            if (pawn.Position == TargetC.Cell)
+                {
+                    ReligionUtility.TryGainTempleRoomThought(pawn);
+                    ReligionUtility.AttendedWorshipThought(pawn, preacher);
+                    ReligionUtility.TryAddAddiction(pawn, preacher);
+                }
             });
             yield break;
         }
