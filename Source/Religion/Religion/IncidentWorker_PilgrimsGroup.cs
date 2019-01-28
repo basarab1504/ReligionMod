@@ -84,13 +84,10 @@ namespace Religion
             religionDef = rels.RandomElement();
             Trait religion = new Trait(religionDef);
             Map target = (Map)parms.target;
-            List<Pawn> list = PawnGroupMakerUtility.GeneratePawns(IncidentParmsUtility.GetDefaultPawnGroupMakerParms(this.PawnGroupKindDef, parms, true), false).ToList<Pawn>();
-            foreach(Pawn p in list)
-            {
-                p.story.traits.GainTrait(religion);
-            }
-            foreach (Thing newThing in list)
+            List <Pawn> list = PawnGroupMakerUtility.GeneratePawns(IncidentParmsUtility.GetDefaultPawnGroupMakerParms(this.PawnGroupKindDef, parms, true), false).ToList<Pawn>();
+            foreach (Pawn newThing in list)
             {               
+                newThing.story.traits.GainTrait(religion);
                 GenSpawn.Spawn(newThing, CellFinder.RandomClosewalkCellNear(parms.spawnCenter, target, 5, (Predicate<IntVec3>)null), target, WipeMode.Vanish);
             }            
             return list;

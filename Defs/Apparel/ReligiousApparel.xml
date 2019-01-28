@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ThingDef ParentName="ApparelMakeableBase">
-    <defName>Apparel_CeremonialRobe</defName>
-    <description>A ceremonial robe.</description>
-    <label>ceremonial robe</label>
+    <defName>Apparel_Robe</defName>
+    <description>A robe.</description>
+    <label>robe</label>
     <recipeMaker>
       <researchPrerequisite>ComplexClothing</researchPrerequisite>
     </recipeMaker>
     <graphicData>
-      <texPath>Apparel/CeremonialRobe</texPath>
+      <texPath>Apparel/Robe</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <costStuffCount>45</costStuffCount>
@@ -27,18 +27,18 @@
       <StuffEffectMultiplierInsulation_Heat>0.10</StuffEffectMultiplierInsulation_Heat>
       <EquipDelay>1.5</EquipDelay>
     </statBases>
-		<apparel>
+	<apparel>
       <bodyPartGroups>
         <li>Torso</li>
         <li>Neck</li>
         <li>Shoulders</li>
         <li>Arms</li>
       </bodyPartGroups>
-      <wornGraphicPath>Apparel/CeremonialRobe</wornGraphicPath>
-      <layers>
-        <li>Middle</li>
-        <li>Shell</li>
-      </layers>
+      <wornGraphicPath>Apparel/Robe</wornGraphicPath>
+		<layers>
+			<li>Middle</li>
+			<li>Shell</li>
+		</layers>
       <tags>
         <li>IndustrialBasic</li>
       </tags>
