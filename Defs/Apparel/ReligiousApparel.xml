@@ -8,7 +8,7 @@
       <researchPrerequisite>ComplexClothing</researchPrerequisite>
     </recipeMaker>
     <graphicData>
-      <texPath>Things/Pawn/Humanlike/Apparel/ShirtButton/ShirtButton</texPath>
+      <texPath>Apparel/CeremonialRobe</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <costStuffCount>45</costStuffCount>
@@ -34,9 +34,10 @@
         <li>Shoulders</li>
         <li>Arms</li>
       </bodyPartGroups>
-      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/ShirtButton/ShirtButton</wornGraphicPath>
+      <wornGraphicPath>Apparel/CeremonialRobe</wornGraphicPath>
       <layers>
-        <li>OnSkin</li>
+        <li>Middle</li>
+        <li>Shell</li>
       </layers>
       <tags>
         <li>IndustrialBasic</li>
