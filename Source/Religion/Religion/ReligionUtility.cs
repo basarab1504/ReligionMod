@@ -520,6 +520,19 @@ namespace Religion
         #endregion
 
         #region Misc
+        public static bool CanBeReligious(Pawn pawn, Trait religion)
+        {
+            List<Trait> traitsOfPawn = pawn.story.traits.allTraits;
+            List<TraitDef> conflicts = religion.def.conflictingTraits;
+            if (traitsOfPawn.Any(x => conflicts.Any(y => x.def == y)))
+                return false;
+            //foreach (Trait t in traitsOfPawn)
+            //    foreach (TraitDef td in conflicts)
+            //        if (t.def == td)
+            //            return false;
+            return true;
+        }
+
         private static readonly Color InactiveColor = new Color(0.37f, 0.37f, 0.37f, 0.8f);
 
         static void CheckboxDraw(float x, float y, bool active, bool disabled, float size = 24f, Texture2D texChecked = null, Texture2D texUnchecked = null)

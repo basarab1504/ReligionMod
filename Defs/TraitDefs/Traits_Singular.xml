@@ -9,10 +9,7 @@
         	<description>{PAWN_nameDef} denying any God</description>
       	</li>
     	</degreeDatas>
-    	<conflictingTraits>
-      	 <li>TynanReligion</li>
-         <li>MonothosReligion</li>
-         <li>AegonReligion</li>         
+    	<conflictingTraits>  
     	</conflictingTraits>	
 	</TraitDef>
 
@@ -25,45 +22,55 @@
         	<description>{PAWN_nameDef} believes in Tynan.</description>
       	</li>
     	</degreeDatas>
-    	<conflictingTraits>
-    	 <li>MonothosReligion</li>
-    	 <li>AegonReligion</li>    		
-       <li>Cannibal</li>
+    	<conflictingTraits>   		
+        <li>Cannibal</li>
     	</conflictingTraits>
-    	<foreignReligions>
-    		<li>MonothosReligion</li>
-    	</foreignReligions>
     </Religion.TraitDef_ReligionTrait>
 
-  <Religion.TraitDef_ReligionTrait>
-    	<defName>MonothosReligion</defName>
+    <Religion.TraitDef_ReligionTrait>
+    	<defName>SpaceSpiritsReligion</defName>
 		<commonality>0.3</commonality>
     	<degreeDatas>
       	<li>
-        	<label>Monothos Faith</label>
-        	<description>{PAWN_nameDef} believes in Monothos.</description>
+        	<label>Space Spirits Faith</label>
+        	<description>{PAWN_nameDef} believes in Space Spirits.</description>
       	</li>
     	</degreeDatas>
-    	<conflictingTraits>
-    	 <li>TynanReligion</li>
-    	 <li>AegonReligion</li>    		
-       <li>Cannibal</li>
-    	</conflictingTraits>   	
+    	<isAgressive>true</isAgressive>
+    </Religion.TraitDef_ReligionTrait> 
+
+  <Religion.TraitDef_ReligionTrait>
+    	<defName>SerpentReligion</defName>
+		<commonality>0.3</commonality>
+    	<degreeDatas>
+      	<li>
+        	<label>Serpent Faith</label>
+        	<description>{PAWN_nameDef} believes in Serpent.</description>
+      	</li>
+    	</degreeDatas> 	
   </Religion.TraitDef_ReligionTrait>
 
     <Religion.TraitDef_ReligionTrait>
-    	<defName>AegonReligion</defName>
+    	<defName>MotherReligion</defName>
 		<commonality>0.3</commonality>
     	<degreeDatas>
       	<li>
-        	<label>Aegon Faith</label>
-        	<description>{PAWN_nameDef} believes in Aegon.</description>
+        	<label>Mother Faith</label>
+        	<description>{PAWN_nameDef} believes in Great Mother.</description>
       	</li>
     	</degreeDatas>
     	<conflictingTraits>
-    	 <li>TynanReligion</li>
-    	 <li>MonothosReligion</li>
-       <li>Cannibal</li>
-    	</conflictingTraits>   	
+			<li>Pyromaniac</li>		
+    		<li>Abrasive</li>
+      		<li>Psychopath</li>
+    		<li>Cannibal</li>
+    	</conflictingTraits>  
+    	<requiredWorkTags>
+      		<li>Social</li>
+    	</requiredWorkTags>
+    	<disabledWorkTags>Violent</disabledWorkTags> 
+    	<foreignReligions>
+    		<li>SpaceSpiritsReligion</li>
+    	</foreignReligions>    		
   </Religion.TraitDef_ReligionTrait>
 </Defs>

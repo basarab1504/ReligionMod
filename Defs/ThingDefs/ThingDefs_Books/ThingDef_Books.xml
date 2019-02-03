@@ -34,9 +34,10 @@
   </ThingDef>
 
   <ThingDef ParentName="ReligionBookBase">
-  <defName>BookOfTynanFaith</defName>
-  <label>Book of Tynan Faith</label>
-  <description>Religious book of Tynan Faith</description>
+  <defName>BookOfTynanReligion</defName>
+  <label>Book of Tynan Religion</label>
+  <description>Ancient monoteistic religion's  The God is almighty Tynan, creator of all being in the world. History says, Tynan created all from nothing,
+made energy from himself, made planets from his bones, his breath burned suns, his tears filled up seas and oceans. And from his flesh he made all the creatures alive.</description>
     <graphicData>
       <texPath>Item/Resource/Books/ReligionBook</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -50,9 +51,10 @@
   </ThingDef>
 
   <ThingDef ParentName="ReligionBookBase">
-  <defName>BookOfMonothosFaith</defName>
-  <label>Book of Monothos Faith</label>
-  <description>Religious book of Monothos Faith</description>
+  <defName>BookOfSpaceSpiritsReligion</defName>
+  <label>Book of Space Spirits Religion</label>
+  <description>Spitits of Space is very modern religion, it takes the idea about great races which gave the beginning to all the other.
+It bases at semi-scientific books and recearches. it's quiet agressive religion which doesn't accept other ones.</description>
     <graphicData>
       <texPath>Item/Resource/Books/ReligionBook</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -60,24 +62,40 @@
     </graphicData>    
     <comps>
     	<li Class="Religion.CompProperties_CompReligionBook">
-    		<religionTrait>MonothosReligion</religionTrait>
+    		<religionTrait>SpaceSpiritsReligion</religionTrait>
     	</li>
     </comps>
   </ThingDef>
   
   <ThingDef ParentName="ReligionBookBase">
-  <defName>BookOfAegonFaith</defName>
-  <label>Book of Aegon Faith</label>
-  <description>Religious book of Aegon Faith</description>
+  <defName>BookOfSerpentReligion</defName>
+  <label>Book of Serpent Religion</label>
+  <description>Religion was organized around ancient The Serpent-eater's cult. The main idea - cyclicality of life. Followers of this religion believe in reincarnation. The Serpent eats worlds that means he takes the old world and gave it's space to new world as the legend says.</description>
     <graphicData>
       <texPath>Item/Resource/Books/ReligionBook</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
     </graphicData>    
     <comps>
-    	<li Class="Religion.CompProperties_CompReligionBook">
-    		<religionTrait>AegonReligion</religionTrait>
-    	</li>
+      <li Class="Religion.CompProperties_CompReligionBook">
+        <religionTrait>SerpentReligion</religionTrait>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="ReligionBookBase">
+  <defName>BookOfMotherReligion</defName>
+  <label>Book of Mother Religion</label>
+  <description>Peaceable religion tells about world love, help and praising the Sun. Followers of this religion are kind and they bring the wisdom of the ages about mercy and repentance like The Great Mother who helped others to know this world.</description>
+    <graphicData>
+      <texPath>Item/Resource/Books/ReligionBook</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+    </graphicData>    
+    <comps>
+      <li Class="Religion.CompProperties_CompReligionBook">
+        <religionTrait>MotherReligion</religionTrait>
+      </li>
     </comps>
   </ThingDef>
 </Defs>

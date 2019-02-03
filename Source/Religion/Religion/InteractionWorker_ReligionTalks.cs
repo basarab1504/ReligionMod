@@ -100,7 +100,9 @@ namespace Religion
                 return 0.0f;
             if (recipient.story.traits.allTraits.Any(x => x.def is TraitDef_ReligionTrait))
                 return 0.0f;
-
+            Trait t = initiator.story.traits.allTraits.Find(x => x.def is TraitDef_ReligionTrait);
+            if (!ReligionUtility.CanBeReligious(recipient, t))
+                return 0.0f;
                 float num;
                 num = 1f * OpinionFactorCurve.Evaluate((float)initiator.relations.OpinionOf(recipient))/* * CompatibilityFactorCurve.Evaluate(initiator.relations.CompatibilityWith(recipient))*/;
                 float curLevel = recipient.needs.mood.CurLevel;

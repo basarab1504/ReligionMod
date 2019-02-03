@@ -22,6 +22,8 @@ namespace Religion
             if (!other.story.traits.allTraits.Any(x => x.def is TraitDef_ReligionTrait))
                 return (ThoughtState)false;
             TraitDef_ReligionTrait pawnRel = p.story.traits.allTraits.Find(x => x.def is TraitDef_ReligionTrait).def as TraitDef_ReligionTrait;
+            if(pawnRel.isAgressive)
+                return (ThoughtState)true;
             TraitDef otherRel = other.story.traits.allTraits.Find(x => x.def is TraitDef_ReligionTrait).def;
             if (pawnRel.foreignReligions.Contains(otherRel))
                 return (ThoughtState)true;

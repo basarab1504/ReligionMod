@@ -9,6 +9,8 @@ namespace Religion
 {
     class IncidentWorker_Providence : IncidentWorker
     {
+        Trait Religion = new Trait(DefDatabase<TraitDef>.AllDefsListForReading.FindAll(x => x is TraitDef_ReligionTrait).RandomElement());
+
         public IEnumerable<Pawn> PotentialVictimCandidates(IIncidentTarget target)
         {
             Map map = target as Map;
@@ -21,6 +23,8 @@ namespace Religion
                     return x.IsPrisonerOfColony;
                 if (x.story.traits.allTraits.Any(a => a.def is TraitDef_ReligionTrait || a.def == ReligionDefOf.Atheist))
                     return false;
+                if (!ReligionUtility.CanBeReligious(x, Religion))
+                    return false;
                 return x.RaceProps.IsFlesh;
             }));
             return ((Caravan)target).PawnsListForReading.Where<Pawn>((Func<Pawn, bool>)(x =>
@@ -31,13 +35,10 @@ namespace Religion
                     return x.IsPrisonerOfColony;
                 if (x.story.traits.allTraits.Any(a => a.def is TraitDef_ReligionTrait || a.def == ReligionDefOf.Atheist))
                     return false;
+                if (!ReligionUtility.CanBeReligious(x, Religion))
+                    return false;
                 return x.RaceProps.IsFlesh;
             }));
-        }
-
-        Trait Religion()
-        {
-            return new Trait(DefDatabase<TraitDef>.AllDefsListForReading.FindAll(x => x is TraitDef_ReligionTrait).RandomElement());
         }
 
         protected override bool TryExecuteWorker(IncidentParms parms)
@@ -45,9 +46,8 @@ namespace Religion
             Pawn pawn = PotentialVictimCandidates(parms.target).RandomElement();
             if (pawn == null)
                 return false;
-            Trait t = Religion();
-            pawn.story.traits.GainTrait(t);
-            Find.LetterStack.ReceiveLetter(this.def.letterLabel, pawn.LabelCap + " " + def.letterText + " " + t.LabelCap, this.def.letterDef, (LookTargets)pawn, (Faction)null, (string)null);
+            pawn.story.traits.GainTrait(Religion);
+            Find.LetterStack.ReceiveLetter(this.def.letterLabel, pawn.LabelCap + " " + def.letterText + " " + Religion.LabelCap, this.def.letterDef, (LookTargets)pawn, (Faction)null, (string)null);
             return true;
         }
     }

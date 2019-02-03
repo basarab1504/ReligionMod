@@ -27,6 +27,9 @@
     <!--<inspectorTabs>
       <li>ITab_Art</li>
     </inspectorTabs>-->	
+    <graphicData>
+      <graphicClass>Graphic_Random</graphicClass>    
+    </graphicData>  
     <comps>
       <li>
         <compClass>CompQuality</compClass>
@@ -59,13 +62,12 @@
   </ThingDef> 
 
   <ThingDef ParentName="ReligionRelic">
-  <defName>RelicOfTynan</defName>
-  <label>Relic of Tynan</label>
-  <description>Relic of the Tynan Faith</description>
+  <defName>RelicOfTynanReligion</defName>
+  <label>Relic of Tynan Religion</label>
+  <description>Relic of the Tynan Religion</description>
     <graphicData>
-      <texPath>Item/Resource/Relics/ReligionRelic</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+      <texPath>Item/Resource/Relics</texPath>
+      <graphicClass>Graphic_Random</graphicClass>      
     </graphicData>    
     <comps>
     	<li Class="Religion.CompProperties_CompRelic">
@@ -80,38 +82,56 @@
   </ThingDef>
 
   <ThingDef ParentName="ReligionRelic">
-  <defName>RelicOfMonothos</defName>
-  <label>Relic of Monothos</label>
-  <description>Relic of the Monothos Faith</description>
+  <defName>RelicOfSpaceSpiritsReligion</defName>
+  <label>Relic of Space Spirits Religion</label>
+  <description>Relic of the Space Spirits Religion</description>
     <graphicData>
-      <texPath>Item/Resource/Relics/ReligionRelic</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+      <texPath>Item/Resource/Relics</texPath>
+      <graphicClass>Graphic_Random</graphicClass>  
     </graphicData>    
     <comps>
       <li Class="Religion.CompProperties_CompRelic">
-          <religionTrait>MonothosReligion</religionTrait>
+          <religionTrait>SpaceSpiritsReligion</religionTrait>
       </li>
     </comps>
-    <costStuffCount>200</costStuffCount> 
+    <costStuffCount>200</costStuffCount>   
     <stuffCategories>
       <li>Metallic</li>
       <li>Stony</li>
-    </stuffCategories>  
+    </stuffCategories>
   </ThingDef>
 
   <ThingDef ParentName="ReligionRelic">
-  <defName>RelicOfAegon</defName>
-  <label>Relic of Aegon</label>
-  <description>Relic of the Aegon Faith</description>
+  <defName>SerpentReligion</defName>
+  <label>Relic of Serpent Religion</label>
+  <description>Relic of the Serpent Religion</description>
     <graphicData>
-      <texPath>Item/Resource/Relics/ReligionRelic</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+      <texPath>Item/Resource/Relics</texPath>
+      <graphicClass>Graphic_Random</graphicClass>  
     </graphicData>    
     <comps>
       <li Class="Religion.CompProperties_CompRelic">
-          <religionTrait>AegonReligion</religionTrait>
+          <religionTrait>SerpentReligion</religionTrait>
+      </li>
+    </comps>
+    <costStuffCount>200</costStuffCount>   
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Stony</li>
+    </stuffCategories>
+  </ThingDef>
+
+  <ThingDef ParentName="ReligionRelic">
+  <defName>MotherReligion</defName>
+  <label>Relic of Mother Religion</label>
+  <description>Relic of the Mother Religion</description>
+    <graphicData>
+      <texPath>Item/Resource/Relics</texPath>
+      <graphicClass>Graphic_Random</graphicClass>  
+    </graphicData>    
+    <comps>
+      <li Class="Religion.CompProperties_CompRelic">
+          <religionTrait>MotherReligion</religionTrait>
       </li>
     </comps>
     <costStuffCount>200</costStuffCount>   
