@@ -2,7 +2,7 @@
 <ModMetaData>
   <name>Religion</name>
   <author>Basarab</author>
-  <url></url>
-  <targetVersion>1.0.2059</targetVersion>
+  <url>https://ludeon.com/forums/index.php?topic=47948.0</url>
+  <supportedVersions><li>1.0</li></supportedVersions>
   <description>Faith for colonists</description>
 </ModMetaData>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ResearchProjectDef>
+    <defName>ReligionStuff</defName>
+    <label>meble kościelne</label>
+    <description>Zbuduj ołtarz i mównicę, aby stworzyć kompletny kościół.</description>
+    <tab>ReligionTab</tab>
+    <baseCost>800</baseCost>
+    <techLevel>Neolithic</techLevel>
+    <researchViewX>0</researchViewX>
+    <researchViewY>1.5</researchViewY>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>ReligionRelics</defName>
+    <label>robienie relikwii</label>
+    <description>Wykonaj relikwię religii.</description>
+    <tab>ReligionTab</tab>
+    <baseCost>800</baseCost>
+    <techLevel>Neolithic</techLevel>
+    <prerequisites>
+      <li>ReligionStuff</li>
+    </prerequisites>
+  </ResearchProjectDef>  
+</Defs>
+
