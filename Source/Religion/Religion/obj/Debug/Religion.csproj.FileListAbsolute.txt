@@ -18,3 +18,9 @@ C:\Users\VLAD-02\Desktop\RimWorld2059Win64\Mods\Religion\Source\Religion\Religio
 C:\Users\VLAD-02\Desktop\RimWorld2059Win64\Mods\Religion\Source\Religion\Religion\obj\Debug\Religion.pdb
 C:\Users\VLAD-02\Desktop\RimWorld2059Win64\Mods\Religion\Assemblies\Religion.dll
 C:\Users\VLAD-02\Desktop\RimWorld2059Win64\Mods\Religion\Assemblies\Religion.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Religion\Source\Religion\Religion\obj\Debug\Religion.csprojResolveAssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Religion\Source\Religion\Religion\obj\Debug\Religion.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Religion\Source\Religion\Religion\obj\Debug\Religion.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Religion\Source\Religion\Religion\obj\Debug\Religion.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Religion\Assemblies\Religion.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Religion\Assemblies\Religion.pdb

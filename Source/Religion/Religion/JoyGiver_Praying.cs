@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -15,16 +14,16 @@ namespace Religion
         protected override bool CanInteractWith(Pawn pawn, Thing t, bool inBed)
         {
             Building_Altar altar = t as Building_Altar;
-            if (!(t is Building_Altar))
+            //if (!(t is Building_Altar))
+            //    return false;
+            if (!base.CanInteractWith(pawn, t, inBed))
                 return false;
             if (altar.religion == null || altar.relic == null || altar.religion.Count == 0)
                 return false;
             if (pawn.story.traits.HasTrait(altar.religion[0]))
                 return true;
-            if (!base.CanInteractWith(pawn, t, inBed))
-                return false;
-            if (inBed == false)
-                return false;
+            //if (inBed == false)
+            //    return false;
             return false;
         }
 
