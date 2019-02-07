@@ -12,7 +12,7 @@
     	<conflictingTraits>
     	<li>Antitheist</li>  
     	</conflictingTraits>	
-	</Religion.TraitDef_NonReligion>>
+	</Religion.TraitDef_NonReligion>
 
   <Religion.TraitDef_NonReligion>
       <defName>Antitheist</defName>
@@ -26,7 +26,7 @@
       <conflictingTraits>  
       <li>Atheist</li>  	
       </conflictingTraits>  
-  </Religion.TraitDef_NonReligion>>  
+  </Religion.TraitDef_NonReligion>  
 
   <Religion.TraitDef_ReligionTrait>
     	<defName>TynanReligion</defName>

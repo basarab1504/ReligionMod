@@ -34,7 +34,7 @@
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
-        <label>antiatheist</label>
+        <label>antitheist</label>
         <baseOpinionOffset>-15</baseOpinionOffset>
       </li>
     </stages>
