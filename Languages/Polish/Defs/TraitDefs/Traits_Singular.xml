@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<TraitDef>
+    	<defName>Atheist</defName>
+		<commonality>0.2</commonality>
+    	<degreeDatas>
+      	<li>
+        	<label>Ateista</label>
+        	<description>{PAWN_nameDef} zaprzecza istnienie jakiegokolwiek Boga.</description>
+      	</li>
+    	</degreeDatas>
+    	<conflictingTraits>  
+    	</conflictingTraits>	
+	</TraitDef>
+
+  <Religion.TraitDef_ReligionTrait>
+    	<defName>TynanReligion</defName>
+		<commonality>0.3</commonality>
+    	<degreeDatas>
+      	<li>
+        	<label>Wyznawca Tynana</label>
+        	<description>{PAWN_nameDef} wierzy w Tynana.</description>
+      	</li>
+    	</degreeDatas>
+    	<conflictingTraits>   		
+        <li>Cannibal</li>
+    	</conflictingTraits>
+    </Religion.TraitDef_ReligionTrait>
+
+    <Religion.TraitDef_ReligionTrait>
+    	<defName>SpaceSpiritsReligion</defName>
+		<commonality>0.3</commonality>
+    	<degreeDatas>
+      	<li>
+        	<label>Wyznawca Duchów Przestrzeni</label>
+        	<description>{PAWN_nameDef} wierzy w Duchy Przestrzeni.</description>
+      	</li>
+    	</degreeDatas>
+    	<isAgressive>true</isAgressive>
+    </Religion.TraitDef_ReligionTrait> 
+
+  <Religion.TraitDef_ReligionTrait>
+    	<defName>SerpentReligion</defName>
+		<commonality>0.3</commonality>
+    	<degreeDatas>
+      	<li>
+        	<label>Wyznawca Węża</label>
+        	<description>{PAWN_nameDef} wierzy w Węża.</description>
+      	</li>
+    	</degreeDatas> 	
+  </Religion.TraitDef_ReligionTrait>
+
+    <Religion.TraitDef_ReligionTrait>
+    	<defName>MotherReligion</defName>
+		<commonality>0.3</commonality>
+    	<degreeDatas>
+      	<li>
+        	<label>Wyznawca Matki</label>
+        	<description>{PAWN_nameDef} wierzy w Dobrą Matkę.</description>
+      	</li>
+    	</degreeDatas>
+    	<conflictingTraits>
+			<li>Pyromaniac</li>		
+    		<li>Abrasive</li>
+      		<li>Psychopath</li>
+    		<li>Cannibal</li>
+    	</conflictingTraits>  
+    	<requiredWorkTags>
+      		<li>Social</li>
+    	</requiredWorkTags>
+    	<disabledWorkTags>Violent</disabledWorkTags> 
+    	<foreignReligions>
+    		<li>SpaceSpiritsReligion</li>
+    	</foreignReligions>    		
+  </Religion.TraitDef_ReligionTrait>
+</Defs>

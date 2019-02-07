@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+<AssignReligion>Przypisuj religię</AssignReligion>
+<OneAltarInRoom>Tylko jeden ołtarz w pokoju</OneAltarInRoom>
+<IndoorOnly>Tylko wewnątrz</IndoorOnly>
+<OneLecternInRoom>Tylko jedna mównica w pokoju</OneLecternInRoom>
+<MustPlaceNextToBuildedAltar>Musi być umieszczony przy ołtarzu</MustPlaceNextToBuildedAltar>
+<ReligionMustBeAssignedThroughAltar>Ołtarz musi być zbudowany dla konkretnej religii</ReligionMustBeAssignedThroughAltar>
+<TimeOfWorship>Czas nabożeństwa</TimeOfWorship>
+<SetOwner>Wybierz właściciela</SetOwner>
+<TakeABook>Weź książkę</TakeABook>
+<ErrorLectern>Nie umieszczono żadnej mównicy</ErrorLectern>
+<SelectAReligion>Brak przypisanej religii</SelectAReligion>
+<SelectAPreacher>Brak przypisanego kaznodziei</SelectAPreacher>
+<NoRelicOnAltar>Brak relikwii na ołtarzu</NoRelicOnAltar>
+<CantGiveWorshipJobToPreacher>Nie możesz wielbić kaznodziei</CantGiveWorshipJobToPreacher>
+<PreacherIsDead>Kaznodzieja nie żyje</PreacherIsDead>
+<NoBookAvaliable>Brak dostępnej książki</NoBookAvaliable>
+<Worship>Kult</Worship>
+<WorshipDesc>Oddanie czci</WorshipDesc>
+<TabWorship>Kult</TabWorship>
+<DayOf>Dzień</DayOf>
+<SinglePilgrimVisitorArrivesTraderInfo>{PAWN_pronoun} wydaje się mieć kilka przedmiotów i książek religijnych do handlu.</SinglePilgrimVisitorArrivesTraderInfo>
+<GroupPilgrimVisitorsArriveTraderInfo>Wydają się mieć kilka przedmiotów i książek religijnych do handlu.</GroupPilgrimVisitorsArriveTraderInfo>
+<WaitingForCongregation>Oczekiwanie na modlitwę.</WaitingForCongregation>
+<ReadAPrayer>Przeczytaj modlitwę.</ReadAPrayer>
+<NowBelieveIn>wierzy w</NowBelieveIn>
+<IsNowReligious>Został religijny</IsNowReligious>
+<LowSkillPreacher>Kaznodzieja o niskich umiejętnościach</LowSkillPreacher>
+<NoAvaliableCandidates>Brak dostępnych kandydatów na stanowisko kaznodziei</NoAvaliableCandidates>
+<MinSkillPreacher>(minimalne umiejęności: {0})</MinSkillPreacher>
+<AssignReligionDesc>Przydziel region do ołtarza. Przypisana religia decyduje, jaka relikwia powinna zostać umieszczona na ołtarzu.</AssignReligionDesc>
+</LanguageData>
