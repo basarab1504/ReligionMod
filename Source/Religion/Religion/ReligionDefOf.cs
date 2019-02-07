@@ -14,6 +14,7 @@ namespace Religion
         public static NeedDef Religion_Need;
         public static HediffDef ReligionAddiction;
         public static TraitDef Atheist;
+        public static TraitDef Antitheist;
         public static TraitDef_ReligionTrait TynanReligion;
         public static JobDef HoldWorship;
         public static JobDef AttendWorship;

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ThoughtDef>
-    <defName>AtheistThoights</defName>
+    <defName>AntitheistThoughts</defName>
     <thoughtClass>Thought_SituationalSocial</thoughtClass>
-    <workerClass>Religion.ThoughtWorker_AtheistThoight</workerClass>
+    <workerClass>Religion.ThoughtWorker_AntitheistThought</workerClass>
     <validWhileDespawned>true</validWhileDespawned>
     <requiredTraits>
-      <li>Atheist</li>
+      <li>Antitheist</li>
     </requiredTraits>    
     <stages>
       <li>

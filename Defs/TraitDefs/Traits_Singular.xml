@@ -9,9 +9,24 @@
         	<description>{PAWN_nameDef} denying any God</description>
       	</li>
     	</degreeDatas>
-    	<conflictingTraits>  
+    	<conflictingTraits>
+    	<li>Antitheist</li>  
     	</conflictingTraits>	
 	</TraitDef>
+
+  <TraitDef>
+      <defName>Antitheist</defName>
+    <commonality>0.2</commonality>
+      <degreeDatas>
+        <li>
+          <label>Antitheist</label>
+          <description>{PAWN_nameDef} denying any God extremely</description>
+        </li>
+      </degreeDatas>
+      <conflictingTraits>  
+      <li>Atheist</li>  	
+      </conflictingTraits>  
+  </TraitDef>  
 
   <Religion.TraitDef_ReligionTrait>
     	<defName>TynanReligion</defName>

@@ -94,7 +94,7 @@ namespace Religion
 
         public float ChanceToConvert(Pawn initiator, Pawn recipient)
         {
-            if (recipient.story.traits.HasTrait(ReligionDefOf.Atheist))
+            if (recipient.story.traits.allTraits.Any(x => x.def == ReligionDefOf.Atheist || x.def == ReligionDefOf.Antitheist))
                 return 0.0f;
             if (!initiator.story.traits.allTraits.Any(x => x.def is TraitDef_ReligionTrait))
                 return 0.0f;
@@ -107,7 +107,7 @@ namespace Religion
                 num = 1f * OpinionFactorCurve.Evaluate((float)initiator.relations.OpinionOf(recipient))/* * CompatibilityFactorCurve.Evaluate(initiator.relations.CompatibilityWith(recipient))*/;
                 float curLevel = recipient.needs.mood.CurLevel;
                 num *= MoodFactorCurve.Evaluate(curLevel);
-                return 0.007f * num;
+                return 0.003f * num;
         }
 
         public override void Interacted(Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks, out string letterText, out string letterLabel, out LetterDef letterDef)

@@ -3,7 +3,7 @@
   <JobDef>
     <defName>PrayToGod</defName>
     <driverClass>JobDriver_WatchBuilding</driverClass>
-    <reportString>praying to his God.</reportString>
+    <reportString>praying to his god.</reportString>
     <joyDuration>4000</joyDuration>
     <joyMaxParticipants>8</joyMaxParticipants>
     <joyKind>PrayingKind</joyKind>

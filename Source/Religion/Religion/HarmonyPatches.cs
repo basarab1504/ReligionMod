@@ -22,7 +22,7 @@ namespace Religion
         {
             private static bool Prefix(TraitDef __instance, Trait other, ref bool __result)
             {
-                if (__instance is TraitDef_ReligionTrait && other.def is TraitDef_ReligionTrait)
+                if (__instance is TraitDef_ReligionTrait && (other.def is TraitDef_ReligionTrait || other.def == ReligionDefOf.Atheist || other.def == ReligionDefOf.Antitheist))
                 {
                     __result = true;
                     return false;
