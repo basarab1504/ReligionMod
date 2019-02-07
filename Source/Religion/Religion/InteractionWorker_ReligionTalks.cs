@@ -94,7 +94,7 @@ namespace Religion
 
         public float ChanceToConvert(Pawn initiator, Pawn recipient)
         {
-            if (recipient.story.traits.allTraits.Any(x => x.def == ReligionDefOf.Atheist || x.def == ReligionDefOf.Antitheist))
+            if (recipient.story.traits.allTraits.Any(x => x.def is TraitDef_NonReligion))
                 return 0.0f;
             if (!initiator.story.traits.allTraits.Any(x => x.def is TraitDef_ReligionTrait))
                 return 0.0f;

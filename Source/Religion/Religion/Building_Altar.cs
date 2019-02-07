@@ -134,18 +134,7 @@ namespace Religion
                     },
                     hotKey = KeyBindingDefOf.Misc4
                 };
-                var command_Action = new Command_Action
-                {
-                    action = delegate
-                    {
-                        this.DrawAt(new Vector3(this.DrawPos.x + 3.5f, this.DrawPos.y + 3.5f, this.DrawPos.z));
-                    },
-                    defaultLabel = "Draw".Translate(),
-                    defaultDesc = "WorshipDesc".Translate(),
-                    hotKey = KeyBindingDefOf.Misc2,
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
-                };
-                yield return command_Action;
+
             }
         }
 

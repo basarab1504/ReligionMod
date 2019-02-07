@@ -88,6 +88,7 @@
     <Compile Include="ThoughtWorker_NoPreacher.cs" />
     <Compile Include="ThoughtWorker_ReligiousHateAnti.cs" />
     <Compile Include="ThoughtWorker_SameReligion.cs" />
+    <Compile Include="TraitDef_NonReligion.cs" />
     <Compile Include="TraitDef_ReligionTrait.cs" />
     <Compile Include="WorkGiver_Lecture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

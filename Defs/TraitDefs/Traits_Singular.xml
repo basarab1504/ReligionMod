@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<TraitDef>
+	<Religion.TraitDef_NonReligion>
     	<defName>Atheist</defName>
 		<commonality>0.2</commonality>
     	<degreeDatas>
@@ -12,9 +12,9 @@
     	<conflictingTraits>
     	<li>Antitheist</li>  
     	</conflictingTraits>	
-	</TraitDef>
+	</Religion.TraitDef_NonReligion>>
 
-  <TraitDef>
+  <Religion.TraitDef_NonReligion>
       <defName>Antitheist</defName>
     <commonality>0.2</commonality>
       <degreeDatas>
@@ -26,7 +26,7 @@
       <conflictingTraits>  
       <li>Atheist</li>  	
       </conflictingTraits>  
-  </TraitDef>  
+  </Religion.TraitDef_NonReligion>>  
 
   <Religion.TraitDef_ReligionTrait>
     	<defName>TynanReligion</defName>

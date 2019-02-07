@@ -21,7 +21,7 @@ namespace Religion
                     return false;
                 if (!x.IsFreeColonist)
                     return x.IsPrisonerOfColony;
-                if (x.story.traits.allTraits.Any(a => a.def is TraitDef_ReligionTrait || a.def == ReligionDefOf.Atheist || a.def == ReligionDefOf.Antitheist))
+                if (x.story.traits.allTraits.Any(a => a.def is TraitDef_ReligionTrait || a.def is TraitDef_NonReligion))
                     return false;
                 if (!ReligionUtility.CanBeReligious(x, Religion))
                     return false;
@@ -33,7 +33,7 @@ namespace Religion
                     return false;
                 if (!x.IsFreeColonist)
                     return x.IsPrisonerOfColony;
-                if (x.story.traits.allTraits.Any(a => a.def is TraitDef_ReligionTrait || a.def == ReligionDefOf.Atheist || a.def == ReligionDefOf.Antitheist))
+                if (x.story.traits.allTraits.Any(a => a.def is TraitDef_ReligionTrait || a.def is TraitDef_NonReligion))
                     return false;
                 if (!ReligionUtility.CanBeReligious(x, Religion))
                     return false;
