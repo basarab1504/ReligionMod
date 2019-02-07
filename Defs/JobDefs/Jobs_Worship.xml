@@ -4,6 +4,7 @@
         <defName>HoldWorship</defName>
         <driverClass>Religion.JobDriver_HoldWorship</driverClass>
         <reportString>holding a worship.</reportString>
+    	<joyMaxParticipants>50</joyMaxParticipants>
         <joyKind>PrayingKind</joyKind>
     </JobDef>
 
@@ -11,6 +12,7 @@
         <defName>AttendWorship</defName>
         <driverClass>Religion.JobDriver_AttendWorship</driverClass>
         <reportString>attending a worship.</reportString>
+        <joyMaxParticipants>50</joyMaxParticipants>
         <joyKind>PrayingKind</joyKind>
     </JobDef>
 </Defs>
