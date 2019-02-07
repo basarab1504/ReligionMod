@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <ReligionKnowlegde.label>宗教</ReligionKnowlegde.label>
+  <ReligionKnowlegde.helpText>宗教帮助人们获得心灵平静。你必须满足他们虔诚的需要。\ n\n如果你的角色是宗教性的，他可能会因为没有地方祈祷而心烦意乱。\ n\n你可以从建造教堂开始，这是给宗教人物开展活动的必要条件。这意味着，你必须建造一个有祭坛的房间。</ReligionKnowlegde.helpText>
+  <WorshipKnowlegde.label>礼拜</WorshipKnowlegde.label>
+  <WorshipKnowlegde.helpText>你可以做礼拜。在讲台的“礼拜”选项卡中，您可以设置礼拜的日期和时间。\ n\n小心，如果你的传教士不具备这方面的能力资格，你的宗教仪式会漏洞百出，如果传教士具备这方面的能力资格，他们可能会“上瘾”地去崇拜。这意味着你必须通过分配更多的礼拜时间来满足他们的需要。</WorshipKnowlegde.helpText>
+</LanguageData>

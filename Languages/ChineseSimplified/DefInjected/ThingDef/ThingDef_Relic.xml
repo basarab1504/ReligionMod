@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <RelicOfTynanReligion.label>泰南神教遗物</RelicOfTynanReligion.label>
+  <RelicOfTynanReligion.description>泰南神教的遗物</RelicOfTynanReligion.description>
+  <RelicOfSpaceSpiritsReligion.label>太空神教遗物</RelicOfSpaceSpiritsReligion.label>
+  <RelicOfSpaceSpiritsReligion.description>太空神教的遗物</RelicOfSpaceSpiritsReligion.description>
+  <SerpentReligion.label>蛇神教遗物</SerpentReligion.label>
+  <SerpentReligion.description>蛇神教的遗物</SerpentReligion.description>
+  <MotherReligion.label>母神教遗物</MotherReligion.label>
+  <MotherReligion.description>母神教的遗物</MotherReligion.description>
+</LanguageData>

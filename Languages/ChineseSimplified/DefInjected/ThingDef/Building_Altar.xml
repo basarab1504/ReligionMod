@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Altar.label>祭坛</Altar.label>
+  <Altar.description>使教堂完整的遗物桌。</Altar.description>
+  <Altar_Blueprint.label>祭坛（蓝图）</Altar_Blueprint.label>
+  <Altar_Frame.label>祭坛（建造中）</Altar_Frame.label>
+  <Altar_Frame.description>使教堂完整的遗物桌。</Altar_Frame.description>
+  <LinkableBench.label>联接长凳</LinkableBench.label>
+  <LinkableBench.description>一种可连接的长凳，供礼拜者坐着举行仪式。</LinkableBench.description>
+  <LinkableBench_Blueprint.label>联接长凳（蓝图）</LinkableBench_Blueprint.label>
+  <LinkableBench_Frame.label>联接长凳（建造中）</LinkableBench_Frame.label>
+  <LinkableBench_Frame.description>一种可连接的长凳，供礼拜者坐着举行仪式。</LinkableBench_Frame.description>
+  <Candelabra.label>多臂烛台</Candelabra.label>
+  <Candelabra.description>多臂烛台。可以用木头加油。产生少量热量。</Candelabra.description>
+  <Candelabra_Blueprint.label>多臂烛台（蓝图）</Candelabra_Blueprint.label>
+  <Candelabra_Frame.label>多臂烛台（建造中）</Candelabra_Frame.label>
+  <Candelabra_Frame.description>多臂烛台。可以用木头加油。产生少量热量。</Candelabra_Frame.description>
+</LanguageData>

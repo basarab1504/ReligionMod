@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Wander_Sad_Religion.label>悲伤徘徊中</Wander_Sad_Religion.label>
+  <Wander_Sad_Religion.beginLetter>{0}已经崩溃，在悲伤和对新的更好的生活的憧憬中徘徊。</Wander_Sad_Religion.beginLetter>
+  <Wander_Sad_Religion.beginLetterLabel>悲伤徘徊</Wander_Sad_Religion.beginLetterLabel>
+  <Wander_Sad_Religion.recoveryMessage>{0}不再在悲伤中徘徊了。</Wander_Sad_Religion.recoveryMessage>
+  <Wander_Sad_Religion.baseInspectLine>精神状态：悲伤徘徊和祈求上帝</Wander_Sad_Religion.baseInspectLine>
+</LanguageData>

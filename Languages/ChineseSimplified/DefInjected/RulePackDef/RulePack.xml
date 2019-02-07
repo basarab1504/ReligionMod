@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <ArtDescription_Relic.rulePack.rulesStrings.0>描述-&gt;这个[sculpture] [depicts] [image]。[desc_sentence_group]</ArtDescription_Relic.rulePack.rulesStrings.0>
+  <ArtDescription_Relic.rulePack.rulesStrings.1>描述-&gt;这个[sculpture]带有[image]的[depiction]。[desc_sentence_group]</ArtDescription_Relic.rulePack.rulesStrings.1>
+  <ArtDescription_Relic.rulePack.rulesStrings.2>这个[雕塑]的物理描述是[图像]的[描述]。[描述句子组]</ArtDescription_Relic.rulePack.rulesStrings.2>
+  <ArtDescription_Relic.rulePack.rulesStrings.3>雕塑-&gt;雕塑</ArtDescription_Relic.rulePack.rulesStrings.3>
+  <ArtDescription_Relic.rulePack.rulesStrings.4>雕塑-&gt;作品</ArtDescription_Relic.rulePack.rulesStrings.4>
+  <ArtDescription_Relic.rulePack.rulesStrings.5>雕塑-&gt;件</ArtDescription_Relic.rulePack.rulesStrings.5>
+  <ArtDescription_Relic.rulePack.rulesStrings.6>雕塑-&gt;雕刻</ArtDescription_Relic.rulePack.rulesStrings.6>
+</LanguageData>

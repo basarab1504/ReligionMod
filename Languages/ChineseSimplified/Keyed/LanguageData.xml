@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AssignReligion>分配宗教</AssignReligion>
+  <OneAltarInRoom>房间里只能有一个祭坛</OneAltarInRoom>
+  <IndoorOnly>室内唯一</IndoorOnly>
+  <OneLecternInRoom>房间里只能有一个讲台</OneLecternInRoom>
+  <MustPlaceNextToBuildedAltar>必须放在祭坛旁边</MustPlaceNextToBuildedAltar>
+  <ReligionMustBeAssignedThroughAltar>祭坛必须用指定的宗教遗物</ReligionMustBeAssignedThroughAltar>
+  <TimeOfWorship>礼拜的时间</TimeOfWorship>
+  <SetOwner>设定所有者</SetOwner>
+  <TakeABook>拿一本书</TakeABook>
+  <ErrorLectern>未放置讲台</ErrorLectern>
+  <SelectAReligion>没有指定的宗教</SelectAReligion>
+  <SelectAPreacher>没有指定的传教士</SelectAPreacher>
+  <NoRelicOnAltar>祭坛上没有圣物</NoRelicOnAltar>
+  <CantGiveWorshipJobToPreacher>不能把礼拜的工作交给传教士</CantGiveWorshipJobToPreacher>
+  <PreacherIsDead>牧师死了</PreacherIsDead>
+  <NoBookAvaliable>无可用书籍</NoBookAvaliable>
+  <Worship>崇拜</Worship>
+  <WorshipDesc>崇拜仪式</WorshipDesc>
+  <TabWorship>崇拜</TabWorship>
+  <DayOf>每天</DayOf>
+  <SinglePilgrimVisitorArrivesTraderInfo>{PAWN_pronoun}似乎有一些物品和宗教书籍要交易。</SinglePilgrimVisitorArrivesTraderInfo>
+  <GroupPilgrimVisitorsArriveTraderInfo>他们似乎有一些物品和宗教书籍可以交易。</GroupPilgrimVisitorsArriveTraderInfo>
+  <WaitingForCongregation>等待集会。</WaitingForCongregation>
+  <ReadAPrayer>读祈祷书。</ReadAPrayer>
+  <NowBelieveIn>信奉</NowBelieveIn>
+  <IsNowReligious>变得虔诚</IsNowReligious>
+  <LowSkillPreacher>低技能的传教士</LowSkillPreacher>
+  <NoAvaliableCandidates>没有合适的牧师候选人</NoAvaliableCandidates>
+  <MinSkillPreacher>（最低技能：{0}）</MinSkillPreacher>
+  <AssignReligionDesc>为祭坛指定宗教信仰。指定的宗教规定应该把什么圣物放在祭坛上。</AssignReligionDesc>
+</LanguageData>

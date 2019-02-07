@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <HeldWorship.stages.0.label>举行礼拜</HeldWorship.stages.0.label>
+  <HeldWorship.stages.0.description>我在礼拜后感到鼓舞。</HeldWorship.stages.0.description>
+  <AttendedWorship.stages.0.label>可憎的礼拜</AttendedWorship.stages.0.label>
+  <AttendedWorship.stages.0.description>我花了一些时间在可怕的礼拜上，真是糟糕。</AttendedWorship.stages.0.description>
+  <AttendedWorship.stages.1.label>平庸的礼拜</AttendedWorship.stages.1.label>
+  <AttendedWorship.stages.1.description>我花了一些时间在平庸的礼拜上。</AttendedWorship.stages.1.description>
+  <AttendedWorship.stages.2.label>还行的礼拜</AttendedWorship.stages.2.label>
+  <AttendedWorship.stages.2.description>我花了一段时间做礼拜。</AttendedWorship.stages.2.description>
+  <AttendedWorship.stages.3.label>有趣的礼拜</AttendedWorship.stages.3.label>
+  <AttendedWorship.stages.3.description>我花了一段时间在有趣的礼拜上。</AttendedWorship.stages.3.description>
+  <AttendedWorship.stages.4.label>令人印象深刻的礼拜</AttendedWorship.stages.4.label>
+  <AttendedWorship.stages.4.description>我花了一些时间在令人印象深刻的礼拜上。</AttendedWorship.stages.4.description>
+  <AttendedWorship.stages.5.label>令人印象非常深刻的礼拜</AttendedWorship.stages.5.label>
+  <AttendedWorship.stages.5.description>我花了一段时间在令人印象非常深刻的礼拜上。</AttendedWorship.stages.5.description>
+  <AttendedWorship.stages.6.label>令人难以置信的礼拜</AttendedWorship.stages.6.label>
+  <AttendedWorship.stages.6.description>我花了一些时间在令人难以置信的礼拜上。</AttendedWorship.stages.6.description>
+  <AttendedWorship.stages.7.label>精彩绝伦的礼拜</AttendedWorship.stages.7.label>
+  <AttendedWorship.stages.7.description>我花了一段时间来做礼拜，我觉得我可以永远呆在那里。</AttendedWorship.stages.7.description>
+  <PrayedInImpressiveTemple.stages.5.label>令人印象深刻的神庙</PrayedInImpressiveTemple.stages.5.label>
+  <PrayedInImpressiveTemple.stages.5.description>我在一个令人印象深刻的神庙里呆了一段时间。</PrayedInImpressiveTemple.stages.5.description>
+  <PrayedInImpressiveTemple.stages.6.label>令人印象深刻的神庙</PrayedInImpressiveTemple.stages.6.label>
+  <PrayedInImpressiveTemple.stages.6.description>我在一个令人印象深刻的神庙里呆了一段时间。</PrayedInImpressiveTemple.stages.6.description>
+  <PrayedInImpressiveTemple.stages.7.label>令人印象非常深刻的神庙</PrayedInImpressiveTemple.stages.7.label>
+  <PrayedInImpressiveTemple.stages.7.description>我在一个令人印象非常深刻的神庙里呆了一段时间。</PrayedInImpressiveTemple.stages.7.description>
+  <PrayedInImpressiveTemple.stages.8.label>令人印象卓绝的神庙</PrayedInImpressiveTemple.stages.8.label>
+  <PrayedInImpressiveTemple.stages.8.description>我在一个令人印象卓绝的神庙里呆了一段时间，我可以永远呆在那里。</PrayedInImpressiveTemple.stages.8.description>
+  <PrayedInImpressiveTemple.stages.9.label>令人难以置信的神庙</PrayedInImpressiveTemple.stages.9.label>
+  <PrayedInImpressiveTemple.stages.9.description>我在一座令人难以置信的神庙里呆了一段时间，我觉得我可以永远呆在那里。</PrayedInImpressiveTemple.stages.9.description>
+  <PrayedInImpressiveTemple.stages.10.label>奇迹非凡的神庙</PrayedInImpressiveTemple.stages.10.label>
+  <PrayedInImpressiveTemple.stages.10.description>我在一个奇迹非凡的神庙里呆了一段时间，我可以永远呆在那里。</PrayedInImpressiveTemple.stages.10.description>
+  <PrayedInImpressiveTemple.stages.11.label>世界奇迹</PrayedInImpressiveTemple.stages.11.label>
+  <PrayedInImpressiveTemple.stages.11.description>我刚刚在一座有史以来最美的神庙里祈祷，我可以永远呆在那里。</PrayedInImpressiveTemple.stages.11.description>
+  <SameReligion.stages.0.label>共同信念</SameReligion.stages.0.label>
+</LanguageData>

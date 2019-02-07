@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Lectern.label>读经台</Lectern.label>
+  <Lectern.description>读经台用于在神圣仪式期间阅读宗教书籍。</Lectern.description>
+  <Lectern_Blueprint.label>读经台（蓝图）</Lectern_Blueprint.label>
+  <Lectern_Frame.label>读经台（建造中）</Lectern_Frame.label>
+  <Lectern_Frame.description>读经台用于在神圣仪式期间阅读宗教书籍。</Lectern_Frame.description>
+</LanguageData>

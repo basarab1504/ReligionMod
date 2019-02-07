@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <TynanReligion.degreeDatas.0.label>泰南神信仰</TynanReligion.degreeDatas.0.label>
+  <TynanReligion.degreeDatas.0.description>{PAWN_nameDef}信仰泰南神。</TynanReligion.degreeDatas.0.description>
+  <SpaceSpiritsReligion.degreeDatas.0.label>太空神信仰</SpaceSpiritsReligion.degreeDatas.0.label>
+  <SpaceSpiritsReligion.degreeDatas.0.description>{PAWN_nameDef}信仰太空神。</SpaceSpiritsReligion.degreeDatas.0.description>
+  <SerpentReligion.degreeDatas.0.label>蛇神信仰</SerpentReligion.degreeDatas.0.label>
+  <SerpentReligion.degreeDatas.0.description>{PAWN_nameDef}信仰蛇神。</SerpentReligion.degreeDatas.0.description>
+  <MotherReligion.degreeDatas.0.label>母神信仰</MotherReligion.degreeDatas.0.label>
+  <MotherReligion.degreeDatas.0.description>{PAWN_nameDef}信仰伟大母神。</MotherReligion.degreeDatas.0.description>
+</LanguageData>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <ReligionAddiction.label>宗教需要</ReligionAddiction.label>
+  <ReligionAddiction.stages.1.label>阴郁</ReligionAddiction.stages.1.label>
+  <ReligionTolerance.label>宗教宽容</ReligionTolerance.label>
+  <ReligionTolerance.stages.0.label>小的</ReligionTolerance.stages.0.label>
+  <ReligionTolerance.stages.1.label>小的</ReligionTolerance.stages.1.label>
+  <ReligionTolerance.stages.2.label>大的</ReligionTolerance.stages.2.label>
+  <ReligionTolerance.stages.3.label>大量的</ReligionTolerance.stages.3.label>
+</LanguageData>

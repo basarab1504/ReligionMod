@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <ReligionTalk.label>宗教谈话</ReligionTalk.label>
+  <ReligionTalk.logRulesInitiator.rulesStrings.0>宗教日志条目-&gt;[INITIATOR_nameDef]告诉[RECIPIENT_nameDef]他的信仰。</ReligionTalk.logRulesInitiator.rulesStrings.0>
+  <WorshipInteraction.label>礼拜</WorshipInteraction.label>
+  <WorshipInteraction.logRulesInitiator.rulesStrings.0>宗教日志条目-&gt;[INITIATOR_nameDef]告诉[RECIPIENT_nameDef]我们的上帝。</WorshipInteraction.logRulesInitiator.rulesStrings.0>
+  <WorshipInteraction.logRulesInitiator.rulesStrings.1>宗教日志条目-&gt;[INITIATOR_nameDef]告诉[RECIPIENT_nameDef]关于耐心和冷静。</WorshipInteraction.logRulesInitiator.rulesStrings.1>
+  <WorshipInteraction.logRulesInitiator.rulesStrings.2>宗教日志条目-&gt;[INITIATOR_nameDef]告诉[RECIPIENT_nameDef]一个有神的旨意的故事。</WorshipInteraction.logRulesInitiator.rulesStrings.2>
+  <WorshipInteraction.logRulesInitiator.rulesStrings.3>宗教日志条目-&gt;[INITIATOR_nameDef]谈论[RECIPIENT_nameDef]关于信仰的事。</WorshipInteraction.logRulesInitiator.rulesStrings.3>
+</LanguageData>
