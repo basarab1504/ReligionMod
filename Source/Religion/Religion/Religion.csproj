@@ -83,6 +83,7 @@
     <Compile Include="StockGenerator_Book.cs" />
     <Compile Include="ThingWithComps_Book.cs" />
     <Compile Include="ThoughtWorker_AntitheistThought.cs" />
+    <Compile Include="ThoughtWorker_BothNonTheist.cs" />
     <Compile Include="ThoughtWorker_ForeignReligion.cs" />
     <Compile Include="ThoughtWorker_NoPreacher.cs" />
     <Compile Include="ThoughtWorker_ReligiousHateAnti.cs" />
