@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<TraitDef>
+	<Religion.TraitDef_NonReligion>
     	<defName>Atheist</defName>
 		<commonality>0.2</commonality>
     	<degreeDatas>
@@ -9,9 +9,24 @@
         	<description>{PAWN_nameDef} denying any God</description>
       	</li>
     	</degreeDatas>
-    	<conflictingTraits>  
+    	<conflictingTraits>
+    	<li>Antitheist</li>  
     	</conflictingTraits>	
-	</TraitDef>
+	</Religion.TraitDef_NonReligion>
+
+  <Religion.TraitDef_NonReligion>
+      <defName>Antitheist</defName>
+    <commonality>0.2</commonality>
+      <degreeDatas>
+        <li>
+          <label>Antitheist</label>
+          <description>{PAWN_nameDef} denying any God extremely</description>
+        </li>
+      </degreeDatas>
+      <conflictingTraits>  
+      <li>Atheist</li>  	
+      </conflictingTraits>  
+  </Religion.TraitDef_NonReligion>  
 
   <Religion.TraitDef_ReligionTrait>
     	<defName>TynanReligion</defName>

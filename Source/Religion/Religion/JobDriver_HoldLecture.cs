@@ -16,6 +16,14 @@ namespace Religion
             }
         }
 
+        protected ThingWithComps_Book book
+        {
+            get
+            {
+                return (ThingWithComps_Book)base.job.GetTarget(TargetIndex.B).Thing;
+            }
+        }
+
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return this.pawn.Reserve(this.job.targetB, this.job, 1, -1, (ReservationLayerDef)null, errorOnFailed);

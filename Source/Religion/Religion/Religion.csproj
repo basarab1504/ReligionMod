@@ -31,11 +31,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\HugsLib\Assemblies\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\VLAD-02\Desktop\RimWorld2059Win64\Mods\HugsLib\Assemblies\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\RimWorld2059Win64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\VLAD-02\Desktop\RimWorld2059Win64\RimWorld2059Win64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -45,7 +45,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\RimWorld2059Win64_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\VLAD-02\Desktop\RimWorld2059Win64\RimWorld2059Win64_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -82,10 +82,13 @@
     <Compile Include="ReligionUtility.cs" />
     <Compile Include="StockGenerator_Book.cs" />
     <Compile Include="ThingWithComps_Book.cs" />
-    <Compile Include="ThoughtWorker_AtheistThoight.cs" />
+    <Compile Include="ThoughtWorker_AntitheistThought.cs" />
+    <Compile Include="ThoughtWorker_BothNonTheist.cs" />
     <Compile Include="ThoughtWorker_ForeignReligion.cs" />
     <Compile Include="ThoughtWorker_NoPreacher.cs" />
+    <Compile Include="ThoughtWorker_ReligiousHateAnti.cs" />
     <Compile Include="ThoughtWorker_SameReligion.cs" />
+    <Compile Include="TraitDef_NonReligion.cs" />
     <Compile Include="TraitDef_ReligionTrait.cs" />
     <Compile Include="WorkGiver_Lecture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

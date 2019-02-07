@@ -7,7 +7,7 @@ using Verse;
 
 namespace Religion
 {
-    class ThoughtWorker_AtheistThoight : ThoughtWorker
+    class ThoughtWorker_AntitheistThought : ThoughtWorker
     {
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn other)
         {

@@ -19,7 +19,7 @@
    	 	<symbol>Things/Symbols/Religion</symbol>
     	<logRulesInitiator>
       		<rulesStrings>
-        		<li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about our God.</li>
+        		<li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about our god.</li>
         		<li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about patience and calm.</li>
         		<li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] an instructive story.</li>
         		<li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about faith.</li>

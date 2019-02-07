@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using RimWorld;
 using Verse;
 
 namespace Religion
 {
-    class TraitDef_ReligionTrait : TraitDef
+    class TraitDef_NonReligion : TraitDef
     {
-        public List<TraitDef> foreignReligions = new List<TraitDef>();
-        public bool isAgressive;
+
     }
 }

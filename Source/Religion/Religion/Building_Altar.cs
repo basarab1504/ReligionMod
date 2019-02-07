@@ -103,7 +103,10 @@ namespace Religion
         public override void Notify_ReceivedThing(Thing newItem)
         {
             base.Notify_ReceivedThing(newItem);
-            relic = newItem;
+            if(newItem.def.comps.Any(x=> x is CompProperties_CompRelic))
+            {
+                relic = newItem;
+            }
         }
 
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
@@ -131,6 +134,7 @@ namespace Religion
                     },
                     hotKey = KeyBindingDefOf.Misc4
                 };
+
             }
         }
 

@@ -28,7 +28,7 @@ namespace Religion
             {               
                 pawn.health.hediffSet.hediffs.Remove(h);
             }
-            if (Rand.Value < 0.25)
+            if (Rand.Value < 0.10)
                 pawn.story.traits.GainTrait(new Trait(ReligionDefOf.Atheist));
             return base.TryStart(pawn, reason, causedByMood);
         }

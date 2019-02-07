@@ -50,10 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-Source/Religion/.vs/Religion/v15/Server/sqlite3/storage.ide-shm
-Source/Religion/.vs/Religion/v15/Server/sqlite3/storage.ide
-Source/Religion/.vs/Religion/v15/Server/sqlite3/storage.ide
-*.ide
-Source/Religion/.vs/Religion/v15/Server/sqlite3/storage.ide
-*.ide
-*.ide-wal
+Source/Religion/.vs/
+
+
+
