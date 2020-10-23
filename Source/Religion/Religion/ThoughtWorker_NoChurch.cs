@@ -24,7 +24,7 @@ namespace Religion
                             return ThoughtState.Inactive;
                     }
                 }
-                return (ThoughtState)true;
+                return true;
             }
             return ThoughtState.Inactive;
         }

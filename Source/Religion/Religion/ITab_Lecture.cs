@@ -17,14 +17,14 @@ namespace Religion //крыса
         {
             get
             {
-                return (Building_Lectern)this.SelThing;
+                return (Building_Lectern)SelThing;
             }
         }
 
         public ITab_Worship()
         {
-            this.size = ITab_Worship.WinSize;
-            this.labelKey = "TabWorship".Translate();
+            size = WinSize;
+            labelKey = "TabWorship".Translate();
             //this.tutorTag = "Worships".Translate();
         }
 

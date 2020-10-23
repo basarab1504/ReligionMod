@@ -13,7 +13,7 @@ namespace Religion
 
         public CompProperties_CompRelic()
         {
-            this.compClass = typeof(CompRelic);
+            compClass = typeof(CompRelic);
         }
     }
 }

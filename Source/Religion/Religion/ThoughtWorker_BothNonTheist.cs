@@ -12,18 +12,18 @@ namespace Religion
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn other)
         {
             if (!p.RaceProps.Humanlike)
-                return (ThoughtState)false;
+                return false;
             if (!RelationsUtility.PawnsKnowEachOther(p, other))
-                return (ThoughtState)false;
+                return false;
             if (other.def != p.def)
-                return (ThoughtState)false;
+                return false;
             for(int i = 0; i < def.requiredTraits.Count; ++i)
             {
                 TraitDef t = def.requiredTraits[i];
                 if (p.story.traits.HasTrait(t) && other.story.traits.HasTrait(t))
-                    return (ThoughtState)true;
+                    return true;
             }
-            return (ThoughtState)false;
+            return false;
         }
     }
 }

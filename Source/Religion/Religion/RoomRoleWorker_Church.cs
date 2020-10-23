@@ -21,7 +21,7 @@ namespace Religion
                 if (andAdjacentThings[index] is Building_Lectern)
                     ++num;
             }
-            return (float)num * 7.6f;
+            return num * 7.6f;
         }
     }
 }

@@ -12,8 +12,8 @@ namespace Religion
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn other)
         {
             if(other.story.traits.allTraits.Any(x => x.def is TraitDef_ReligionTrait))
-                return (ThoughtState)true;
-            return (ThoughtState)false;
+                return true;
+            return false;
         }
     }
 }

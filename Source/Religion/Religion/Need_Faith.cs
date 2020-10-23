@@ -12,8 +12,10 @@ namespace Religion
         public Need_Faith(Pawn pawn)
         : base(pawn)
         {
-            this.threshPercents = new List<float>();
-            this.threshPercents.Add(0.3f);
+            threshPercents = new List<float>
+            {
+                0.3f
+            };
         }
 
         private const float ThreshDesire = 0.01f;
@@ -31,9 +33,9 @@ namespace Religion
         {
             get
             {
-                if ((double)this.CurLevel > 0.300000011920929)
+                if (CurLevel > 0.300000011920929)
                     return FaithCategory.Satisfied;
-                return (double)this.CurLevel > 0.00999999977648258 ? FaithCategory.Desire : FaithCategory.Withdrawal;
+                return CurLevel > 0.00999999977648258 ? FaithCategory.Desire : FaithCategory.Withdrawal;
             }
         }
 
@@ -45,9 +47,9 @@ namespace Religion
             }
             set
             {
-                FaithCategory curCategory = this.CurCategory;
+                FaithCategory curCategory = CurCategory;
                 base.CurLevel = value;
-                if (this.CurCategory == curCategory)
+                if (CurCategory == curCategory)
                     return;
             }
         }
@@ -56,7 +58,7 @@ namespace Religion
         {
             get
             {
-                return this.def.fallPerDay / 60000f;
+                return def.fallPerDay / 60000f;
             }
         }
 
@@ -64,20 +66,20 @@ namespace Religion
         {
             get
             {
-                return this.pawn.health.hediffSet.GetFirstHediffOfDef(ReligionDefOf.ReligionTolerance).Severity / 60000f;
+                return pawn.health.hediffSet.GetFirstHediffOfDef(ReligionDefOf.ReligionTolerance).Severity / 60000f;
             }
         }
 
         public override void SetInitialLevel()
         {
-            this.CurLevelPercentage = Rand.Range(0.8f, 1f);
+            CurLevelPercentage = Rand.Range(0.8f, 1f);
         }
 
         public override void NeedInterval()
         {
-            if (this.IsFrozen)
+            if (IsFrozen)
                 return;
-            this.CurLevel -= (this.ChemicalFallPerTick + this.ChemicalFallPerTickMult) * 150f;
+            CurLevel -= (ChemicalFallPerTick + ChemicalFallPerTickMult) * 150f;
         }
 
     }

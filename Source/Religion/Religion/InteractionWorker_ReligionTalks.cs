@@ -104,16 +104,16 @@ namespace Religion
             if (!ReligionUtility.CanBeReligious(recipient, t))
                 return 0.0f;
                 float num;
-                num = 1f * OpinionFactorCurve.Evaluate((float)initiator.relations.OpinionOf(recipient))/* * CompatibilityFactorCurve.Evaluate(initiator.relations.CompatibilityWith(recipient))*/;
+                num = 1f * OpinionFactorCurve.Evaluate(initiator.relations.OpinionOf(recipient))/* * CompatibilityFactorCurve.Evaluate(initiator.relations.CompatibilityWith(recipient))*/;
                 float curLevel = recipient.needs.mood.CurLevel;
                 num *= MoodFactorCurve.Evaluate(curLevel);
                 return 0.003f * num;
         }
 
-        public override void Interacted(Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks, out string letterText, out string letterLabel, out LetterDef letterDef)
+        public override void Interacted(Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks, out string letterText, out string letterLabel, out LetterDef letterDef, out LookTargets lookTargets)
         {
             Trait t = initiator.story.traits.allTraits.Find(x => x.def is TraitDef_ReligionTrait);
-            base.Interacted(initiator, recipient, extraSentencePacks, out letterText, out letterLabel, out letterDef);
+            base.Interacted(initiator, recipient, extraSentencePacks, out letterText, out letterLabel, out letterDef, out lookTargets);
             if (t != null)
             {
                 //if (Rand.Value < Mathf.InverseLerp(0f, 100f, recipient.relations.OpinionOf(initiator)))

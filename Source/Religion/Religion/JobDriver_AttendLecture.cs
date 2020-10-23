@@ -8,7 +8,7 @@ namespace Religion
 {
     class JobDriver_AttendWorship : JobDriver
     {
-        private string report = "";
+        private readonly string report = "";
         public override string GetReport()
         {
             if (report != "")
@@ -18,12 +18,12 @@ namespace Religion
             return base.GetReport();
         }
 
-        protected Building_Lectern lectern => (Building_Lectern)base.job.GetTarget(TargetIndex.A).Thing;
-        Pawn preacher
+        protected Building_Lectern Lectern => (Building_Lectern)job.GetTarget(TargetIndex.A).Thing;
+        Pawn Preacher
         {
             get
             {
-                return lectern.owners[0];
+                return Lectern.CompAssignableToPawn.AssignedPawnsForReading[0];
             }
         }
 
@@ -45,14 +45,14 @@ namespace Religion
             {
                 return false;
             }
-            if (base.TargetC.HasThing)
+            if (TargetC.HasThing)
             {
-                if (base.TargetC.Thing is Building_Bed)
+                if (TargetC.Thing is Building_Bed bed)
                 {
                     pawn = this.pawn;
                     LocalTargetInfo targetC = this.job.targetC;
                     job = this.job;
-                    num2 = ((Building_Bed)base.TargetC.Thing).SleepingSlotsCount;
+                    num2 = bed.SleepingSlotsCount;
                     num = 0;
                     if (!pawn.Reserve(targetC, job, num2, num, null, errorOnFailed))
                     {
@@ -75,14 +75,14 @@ namespace Religion
 
         public override bool CanBeginNowWhileLyingDown()
         {
-            return base.TargetC.HasThing && base.TargetC.Thing is Building_Bed && JobInBedUtility.InBedOrRestSpotNow(this.pawn, base.TargetC);
+            return TargetC.HasThing && TargetC.Thing is Building_Bed && JobInBedUtility.InBedOrRestSpotNow(pawn, TargetC);
         }
 
         [DebuggerHidden]
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.EndOnDespawnedOrNull(TargetIndex.A, JobCondition.Incompletable);
-            bool hasBed = base.TargetC.HasThing && base.TargetC.Thing is Building_Bed;
+            bool hasBed = TargetC.HasThing && TargetC.Thing is Building_Bed;
 
             Toil goToChurch = Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell);
             yield return goToChurch;
@@ -90,28 +90,28 @@ namespace Religion
             Toil watch = new Toil();
             watch.AddPreTickAction(() =>
             {
-                this.pawn.rotationTracker.FaceCell(TargetA.Thing.OccupiedRect().ClosestCellTo(this.pawn.Position));
-                this.pawn.GainComfortFromCellIfPossible();
-                this.pawn.rotationTracker.FaceCell(TargetB.Cell);
-                if (preacher.CurJob.def != ReligionDefOf.HoldWorship)
+                pawn.rotationTracker.FaceCell(TargetA.Thing.OccupiedRect().ClosestCellTo(pawn.Position));
+                pawn.GainComfortFromCellIfPossible();
+                pawn.rotationTracker.FaceCell(TargetB.Cell);
+                if (Preacher.CurJob.def != ReligionDefOf.HoldWorship)
                 {
-                    this.ReadyForNextToil();
+                    ReadyForNextToil();
                 }
             });
             watch.defaultCompleteMode = ToilCompleteMode.Delay;
-            watch.defaultDuration = this.job.def.joyDuration;
+            watch.defaultDuration = job.def.joyDuration;
             watch.handlingFacing = true;
             yield return watch;
 
-            yield return Toils_Jump.JumpIf(watch, () => preacher.CurJob.def == ReligionDefOf.HoldWorship);
+            yield return Toils_Jump.JumpIf(watch, () => Preacher.CurJob.def == ReligionDefOf.HoldWorship);
 
-            this.AddFinishAction(() =>
+            AddFinishAction(() =>
             {
             if (pawn.Position == TargetC.Cell)
                 {
                     ReligionUtility.TryGainTempleRoomThought(pawn);
-                    ReligionUtility.AttendedWorshipThought(pawn, preacher);
-                    ReligionUtility.TryAddAddiction(pawn, preacher);
+                    ReligionUtility.AttendedWorshipThought(pawn, Preacher);
+                    ReligionUtility.TryAddAddiction(pawn, Preacher);
                 }
             });
             yield break;
