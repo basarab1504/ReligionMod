@@ -11,10 +11,10 @@ namespace Religion
     public static class ReligionCardUtility
     {
         private static readonly Vector2 WinSize = new Vector2(420f, 480f);
-        private static float xOffset = 20f;
-        private static float y = 20f;
-        private static float width = 140f;
-        private static float height = 30f;
+        private static readonly float xOffset = 20f;
+        private static readonly float y = 20f;
+        private static readonly float width = 140f;
+        private static readonly float height = 30f;
         //[TweakValue("Interface", 0.0f, 128f)]
         //private static float PasteX = 400f;
         //[TweakValue("Interface", 0.0f, 128f)]
@@ -46,12 +46,12 @@ namespace Religion
                     if (SelLectern.Map.mapPawns.FreeColonists.Any
                     (x => x.story.traits.HasTrait(SelLectern.religion[0])
                     && !x.skills.GetSkill(SkillDefOf.Social).TotallyDisabled))
-                        Find.WindowStack.Add((Window)new Dialog_AssignBuildingOwner(SelLectern));
+                        Find.WindowStack.Add(new Dialog_AssignBuildingOwner(SelLectern.CompAssignableToPawn));
                     else
                         Messages.Message("NoAvaliableCandidates".Translate(), MessageTypeDefOf.NegativeEvent);
                 }
 
-                if(!SelLectern.owners.NullOrEmpty())
+                if(SelLectern.CompAssignableToPawn.AssignedPawns.Count() > 0)
                 {
                     Rect timeOf = new Rect(xOffset, y + (height * 2), width, height);
                     string label = "TimeOfWorship".Translate();

@@ -12,7 +12,7 @@ namespace Religion
 
     public CompProperties_CompReligionBook()
     {
-        this.compClass = typeof(CompReligionBook);
+        compClass = typeof(CompReligionBook);
     }
 }
 }

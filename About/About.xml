@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>Religions of Rimworld</name>
+  <packageId>Basarab.ReligionsOfRimworld</packageId>
   <author>Basarab</author>
   <url>https://ludeon.com/forums/index.php?topic=47948.0</url>
-  <supportedVersions><li>1.0</li></supportedVersions>
+  <supportedVersions><li>1.0</li><li>1.1</li><li>1.2</li></supportedVersions>
   <description>Faith for colonists</description>
 </ModMetaData>

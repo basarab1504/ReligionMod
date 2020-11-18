@@ -226,50 +226,42 @@ namespace Religion
             LetterDef letterDef;
             if (!flag)
             {
-                intDef.Worker.Interacted(preacher, recipient, extraSentencePacks, out letterText, out letterLabel, out letterDef);
+                intDef.Worker.Interacted(preacher, recipient, extraSentencePacks, out letterText, out letterLabel, out letterDef, out LookTargets lookTargets);
             }
             else
             {
-                letterText = (string)null;
-                letterLabel = (string)null;
-                letterDef = (LetterDef)null;
+                letterText = null;
+                letterLabel = null;
+                letterDef = null;
             }
             MoteMaker.MakeInteractionBubble(preacher, recipient, intDef.interactionMote, intDef.Symbol);
             if (flag)
                 extraSentencePacks.Add(RulePackDefOf.Sentence_SocialFightStarted);
             PlayLogEntry_Interaction entryInteraction = new PlayLogEntry_Interaction(intDef, preacher, recipient, extraSentencePacks);
-            Find.PlayLog.Add((LogEntry)entryInteraction);
+            Find.PlayLog.Add(entryInteraction);
             return true;
         }
 
         #region LecternManagement
 
-        public static void Unclaim(Pawn p)
-        {
-            Building_Lectern b = p.Map.listerBuildings.allBuildingsColonist.Find(x => x is Building_Lectern && (x as Building_Lectern).owners.Contains(p)) as Building_Lectern;
-            if (b == null)
-                return;
-            b.TryUnassignPawn(p);
-        }
-    
         public static void GiveAttendJob(Building_Lectern lectern, Pawn attendee)
         {
             if (attendee.Drafted) return;
             if (attendee.IsPrisoner) return;
             if (attendee.jobs.curJob.def == ReligionDefOf.AttendWorship) return;
 
-            IntVec3 result;
-            Building chair;
-            if (!WatchBuildingUtility.TryFindBestWatchCell(lectern, attendee, true, out result, out chair))
+            if (!WatchBuildingUtility.TryFindBestWatchCell(lectern, attendee, true, out IntVec3 result, out Building chair))
             {
                 WatchBuildingUtility.TryFindBestWatchCell(lectern, attendee, false, out result, out chair);
             }
-            Job J = new Job(ReligionDefOf.AttendWorship, (LocalTargetInfo)lectern, (LocalTargetInfo)result, (LocalTargetInfo)((Thing)chair));
-            J.playerForced = true;
-            J.ignoreJoyTimeAssignment = true;
-            J.expiryInterval = 9999;
-            J.ignoreDesignations = true;
-            J.ignoreForbidden = true;
+            Job J = new Job(ReligionDefOf.AttendWorship, lectern, result, chair)
+            {
+                playerForced = true,
+                ignoreJoyTimeAssignment = true,
+                expiryInterval = 9999,
+                ignoreDesignations = true,
+                ignoreForbidden = true
+            };
             //attendee.jobs.EndCurrentJob(JobCondition.Incompletable);
             attendee.jobs.TryTakeOrderedJob(J);
         }
@@ -278,7 +270,7 @@ namespace Religion
         {
             foreach(Thing t in p.Map.listerThings.AllThings.FindAll(x => x is ThingWithComps_Book))
             {
-                if (t.TryGetComp<CompReligionBook>().religion == religionOfPawn)
+                if (t.TryGetComp<CompReligionBook>().Religion == religionOfPawn)
                     return t;
             }
             return null;
@@ -307,7 +299,7 @@ namespace Religion
 
         public static void Wipe(Building_Lectern lectern)
         {
-            lectern.owners.Clear();
+            lectern.CompAssignableToPawn.UnassignAllPawns();
             lectern.religion.Clear();
             lectern.listeners.Clear();
             for (int i = 0; i < lectern.daysOfWorships.Count; ++i)
@@ -324,7 +316,7 @@ namespace Religion
                 listenersOfLectern.Clear();
             if (listenersOfLectern.Count == 0)
                 foreach (Pawn x in lectern.Map.mapPawns.FreeColonists)
-                    if (x.story.traits.HasTrait(lectern.religion[0]) && x != lectern.owners[0] &&
+                    if (x.story.traits.HasTrait(lectern.religion[0]) && x != lectern.CompAssignableToPawn.AssignedPawnsForReading[0] &&
                                x.RaceProps.Humanlike &&
                                !x.IsPrisoner &&
                                x.Faction == Faction.OfPlayer &&
@@ -361,14 +353,14 @@ namespace Religion
                 lectern_.didWorship = true;
                 return;
             }
-            if (lectern_.owners.NullOrEmpty())
+            if (lectern_.CompAssignableToPawn.AssignedPawnsForReading.NullOrEmpty())
             {
                 Messages.Message("CantGiveWorshipJobToPreacher".Translate() + " : " + "SelectAPreacher".Translate(), MessageTypeDefOf.NegativeEvent);
                 lectern_.didWorship = true;
                 return;
             }
 
-            Pawn preacher = lectern_.owners[0];
+            Pawn preacher = lectern_.CompAssignableToPawn.AssignedPawnsForReading[0];
 
             if (lectern_.altar.relic == null)
             {
@@ -384,7 +376,7 @@ namespace Religion
                 if (preacher.Dead)
                 {
                     Messages.Message("PreacherIsDead".Translate(), MessageTypeDefOf.NegativeEvent);
-                    lectern_.owners.Clear();
+                    lectern_.CompAssignableToPawn.UnassignAllPawns();
                 }
                 lectern_.didWorship = true;
                 return;
@@ -411,7 +403,7 @@ namespace Religion
             if (!forced)
                 lectern_.didWorship = true;
 
-            Job J = new Job(ReligionDefOf.HoldWorship, (LocalTargetInfo)lectern_, (LocalTargetInfo)book)
+            Job J = new Job(ReligionDefOf.HoldWorship, lectern_, book)
             {
                 count = 1
             };
@@ -423,10 +415,10 @@ namespace Religion
         #endregion
 
         #region BookReading
-        private static List<CompGatherSpot> workingSpots = new List<CompGatherSpot>();
+        private static readonly List<CompGatherSpot> workingSpots = new List<CompGatherSpot>();
         private static readonly int NumRadiusCells = GenRadial.NumCellsInRadius(3.9f);
-        private static readonly List<IntVec3> RadialPatternMiddleOutward = ((IEnumerable<IntVec3>)GenRadial.RadialPattern).Take<IntVec3>(NumRadiusCells).OrderBy<IntVec3, float>((Func<IntVec3, float>)(c => Mathf.Abs((c - IntVec3.Zero).LengthHorizontal - 1.95f))).ToList<IntVec3>();
-        private static List<ThingDef> nurseableDrugs = new List<ThingDef>();
+        private static readonly List<IntVec3> RadialPatternMiddleOutward = ((IEnumerable<IntVec3>)GenRadial.RadialPattern).Take<IntVec3>(NumRadiusCells).OrderBy<IntVec3, float>(c => Mathf.Abs((c - IntVec3.Zero).LengthHorizontal - 1.95f)).ToList<IntVec3>();
+        private static readonly List<ThingDef> nurseableDrugs = new List<ThingDef>();
         private const float GatherRadius = 3.9f;
 
         //public static Job PlaceToRead(Pawn pawn, Thing t)
@@ -478,13 +470,13 @@ namespace Religion
             for (int index = 0; index < 30; ++index)
             {
                 Building edifice = table.RandomAdjacentCellCardinal().GetEdifice(table.Map);
-                if (edifice != null && edifice.def.building.isSittable && sitter.CanReserve((LocalTargetInfo)((Thing)edifice), 1, -1, (ReservationLayerDef)null, false))
+                if (edifice != null && edifice.def.building.isSittable && sitter.CanReserve(edifice, 1, -1, null, false))
                 {
-                    chair = (Thing)edifice;
+                    chair = edifice;
                     return true;
                 }
             }
-            chair = (Thing)null;
+            chair = null;
             return false;
         }
 
@@ -493,7 +485,7 @@ namespace Religion
             for (int index = 0; index < 30; ++index)
             {
                 IntVec3 intVec3 = center + GenRadial.RadialPattern[Rand.Range(1, NumRadiusCells)];
-                if (sitter.CanReserveAndReach((LocalTargetInfo)intVec3, PathEndMode.OnCell, Danger.None, 1, -1, (ReservationLayerDef)null, false) && intVec3.GetEdifice(sitter.Map) == null && GenSight.LineOfSight(center, intVec3, sitter.Map, true, (Func<IntVec3, bool>)null, 0, 0))
+                if (sitter.CanReserveAndReach(intVec3, PathEndMode.OnCell, Danger.None, 1, -1, null, false) && intVec3.GetEdifice(sitter.Map) == null && GenSight.LineOfSight(center, intVec3, sitter.Map, true, null, 0, 0))
                 {
                     result = intVec3;
                     return true;
@@ -508,13 +500,13 @@ namespace Religion
             for (int index = 0; index < RadialPatternMiddleOutward.Count; ++index)
             {
                 Building edifice = (center + RadialPatternMiddleOutward[index]).GetEdifice(sitter.Map);
-                if (edifice != null && edifice.def.building.isSittable && (sitter.CanReserve((LocalTargetInfo)((Thing)edifice), 1, -1, (ReservationLayerDef)null, false) && !edifice.IsForbidden(sitter)) && GenSight.LineOfSight(center, edifice.Position, sitter.Map, true, (Func<IntVec3, bool>)null, 0, 0))
+                if (edifice != null && edifice.def.building.isSittable && (sitter.CanReserve(edifice, 1, -1, null, false) && !edifice.IsForbidden(sitter)) && GenSight.LineOfSight(center, edifice.Position, sitter.Map, true, null, 0, 0))
                 {
-                    chair = (Thing)edifice;
+                    chair = edifice;
                     return true;
                 }
             }
-            chair = (Thing)null;
+            chair = null;
             return false;
         }
         #endregion
@@ -540,8 +532,8 @@ namespace Religion
             Color color = GUI.color;
             if (disabled)
                 GUI.color = InactiveColor;
-            Texture2D texture2D = !active ? (!((UnityEngine.Object)texUnchecked != (UnityEngine.Object)null) ? Widgets.CheckboxOffTex : texUnchecked) : (!((UnityEngine.Object)texChecked != (UnityEngine.Object)null) ? Widgets.CheckboxOnTex : texChecked);
-            GUI.DrawTexture(new Rect(x, y, size, size), (Texture)texture2D);
+            Texture2D texture2D = !active ? (!(texUnchecked != null) ? Widgets.CheckboxOffTex : texUnchecked) : (!(texChecked != null) ? Widgets.CheckboxOnTex : texChecked);
+            GUI.DrawTexture(new Rect(x, y, size, size), texture2D);
             if (!disabled)
                 return;
             GUI.color = color;
@@ -549,21 +541,21 @@ namespace Religion
 
         public static void CheckboxLabeled(Rect rect, Building_Lectern lectern, int i, string label, bool checkOn, bool disabled = false, Texture2D texChecked = null, Texture2D texUnchecked = null, bool placeCheckboxNearText = false)
         {
-            TextAnchor anchor = Verse.Text.Anchor;
-            Verse.Text.Anchor = TextAnchor.MiddleLeft;
+            TextAnchor anchor = Text.Anchor;
+            Text.Anchor = TextAnchor.MiddleLeft;
             if (placeCheckboxNearText)
-                rect.width = Mathf.Min(rect.width, (float)((double)Verse.Text.CalcSize(label).x + 24.0 + 10.0));
+                rect.width = Mathf.Min(rect.width, (float)(Text.CalcSize(label).x + 24.0 + 10.0));
             Widgets.Label(rect, label);
             if (!disabled && Widgets.ButtonInvisible(rect, false))
             {
                 lectern.daysOfWorships[i] = !checkOn;
                 if (checkOn)
-                    SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera((Map)null);
+                    SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera(null);
                 else
-                    SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera((Map)null);
+                    SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera(null);
             }
-            CheckboxDraw((float)((double)rect.x + (double)rect.width - 24.0), rect.y, checkOn, disabled, 24f, (Texture2D)null, (Texture2D)null);
-            Verse.Text.Anchor = anchor;
+            CheckboxDraw((float)(rect.x + (double)rect.width - 24.0), rect.y, checkOn, disabled, 24f, null, null);
+            Text.Anchor = anchor;
         }
         #endregion
     }

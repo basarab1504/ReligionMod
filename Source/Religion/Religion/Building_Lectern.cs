@@ -7,9 +7,8 @@ using Verse;
 
 namespace Religion
 {
-    public class Building_Lectern : Building, IAssignableTrait, IAssignableBuilding
+    public class Building_Lectern : Building, IAssignableTrait
     {
-        public List<Pawn> owners = new List<Pawn>();
         public List<Pawn> listeners = new List<Pawn>();
         public List<TraitDef> religion = new List<TraitDef>();
         public List<bool> daysOfWorships = Enumerable.Repeat(false, 15).ToList();
@@ -17,6 +16,28 @@ namespace Religion
         public string timeOfbuffer;
         public bool didWorship;
         public Building_Altar altar;
+
+        public Pawn AssignedPawn
+        {
+            get
+            {
+                if (this.CompAssignableToPawn == null || !this.CompAssignableToPawn.AssignedPawnsForReading.Any<Pawn>())
+                {
+                    return null;
+                }
+                return this.CompAssignableToPawn.AssignedPawnsForReading[0];
+            }
+        }
+
+        // Token: 0x17000E1E RID: 3614
+        // (get) Token: 0x0600504E RID: 20558 RVA: 0x001AFD8A File Offset: 0x001ADF8A
+        public CompAssignableToPawn_Lectern CompAssignableToPawn
+        {
+            get
+            {
+                return base.GetComp<CompAssignableToPawn_Lectern>();
+            }
+        }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
@@ -58,71 +79,13 @@ namespace Religion
             }
         }
 
-        #region IBuilding
-        public IEnumerable<Pawn> AssigningCandidates
-        {
-            get
-            {
-                if (!this.Spawned || this.religion.NullOrEmpty())
-                {
-                    return Enumerable.Empty<Pawn>();
-                }
-                return Map.mapPawns.FreeColonists.Where
-                    (x => x.story.traits.HasTrait(religion[0])
-                    && !x.skills.GetSkill(SkillDefOf.Social).TotallyDisabled
-                    && !Map.listerBuildings.allBuildingsColonist.Any(u => u is Building_Lectern && (u as Building_Lectern).owners.Contains(x)));
-            }
-        }
-
-        public IEnumerable<Pawn> AssignedPawns
-        {
-            get
-            {
-                return this.owners;
-            }
-        }
-
-        public int MaxAssignedPawnsCount
-        {
-            get
-            {
-                return 1;
-            }
-        }
-
-        public bool AssignedAnything(Pawn pawn)
-        {
-            return false;
-        }
-
-        public void TryAssignPawn(Pawn pawn)
-        {
-            owners.Clear();
-            if (!owners.Contains(pawn))
-            {
-                if (pawn.skills.GetSkill(SkillDefOf.Social).levelInt < 8)
-                    Messages.Message("LowSkillPreacher".Translate() + " " + "MinSkillPreacher".Translate(8.ToString()), MessageTypeDefOf.NegativeEvent);
-                owners.Add(pawn);
-            }
-            else return;
-        }
-
-        public void TryUnassignPawn(Pawn pawn)
-        {
-            if (owners.Contains(pawn))
-            {
-                owners.Remove(pawn);
-            }
-            else return;
-        }
-        #endregion
 
         #region ITrait
         public IEnumerable<TraitDef> AssigningTrait
         {
             get
             {
-                if (!this.Spawned)
+                if (!Spawned)
                     return Enumerable.Empty<TraitDef>();
                 return DefDatabase<TraitDef>.AllDefsListForReading.FindAll(x => x is TraitDef_ReligionTrait);
             }
@@ -132,7 +95,7 @@ namespace Religion
         {
             get
             {
-                return this.religion;
+                return religion;
             }
         }
 
@@ -172,7 +135,7 @@ namespace Religion
             {
                 yield return g;
             }
-            if (base.Faction == Faction.OfPlayer && Prefs.DevMode)
+            if (Faction == Faction.OfPlayer && Prefs.DevMode)
             {
                 var command_Action = new Command_Action
                 {
@@ -192,13 +155,12 @@ namespace Religion
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<int>(ref this.timeOfWorship, "timeofWorship");
-            Scribe_Values.Look<bool>(ref this.didWorship, "morning", false, false);
-            Scribe_Values.Look<int>(ref this.timeOfWorship, "timeOfWorship");
-            Scribe_Collections.Look<TraitDef>(ref this.religion, "religions", LookMode.Def);
-            Scribe_Collections.Look<Pawn>(ref this.owners, "owners", LookMode.Reference);
-            Scribe_Collections.Look<bool>(ref this.daysOfWorships, "daysOfWorships");
-            Scribe_References.Look<Building_Altar>(ref this.altar, "LecternAltar");
+            Scribe_Values.Look<int>(ref timeOfWorship, "timeofWorship");
+            Scribe_Values.Look<bool>(ref didWorship, "morning", false, false);
+            Scribe_Values.Look<int>(ref timeOfWorship, "timeOfWorship");
+            Scribe_Collections.Look<TraitDef>(ref religion, "religions", LookMode.Def);
+            Scribe_Collections.Look<bool>(ref daysOfWorships, "daysOfWorships");
+            Scribe_References.Look<Building_Altar>(ref altar, "LecternAltar");
         }
     }
 }

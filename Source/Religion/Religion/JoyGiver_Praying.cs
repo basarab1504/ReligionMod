@@ -29,13 +29,11 @@ namespace Religion
 
         protected override Job TryGivePlayJob(Pawn pawn, Thing t)
         {
-            IntVec3 result;
-            Building chair;
-            if (!WatchBuildingUtility.TryFindBestWatchCell(t, pawn, this.def.desireSit, out result, out chair))
+            if (!WatchBuildingUtility.TryFindBestWatchCell(t, pawn, def.desireSit, out IntVec3 result, out Building chair))
             {
                 WatchBuildingUtility.TryFindBestWatchCell(t, pawn, false, out result, out chair);
             }
-            return new Job(this.def.jobDef, (LocalTargetInfo)t, (LocalTargetInfo)result, (LocalTargetInfo)((Thing)chair));
+            return new Job(def.jobDef, t, result, chair);
         }
     }
 }

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <JobDef>
+    <defName>HoldBigWorship</defName>
+    <driverClass>Religion.JobDriver_HoldWorship</driverClass>
+    <reportString>holding a large worship.</reportString>
+    <joyMaxParticipants>50</joyMaxParticipants>
+    <joyKind>PrayingKind</joyKind>
+  </JobDef>
+  <JobDef>
+    <defName>AttendBigWorship</defName>
+    <driverClass>Religion.JobDriver_AttendWorship</driverClass>
+    <reportString>attending a large worship.</reportString>
+    <joyMaxParticipants>50</joyMaxParticipants>
+    <joyKind>PrayingKind</joyKind>
+  </JobDef>
+</Defs>

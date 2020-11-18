@@ -20,10 +20,10 @@ namespace Religion
                 {
                     foreach (Building_Altar a in altars)
                     {
-                        if (a.religion.Contains(pawnReligion) && a.relic != null && a.lectern != null && !a.lectern.owners.NullOrEmpty())
+                        if (a.religion.Contains(pawnReligion) && a.relic != null && a.lectern != null && !a.lectern.CompAssignableToPawn.AssignedPawnsForReading.NullOrEmpty())
                             return ThoughtState.Inactive;
                     }
-                    return (ThoughtState)true;
+                    return true;
                 }
             }
             return ThoughtState.Inactive;

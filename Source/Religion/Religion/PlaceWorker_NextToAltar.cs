@@ -6,7 +6,7 @@ namespace Religion
 {
     class PlaceWorker_NextToAltar : PlaceWorker
     {
-        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
+        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null)
         {
             bool altarIn = false;
             Room room = loc.GetRoom(map, RegionType.Set_Passable);
@@ -16,7 +16,7 @@ namespace Religion
                 for (int index = 0; index < andAdjacentThings.Count; ++index)
                 {
                     if (andAdjacentThings[index].def == checkingDef || checkingDef.blueprintDef == andAdjacentThings[index].def)
-                        return (AcceptanceReport)"OneLecternInRoom".Translate();
+                        return "OneLecternInRoom".Translate();
 
                     if (andAdjacentThings[index] is Building_Altar)
                     {
@@ -24,9 +24,9 @@ namespace Religion
                     }                    
                 }
                 if(altarIn)
-                    return (AcceptanceReport)true;
+                    return true;
             }
-            return (AcceptanceReport)"MustPlaceNextToBuildedAltar".Translate();
+            return "MustPlaceNextToBuildedAltar".Translate();
         }
     }
 }

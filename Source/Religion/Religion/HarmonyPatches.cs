@@ -1,5 +1,6 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using RimWorld;
+using System;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
@@ -10,14 +11,14 @@ namespace Religion
     [StaticConstructorOnStartup]
     internal static class HarmonyPatches
     {
-        private static HarmonyInstance harmony = HarmonyInstance.Create("ReligionMod");
+        private static readonly Harmony harmony = new Harmony("ReligionMod");
 
         static HarmonyPatches()
         {
-            HarmonyPatches.harmony.PatchAll(Assembly.GetExecutingAssembly());
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 
-        [HarmonyPatch(typeof(TraitDef), "ConflictsWith")]
+        [HarmonyPatch(typeof(TraitDef), "ConflictsWith", new Type[] { typeof(Trait) })]
         private static class Patch_ConflictsWith
         {
             private static bool Prefix(TraitDef __instance, Trait other, ref bool __result)

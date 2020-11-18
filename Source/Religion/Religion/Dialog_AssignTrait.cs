@@ -8,17 +8,17 @@ namespace Religion
 {
     class Dialog_AssignTrait : Window
     {
-        private IAssignableTrait assignable;
+        private readonly IAssignableTrait assignable;
         private Vector2 scrollPosition;
         private const float EntryHeight = 35f;
 
         public Dialog_AssignTrait(IAssignableTrait assignable)
         {
             this.assignable = assignable;
-            this.doCloseButton = true;
-            this.doCloseX = true;
-            this.closeOnClickedOutside = true;
-            this.absorbInputAroundWindow = true;
+            doCloseButton = true;
+            doCloseX = true;
+            closeOnClickedOutside = true;
+            absorbInputAroundWindow = true;
         }
 
         public override Vector2 InitialSize
@@ -36,13 +36,13 @@ namespace Religion
             outRect.yMin += 20f;
             outRect.yMax -= 40f;
             outRect.width -= 16f;
-            Rect viewRect = new Rect(0.0f, 0.0f, outRect.width - 16f, (float)((double)this.assignable.AssigningTrait.Count<TraitDef>() * 35.0 + 100.0));
-            Widgets.BeginScrollView(outRect, ref this.scrollPosition, viewRect, true);
+            Rect viewRect = new Rect(0.0f, 0.0f, outRect.width - 16f, (float)(assignable.AssigningTrait.Count<TraitDef>() * 35.0 + 100.0));
+            Widgets.BeginScrollView(outRect, ref scrollPosition, viewRect, true);
             try
             {
                 float y = 0.0f;
                 bool flag = false;
-                foreach (TraitDef assignedTraitDef in this.assignable.AssignedTraits)
+                foreach (TraitDef assignedTraitDef in assignable.AssignedTraits)
                 {
                     flag = true;
                     Rect rect = new Rect(0.0f, y, viewRect.width * 0.6f, 32f);
@@ -51,35 +51,35 @@ namespace Religion
                     rect.width = viewRect.width * 0.4f;
                     if (Widgets.ButtonText(rect, "BuildingUnassign".Translate(), true, false, true))
                     {
-                        this.assignable.TryUnassignTrait(assignedTraitDef);
-                        SoundDefOf.Click.PlayOneShotOnCamera((Map)null);
+                        assignable.TryUnassignTrait(assignedTraitDef);
+                        SoundDefOf.Click.PlayOneShotOnCamera(null);
                         return;
                     }
-                    y += 35f;
+                    y += EntryHeight;
                 }
                 if (flag)
                     y += 15f;
-                foreach (TraitDef assigningCandidate in this.assignable.AssigningTrait)
+                foreach (TraitDef assigningCandidate in assignable.AssigningTrait)
                 {
-                    if (!this.assignable.AssignedTraits.Contains<TraitDef>(assigningCandidate))
+                    if (!assignable.AssignedTraits.Contains<TraitDef>(assigningCandidate))
                     {
                         Rect rect = new Rect(0.0f, y, viewRect.width * 0.6f, 32f);
                         Widgets.Label(rect, assigningCandidate.degreeDatas[0].label);
                         rect.x = rect.xMax;
                         rect.width = viewRect.width * 0.4f;
-                        string label = !this.assignable.AssignedAnything(assigningCandidate) ? "BuildingAssign".Translate() : "BuildingReassign".Translate();
+                        string label = !assignable.AssignedAnything(assigningCandidate) ? "BuildingAssign".Translate() : "BuildingReassign".Translate();
                         if (Widgets.ButtonText(rect, label, true, false, true))
                         {
-                            this.assignable.TryAssignTrait(assigningCandidate);
-                            if (this.assignable.MaxAssignedTraitsCount == 1)
+                            assignable.TryAssignTrait(assigningCandidate);
+                            if (assignable.MaxAssignedTraitsCount == 1)
                             {
-                                this.Close(true);
+                                Close(true);
                                 break;
                             }
-                            SoundDefOf.Click.PlayOneShotOnCamera((Map)null);
+                            SoundDefOf.Click.PlayOneShotOnCamera(null);
                             break;
                         }
-                        y += 35f;
+                        y += EntryHeight;
                     }
                 }
             }

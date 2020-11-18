@@ -10,13 +10,13 @@ namespace Religion
 {
     class MentalBreakWorker_GainReligion : MentalBreakWorker
     {
-        Trait Religion = new Trait(DefDatabase<TraitDef>.AllDefsListForReading.FindAll(x => x is TraitDef_ReligionTrait).RandomElement());
+        readonly Trait Religion = new Trait(DefDatabase<TraitDef>.AllDefsListForReading.FindAll(x => x is TraitDef_ReligionTrait).RandomElement());
 
-        public override float CommonalityFor(Pawn pawn)
+        public override float CommonalityFor(Pawn pawn, bool moodCaused = false)
         {
-            float baseCommonality = this.def.baseCommonality;
-            if (pawn.Faction == Faction.OfPlayer && this.def.commonalityFactorPerPopulationCurve != null)
-                baseCommonality *= this.def.commonalityFactorPerPopulationCurve.Evaluate((float)PawnsFinder.AllMaps_FreeColonists.Count<Pawn>());
+            float baseCommonality = def.baseCommonality;
+            if (pawn.Faction == Faction.OfPlayer && def.commonalityFactorPerPopulationCurve != null)
+                baseCommonality *= def.commonalityFactorPerPopulationCurve.Evaluate(PawnsFinder.AllMaps_FreeColonists.Count<Pawn>());
             if (pawn.story.traits.allTraits.Any(x => x.def is TraitDef_ReligionTrait || x.def is TraitDef_NonReligion))
                 return 0;
             if (!ReligionUtility.CanBeReligious(pawn, Religion))

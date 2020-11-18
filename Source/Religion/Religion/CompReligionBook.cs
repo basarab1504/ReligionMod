@@ -14,11 +14,11 @@ namespace Religion
         {
             get
             {
-                return (CompProperties_CompReligionBook)this.props;
+                return (CompProperties_CompReligionBook)props;
             }
         }
 
-        public TraitDef religion
+        public TraitDef Religion
         {
             get
             {

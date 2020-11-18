@@ -10,11 +10,11 @@ namespace Religion
 {
     class MentalBreakWorker_LoseAtheism : MentalBreakWorker
     {
-        public override float CommonalityFor(Pawn pawn)
+        public override float CommonalityFor(Pawn pawn, bool moodCaused = false)
         {
-            float baseCommonality = this.def.baseCommonality;
-            if (pawn.Faction == Faction.OfPlayer && this.def.commonalityFactorPerPopulationCurve != null)
-                baseCommonality *= this.def.commonalityFactorPerPopulationCurve.Evaluate((float)PawnsFinder.AllMaps_FreeColonists.Count<Pawn>());
+            float baseCommonality = def.baseCommonality;
+            if (pawn.Faction == Faction.OfPlayer && def.commonalityFactorPerPopulationCurve != null)
+                baseCommonality *= def.commonalityFactorPerPopulationCurve.Evaluate(PawnsFinder.AllMaps_FreeColonists.Count<Pawn>());
             if (!pawn.story.traits.allTraits.Any(x => x.def is TraitDef_NonReligion))
                 return 0;
             return baseCommonality;

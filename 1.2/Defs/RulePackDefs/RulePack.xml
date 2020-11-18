@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <RulePackDef>
+    <defName>ArtDescription_Relic</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>physical_description_root-&gt;This [sculpture] [depicts] [image]. [desc_sentence_group]</li>
+        <li>physical_description_root-&gt;This [sculpture] bears a [depiction] of [image]. [desc_sentence_group]</li>
+        <li>physical_description_root-&gt;On this [sculpture] is a [depiction] of [image]. [desc_sentence_group]</li>
+        <li>sculpture-&gt;sculpture</li>
+        <li>sculpture-&gt;work</li>
+        <li>sculpture-&gt;piece</li>
+        <li>sculpture-&gt;carving</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+</Defs>

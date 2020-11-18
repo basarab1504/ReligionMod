@@ -10,9 +10,9 @@ namespace Religion
         public ThingDef thingDef;
 
         [DebuggerHidden]
-        public override IEnumerable<Thing> GenerateThings(int forTile)
+        public override IEnumerable<Thing> GenerateThings(int forTile, Faction faction = null)
         {
-            foreach (Thing th in StockGeneratorUtility.TryMakeForStock(this.thingDef, base.RandomCountOf(this.thingDef)))
+            foreach (Thing th in StockGeneratorUtility.TryMakeForStock(thingDef, RandomCountOf(thingDef)))
             {
                 yield return th;
             }
@@ -30,9 +30,9 @@ namespace Religion
             {
                 yield return e;
             }
-            if (!this.thingDef.tradeability.TraderCanSell())
+            if (!thingDef.tradeability.TraderCanSell())
             {
-                yield return this.thingDef + " tradeability doesn't allow traders to sell this thing";
+                yield return thingDef + " tradeability doesn't allow traders to sell this thing";
             }
         }
     }

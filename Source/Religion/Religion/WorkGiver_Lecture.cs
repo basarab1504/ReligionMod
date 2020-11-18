@@ -15,8 +15,8 @@ namespace Religion
         {
             get
             {
-                if (this.def.fixedBillGiverDefs != null && this.def.fixedBillGiverDefs.Count == 1)
-                    return ThingRequest.ForDef(this.def.fixedBillGiverDefs[0]);
+                if (def.fixedBillGiverDefs != null && def.fixedBillGiverDefs.Count == 1)
+                    return ThingRequest.ForDef(def.fixedBillGiverDefs[0]);
                 return ThingRequest.ForGroup(ThingRequestGroup.PotentialBillGiver);
             }
         }
@@ -28,21 +28,20 @@ namespace Religion
 
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            Building_Lectern lectern = t as Building_Lectern;
-            if (lectern == null)
+            if (!(t is Building_Lectern lectern))
                 return false;
-            if (lectern.owners.Count == 0)
+            if (lectern.CompAssignableToPawn.AssignedPawnsForReading.Count == 0)
                 return false;
-            if (lectern.owners[0] == pawn && pawn.CanReserve((LocalTargetInfo)t, 1, -1, (ReservationLayerDef)null, forced))
+            if (lectern.CompAssignableToPawn.AssignedPawnsForReading[0] == pawn && pawn.CanReserve(t, 1, -1, null, forced))
             {
-                return base.HasJobOnThing(lectern.owners[0], t, forced);
+                return base.HasJobOnThing(lectern.CompAssignableToPawn.AssignedPawnsForReading[0], t, forced);
             }
             return false;
         }
 
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            return new Job(ReligionDefOf.HoldWorship, (LocalTargetInfo)t);
+            return new Job(ReligionDefOf.HoldWorship, t);
         }
     }
 }

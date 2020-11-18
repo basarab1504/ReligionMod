@@ -38,7 +38,7 @@ namespace Religion
         {
             get
             {
-                if (!this.Spawned)
+                if (!Spawned)
                     return Enumerable.Empty<TraitDef>();
                 return DefDatabase<TraitDef>.AllDefsListForReading.FindAll(x => x is TraitDef_ReligionTrait);
             }
@@ -48,7 +48,7 @@ namespace Religion
         {
             get
             {
-                return this.religion;
+                return religion;
             }
         }
 
@@ -67,13 +67,13 @@ namespace Religion
 
         public void TryAssignTrait(TraitDef trait)
         {
-            UnassginAll();
+            UnassignAll();
             if (!religion.Contains(trait))
             {
                 religion.Add(trait);
                 ThingDef bookDef = DefDatabase<ThingDef>.AllDefsListForReading.Find(x => x.comps.Any(y => y is CompProperties_CompRelic && (y as CompProperties_CompRelic).religionTrait == trait));
                 if (bookDef != null)
-                this.GetStoreSettings().filter.SetAllow(bookDef, true);
+                GetStoreSettings().filter.SetAllow(bookDef, true);
                 if (lectern != null)
                     lectern.TryAssignTrait(trait);
             }
@@ -82,19 +82,19 @@ namespace Religion
 
         public void TryUnassignTrait(TraitDef trait)
         {
-            UnassginAll();
+            UnassignAll();
         }
 
-        public void UnassginAll()
+        public void UnassignAll()
         {
-            this.GetStoreSettings().filter.SetDisallowAll();
+            GetStoreSettings().filter.SetDisallowAll();
             religion.Clear();
             if (relic != null)
                 relic = null;
             if (lectern != null)
             {
                 lectern.religion.Clear();
-                lectern.owners.Clear();
+                lectern.CompAssignableToPawn.UnassignAllPawns();
             }
 
         }
@@ -121,7 +121,7 @@ namespace Religion
         [DebuggerHidden]
         public override IEnumerable<Gizmo> GetGizmos()
         {
-            if (base.Faction == Faction.OfPlayer)
+            if (Faction == Faction.OfPlayer)
             {
                 yield return new Command_Action
                 {
@@ -141,9 +141,9 @@ namespace Religion
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Collections.Look<TraitDef>(ref this.religion, "religions", LookMode.Def);
-            Scribe_References.Look<Building_Lectern>(ref this.lectern, "AltarLectern");
-            Scribe_References.Look<Thing>(ref this.relic, "relic");
+            Scribe_Collections.Look<TraitDef>(ref religion, "religions", LookMode.Def);
+            Scribe_References.Look<Building_Lectern>(ref lectern, "AltarLectern");
+            Scribe_References.Look<Thing>(ref relic, "relic");
         }
     }
 }
