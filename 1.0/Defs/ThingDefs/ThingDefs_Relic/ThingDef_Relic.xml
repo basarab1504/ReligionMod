@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<Defs> 
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
   <ThingDef Name="ReligionRelic" Abstract="True">
     <thingClass>ThingWithComps</thingClass>
     <thingCategories>
@@ -8,10 +8,10 @@
     <category>Item</category>
     <pathCost>10</pathCost>
     <useHitPoints>true</useHitPoints>
-	  <selectable>true</selectable>	
+    <selectable>true</selectable>
     <drawGUIOverlay>true</drawGUIOverlay>
     <statBases>
-	  <Mass>0.3</Mass>
+      <Mass>0.3</Mass>
       <WorkToMake>65000</WorkToMake>
       <MaxHitPoints>20</MaxHitPoints>
       <Flammability>1.0</Flammability>
@@ -19,22 +19,22 @@
       <DeteriorationRate>0</DeteriorationRate>
     </statBases>
     <stackLimit>1</stackLimit>
-    <tradeNeverStack>true</tradeNeverStack>	
+    <tradeNeverStack>true</tradeNeverStack>
     <altitudeLayer>Item</altitudeLayer>
     <alwaysHaulable>True</alwaysHaulable>
     <tickerType>Never</tickerType>
     <techLevel>Neolithic</techLevel>
     <!--<inspectorTabs>
       <li>ITab_Art</li>
-    </inspectorTabs>-->	
+    </inspectorTabs>-->
     <graphicData>
-      <graphicClass>Graphic_Random</graphicClass>    
-    </graphicData>  
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
     <comps>
       <li>
         <compClass>CompQuality</compClass>
-      </li> 
-      <li Class="CompProperties_Forbiddable"/>     
+      </li>
+      <li Class="CompProperties_Forbiddable" />
     </comps>
     <recipeMaker>
       <workSpeedStat>SculptingSpeed</workSpeedStat>
@@ -57,84 +57,80 @@
           <li>Jade</li>
           <li>Uranium</li>
         </disallowedThingDefs>-->
-      </defaultIngredientFilter>    
-    </recipeMaker>   
-  </ThingDef> 
-
+      </defaultIngredientFilter>
+    </recipeMaker>
+  </ThingDef>
   <ThingDef ParentName="ReligionRelic">
-  <defName>RelicOfTynanReligion</defName>
-  <label>Relic of Tynan Religion</label>
-  <description>Relic of the Tynan Religion</description>
+    <defName>RelicOfTynanReligion</defName>
+    <label>Relic of Tynan Religion</label>
+    <description>Relic of the Tynan Religion</description>
     <graphicData>
       <texPath>Item/Resource/Relics</texPath>
-      <graphicClass>Graphic_Random</graphicClass>      
-    </graphicData>    
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
     <comps>
-    	<li Class="Religion.CompProperties_CompRelic">
-      		<religionTrait>TynanReligion</religionTrait>
-  		</li>
+      <li Class="Religion.CompProperties_CompRelic">
+        <religionTrait>TynanReligion</religionTrait>
+      </li>
     </comps>
-    <costStuffCount>200</costStuffCount>   
+    <costStuffCount>200</costStuffCount>
     <stuffCategories>
       <li>Metallic</li>
       <li>Stony</li>
     </stuffCategories>
   </ThingDef>
-
   <ThingDef ParentName="ReligionRelic">
-  <defName>RelicOfSpaceSpiritsReligion</defName>
-  <label>Relic of Space Spirits Religion</label>
-  <description>Relic of the Space Spirits Religion</description>
+    <defName>RelicOfSpaceSpiritsReligion</defName>
+    <label>Relic of Space Spirits Religion</label>
+    <description>Relic of the Space Spirits Religion</description>
     <graphicData>
       <texPath>Item/Resource/Relics</texPath>
-      <graphicClass>Graphic_Random</graphicClass>  
-    </graphicData>    
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
     <comps>
       <li Class="Religion.CompProperties_CompRelic">
-          <religionTrait>SpaceSpiritsReligion</religionTrait>
+        <religionTrait>SpaceSpiritsReligion</religionTrait>
       </li>
     </comps>
-    <costStuffCount>200</costStuffCount>   
+    <costStuffCount>200</costStuffCount>
     <stuffCategories>
       <li>Metallic</li>
       <li>Stony</li>
     </stuffCategories>
   </ThingDef>
-
   <ThingDef ParentName="ReligionRelic">
-  <defName>SerpentReligion</defName>
-  <label>Relic of Serpent Religion</label>
-  <description>Relic of the Serpent Religion</description>
+    <defName>SerpentReligion</defName>
+    <label>Relic of Serpent Religion</label>
+    <description>Relic of the Serpent Religion</description>
     <graphicData>
       <texPath>Item/Resource/Relics</texPath>
-      <graphicClass>Graphic_Random</graphicClass>  
-    </graphicData>    
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
     <comps>
       <li Class="Religion.CompProperties_CompRelic">
-          <religionTrait>SerpentReligion</religionTrait>
+        <religionTrait>SerpentReligion</religionTrait>
       </li>
     </comps>
-    <costStuffCount>200</costStuffCount>   
+    <costStuffCount>200</costStuffCount>
     <stuffCategories>
       <li>Metallic</li>
       <li>Stony</li>
     </stuffCategories>
   </ThingDef>
-
   <ThingDef ParentName="ReligionRelic">
-  <defName>MotherReligion</defName>
-  <label>Relic of Mother Religion</label>
-  <description>Relic of the Mother Religion</description>
+    <defName>MotherReligion</defName>
+    <label>Relic of Mother Religion</label>
+    <description>Relic of the Mother Religion</description>
     <graphicData>
       <texPath>Item/Resource/Relics</texPath>
-      <graphicClass>Graphic_Random</graphicClass>  
-    </graphicData>    
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
     <comps>
       <li Class="Religion.CompProperties_CompRelic">
-          <religionTrait>MotherReligion</religionTrait>
+        <religionTrait>MotherReligion</religionTrait>
       </li>
     </comps>
-    <costStuffCount>200</costStuffCount>   
+    <costStuffCount>200</costStuffCount>
     <stuffCategories>
       <li>Metallic</li>
       <li>Stony</li>

@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
   <ChemicalDef>
     <defName>Faith</defName>
     <label>faith</label>
@@ -8,7 +7,6 @@
     <toleranceHediff>ReligionTolerance</toleranceHediff>
     <onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
   </ChemicalDef>
-
   <NeedDef ParentName="DrugAddictionNeedBase">
     <defName>Religion_Need</defName>
     <needClass>Need_Chemical</needClass>
@@ -17,7 +15,6 @@
     <listPriority>45</listPriority>
     <fallPerDay>0.25</fallPerDay>
   </NeedDef>
-
   <HediffDef ParentName="AddictionBase">
     <defName>ReligionAddiction</defName>
     <hediffClass>Hediff_Addiction</hediffClass>
@@ -28,7 +25,7 @@
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>-0.1</severityPerDay>
       </li>
-    </comps>    
+    </comps>
     <stages>
       <li>
       </li>
@@ -43,7 +40,6 @@
       </li>
     </stages>
   </HediffDef>
-
   <HediffDef ParentName="DrugToleranceBase">
     <defName>ReligionTolerance</defName>
     <label>religion tolerance</label>
@@ -56,7 +52,6 @@
       </li>
     </comps>
   </HediffDef>
-
   <ThoughtDef>
     <defName>ReligionWithdrawal</defName>
     <workerClass>ThoughtWorker_Hediff</workerClass>

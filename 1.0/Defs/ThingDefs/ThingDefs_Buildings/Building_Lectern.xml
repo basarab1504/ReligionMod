@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <ThingDef Name="LecternBase" ParentName="BuildingBase" Abstract="True">
     <canOverlapZones>false</canOverlapZones>
-    <altitudeLayer>Building</altitudeLayer>    
+    <altitudeLayer>Building</altitudeLayer>
     <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
     <statBases>
       <Mass>20</Mass>
@@ -13,7 +13,7 @@
       <joyKind>PrayingKind</joyKind>
     </building>
     <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
-    <interactionCellIcon>DiningChair</interactionCellIcon>     
+    <interactionCellIcon>DiningChair</interactionCellIcon>
     <placeWorkers>
       <li>PlaceWorker_WatchArea</li>
       <li>Religion.PlaceWorker_NextToAltar</li>
@@ -24,7 +24,7 @@
     </inspectorTabs>
     <researchPrerequisites>
       <li>ReligionStuff</li>
-    </researchPrerequisites> 
+    </researchPrerequisites>
     <comps>
       <li>
         <compClass>CompQuality</compClass>
@@ -36,7 +36,6 @@
     <designationHotKey>Misc4</designationHotKey>
     <tickerType>Rare</tickerType>
   </ThingDef>
-
   <ThingDef ParentName="LecternBase">
     <defName>Lectern</defName>
     <label>Lectern</label>
@@ -84,6 +83,6 @@
         <max>8</max>
       </watchBuildingStandDistanceRange>
       <watchBuildingStandRectWidth>7</watchBuildingStandRectWidth>
-    </building> 
+    </building>
   </ThingDef>
 </Defs>

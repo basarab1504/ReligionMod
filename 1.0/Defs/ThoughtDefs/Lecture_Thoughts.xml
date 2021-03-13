@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <ThoughtDef>
     <defName>HeldLecture</defName>
@@ -12,7 +12,6 @@
       </li>
     </stages>
   </ThoughtDef>
-
   <ThoughtDef>
     <defName>AttendedLecture</defName>
     <durationDays>2</durationDays>
@@ -32,7 +31,7 @@
         <label>fine lecture</label>
         <description>I spent some time being on fine worship.</description>
         <baseMoodEffect>6</baseMoodEffect>
-      </li>      
+      </li>
       <li>
         <label>intersting lecture</label>
         <description>I spent some time being on intersting worship.</description>
@@ -60,17 +59,21 @@
       </li>
     </stages>
   </ThoughtDef>
-
   <ThoughtDef>
     <defName>PrayedInImpressiveTemple</defName>
     <durationDays>0.25</durationDays>
     <stackLimit>3</stackLimit>
     <stages>
-      <li IsNull="True" /> <!-- awful -->
-      <li IsNull="True" /> <!-- repulsive -->
-      <li IsNull="True" /> <!-- dull -->
-      <li IsNull="True" /> <!-- mediocre -->
-      <li IsNull="True" /> <!-- interesting -->
+      <li IsNull="True" />
+      <!-- awful -->
+      <li IsNull="True" />
+      <!-- repulsive -->
+      <li IsNull="True" />
+      <!-- dull -->
+      <li IsNull="True" />
+      <!-- mediocre -->
+      <li IsNull="True" />
+      <!-- interesting -->
       <li>
         <label>impressive temple</label>
         <description>I spent some time in an impressive temple.</description>
@@ -107,15 +110,14 @@
         <baseMoodEffect>8</baseMoodEffect>
       </li>
     </stages>
-  </ThoughtDef>	
-
-    <ThoughtDef>
+  </ThoughtDef>
+  <ThoughtDef>
     <defName>SameReligion</defName>
     <thoughtClass>Thought_MemorySocial</thoughtClass>
     <durationDays>20</durationDays>
-	<stackLimit>300</stackLimit>
+    <stackLimit>300</stackLimit>
     <stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
-	<stackedEffectMultiplier>0.85</stackedEffectMultiplier>	
+    <stackedEffectMultiplier>0.85</stackedEffectMultiplier>
     <stages>
       <li>
         <label>shared beliefs</label>

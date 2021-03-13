@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "l508f01W/A4pwM1m45SlGnqw3Ws2/o0+pHC8rFxq7osAYp6t6ZdjFgLo+Zl2PbN39c9aE4EHKpAIwgHaHd1EvA==",
+  "success": true,
+  "projectFilePath": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\ReligionMod\\Source\\MigrationBackup\\998a0341\\Religion\\Religion.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\inade\\.nuget\\packages\\krafs.rimworld.ref\\1.2.2900\\krafs.rimworld.ref.1.2.2900.nupkg.sha512",
+    "C:\\Users\\inade\\.nuget\\packages\\lib.harmony\\2.0.4\\lib.harmony.2.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

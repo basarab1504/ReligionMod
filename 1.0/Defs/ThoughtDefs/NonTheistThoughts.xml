@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <ThoughtDef>
     <defName>AntitheistThoughts</defName>
@@ -7,23 +7,22 @@
     <validWhileDespawned>true</validWhileDespawned>
     <requiredTraits>
       <li>Antitheist</li>
-    </requiredTraits>    
+    </requiredTraits>
     <stages>
       <li>
         <label>religious</label>
         <baseOpinionOffset>-15</baseOpinionOffset>
       </li>
     </stages>
-  </ThoughtDef>	
-
+  </ThoughtDef>
   <ThoughtDef>
     <defName>BothAtheists</defName>
     <thoughtClass>Thought_SituationalSocial</thoughtClass>
     <workerClass>Religion.ThoughtWorker_BothNonTheist</workerClass>
-    <validWhileDespawned>true</validWhileDespawned>  
+    <validWhileDespawned>true</validWhileDespawned>
     <requiredTraits>
       <li>Atheist</li>
-    </requiredTraits>  
+    </requiredTraits>
     <stages>
       <li>
         <label>both are atheists</label>
@@ -31,20 +30,19 @@
       </li>
     </stages>
   </ThoughtDef>
-
   <ThoughtDef>
     <defName>BothAntitheists</defName>
     <thoughtClass>Thought_SituationalSocial</thoughtClass>
     <workerClass>Religion.ThoughtWorker_BothNonTheist</workerClass>
-    <validWhileDespawned>true</validWhileDespawned>  
+    <validWhileDespawned>true</validWhileDespawned>
     <requiredTraits>
       <li>Antitheist</li>
-    </requiredTraits>      
+    </requiredTraits>
     <stages>
       <li>
         <label>both are antitheists</label>
         <baseOpinionOffset>+15</baseOpinionOffset>
       </li>
     </stages>
-  </ThoughtDef>    
+  </ThoughtDef>
 </Defs>
